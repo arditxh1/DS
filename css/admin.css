@@ -1,0 +1,9 @@
+.longT{
+    overflow: hidden;
+    max-width: 25ch;
+}
+
+#ReviewA{
+	user-select: none;
+	cursor: pointer; 
+}
