@@ -12,6 +12,7 @@ $('tr').click(function(){
 		$("#starN").text($("#Rev" + editId).text());
 		dbId = $("#Id" + editId).text();
 		$("#rating" + $("#Rev" + editId).text()).attr("checked","");
+		lastUser = $("#emriDM").text();
 	}	
 });
 
@@ -26,6 +27,14 @@ $('#exampleModal').on('hidden.bs.modal', function (e) {
 $("#addRev").click(function(){
 	url = "php/review.php";
 	id = dbId;
-	$.post( url, {rev: rev, id: id});
-	location.reload();
+	  $.post(url,
+    {
+		rev: rev, id: id, lastUser: lastUser
+    },
+    function(data,status){
+    });
+
+	//location.reload();
 });
+
+

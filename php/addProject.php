@@ -75,11 +75,22 @@
   $sqlInsert->bindParam(':APK', $APK);
   $sqlInsert->bindParam(':username', $username);
 
-  echo "<br>";
-  echo "$APK";
-
-  // insert a row
     $sqlInsert->execute();
 
-?>
+    $id = $_SESSION["id"];
+
+    $query = $con->prepare("SELECT * FROM users WHERE id = $id");
+
+    $query->execute();
+
+    $tempNR = $query->fetchAll();
+
+    $NrOfPr = $tempNR[0]["NrOfPr"] + 1;
+
+    $sqlQuery = "UPDATE users set NrOfPr = $NrOfPr where id = $id";
+  
+    $sqlInsertT = $con->prepare($sqlQuery);
+
+    $sqlInsertT->execute();
+
 ?>

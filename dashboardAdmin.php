@@ -115,6 +115,10 @@
                                 <i class="fas fa-mobile" ></i>Dashboard</a>
                         </li>
                         <li>
+                            <a href="dashboard2.php">
+                                <i class="fas fa-users"></i>Users</a>
+                        </li>
+                        <li>
                             <a href="chart.html">
                                 <i class="fas fa-cog"></i>Settings</a>
                         </li>
@@ -243,7 +247,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="table-responsive table--no-card m-b-30">
-                                    <table class="table table-borderless table-striped table-earning">
+                                    <table class="table table-borderless table-striped table-earning table-responsive-lg">
                                         <thead>
                                             <tr id="noT">
                                                 <th>Emri i Aplikacionit </th>

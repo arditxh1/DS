@@ -34,6 +34,13 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
 
 </head>
+<?php  
+    include 'php/dbh.php';
+
+    if (!empty($_SESSION["username"])) {
+        header('location: dashboard.php');
+    }
+?>
 
 <body class="animsition">
     <div class="page-wrapper">

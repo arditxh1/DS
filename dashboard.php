@@ -100,6 +100,10 @@
                             <a href="chart.html">
                                 <i class="fas fa-laptop"></i>Webfaqe</a>
                         </li>
+                        <li>
+                            <a href="leaderboard.php">
+                                <i class="fas fa-trophy"></i>leaderboard</a>
+                        </li>
                     </ul>
                 </nav>
             </div>

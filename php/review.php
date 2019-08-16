@@ -2,17 +2,29 @@
 
   require_once('dbh.php');
 
-  $rev  = $_POST["rev"];
-  $id  = $_POST["id"];
+    $rev  = $_POST["rev"];
+    $id  = $_POST["id"];
+    $username = $_POST["lastUser"];
 
-  $sqlQuery = "UPDATE projekete_app set Review = :rev where id = :id";
+    $sqlQuery = "UPDATE projekete_app set Review = :rev where id = :id";
+    $sqlInsert = $con->prepare($sqlQuery);
+    $sqlInsert->bindParam(':rev', $rev);
+    $sqlInsert->bindParam(':id', $id);
+    $sqlInsert->execute();
 
-  $sqlInsert = $con->prepare($sqlQuery);
+    $query = $con->prepare("SELECT Review FROM projekete_app WHERE username = '$username'");
+    $query->execute();
+    $StarsG = $query->fetchAll();
 
-  $sqlInsert->bindParam(':rev', $rev);
-  $sqlInsert->bindParam(':id', $id);
+    $num = -1;
+    $Stars = 0;
+    foreach ($StarsG as $obj) {
+        $num++;
+        $Stars += $StarsG[$num]["Review"];
+    }
 
-  // insert a row
+    $sqlQuery = "UPDATE users set Stars = $Stars where username = '$username'";
+    $sqlInsert = $con->prepare($sqlQuery);
     $sqlInsert->execute();
 
 ?>
