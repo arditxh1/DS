@@ -6,8 +6,8 @@
 		$password = $_POST['Password'];
 
 		if(empty($username) || empty($password)) {
-			$_SESSION['error'] = "HEJ KY ERROR";
-			header('Location: login.php');
+			$_SESSION['error'] = "Fill All";
+			header('Location: ../login.php');
 
 
 		}else{
@@ -21,22 +21,22 @@
 				$data = $insertSql->fetch();
 				 
 				if ($data == null) {
-					echo "wrong username";
+					$_SESSION['error'] = "Wrong Username !";
+					$_SESSION['error1'] = " The username was not found in the server.";
+					header('location: ../login.php');	
 				}else{
 					$passwordT = password_hash($password, PASSWORD_DEFAULT);
 					if (password_verify($password, $data['password'])) {
-						$_SESSION["username"] = $data['username'];
-						$_SESSION["password"] = $data['password'];
-						$_SESSION["email"] = $data['email'];
+						$_SESSION["username"] = $username;
+						$_SESSION["password"] = $password;
 						$_SESSION["id"] = $data['id'];
+						$_SESSION["email"] = $data['email'];
 
-						if ($password == "DigitalSchool123") {
-							header('location: ../dashboardAdmin.php');
-						}else{
-							header('location: ../dashboard.php');							
-						}
+						header('location: ../dashboard.php');
 					} else{
-						echo "wrong password";
+						$_SESSION['error'] = "Wrong Password !";
+						$_SESSION['error1'] = " The username and password dont match.";
+						header('location: ../login.php');	
 					}
 				}
 

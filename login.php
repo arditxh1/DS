@@ -1,4 +1,4 @@
-<?php require_once('php/dbh.php'); ?>
+<?php include_once('php/dbh.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,13 +34,6 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
 
 </head>
-<?php  
-    include 'php/dbh.php';
-
-    if (!empty($_SESSION["username"])) {
-        header('location: dashboard.php');
-    }
-?>
 
 <body class="animsition">
     <div class="page-wrapper">
@@ -57,11 +50,11 @@
                             <div class="login-form">
                                     <div class="form-group">
                                         <label>Username</label>
-                                        <input class="au-input au-input--full" type="text" name="Username" placeholder="Username">
+                                        <input class="au-input au-input--full" type="text" name="Username" placeholder="Username" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input class="au-input au-input--full" type="password" name="Password" placeholder="Password">
+                                        <input class="au-input au-input--full" type="password" name="Password" placeholder="Password" required>
                                     </div>
                                     <div class="login-checkbox">
                                         <label>
@@ -75,25 +68,15 @@
                                     <div class="social-login-content">
                                         <div class="social-button">
                                             <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
-                                            <button class="au-btn au-btn--block au-btn--blue2">sign in with twitter</button>
                                         </div>
                                     </div>
                         </form>
-                            <div class="register-link">
-                                <p>
-                                    Don't you have account?
-                                    <a href="#">Sign Up Here</a>
-                                </p>
-                            </div>
-
-                            <?php 
-
-                                    if(!empty($_SESSION['error']))
-                                    {
-                                        echo $_SESSION['error'];
-                                    }
-
-                             ?>
+                        <div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
+                          <p id="contentA"><strong><?php echo $_SESSION['error']; $_SESSION['error'] = '';?></strong><?php echo $_SESSION['error1']; $_SESSION['error1'] = '';?></p>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -123,7 +106,10 @@
     <script src="vendor/select2/select2.min.js">
     </script>
 
+    <script type="text/javascript"></script>
+
     <!-- Main JS-->
+    <script src="js/login.js"></script>
     <script src="js/main.js"></script>
     <script src="js/logIn.js"></script>
 
