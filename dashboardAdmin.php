@@ -20,25 +20,23 @@
 
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <!-- Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
     <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
     <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <!-- Stars-->
-
     <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
-<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Main CSS-->
+    <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/theme.css" rel="stylesheet" media="all">
-
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+
+
 
 </head>
     <script src="vendor/jquery-3.2.1.min.js"></script>
@@ -58,8 +56,13 @@
 
     <?php  
     include 'php/dbh.php';
+    if ($_GET['search'] == "") {
         $query = $con->prepare("SELECT * FROM projekete_app ORDER BY $typeR");
-
+    }else{
+        $search = $_GET['search'];
+        $query = $con->prepare("SELECT * FROM projekete_app WHERE Emri LIKE '$search%' ");
+        print_r($query);
+    }
         $query->execute();
 
         $projekte = $query->fetchAll();
@@ -229,8 +232,13 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="row" style="display: flex; justify-content: flex-end; align-items: center; padding-bottom: 20px; padding-right: 20px;">
+                        <div class="row" style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; padding-right: 20px;">
                             <!-- Example single danger button -->
+                            <input type="checkbox" checked data-toggle="toggle" id="togg">
+                            <div class="form-inline md-form form-sm mt-0">
+                              <i class="fas fa-search" aria-hidden="true"></i>
+                              <input type="text" placeholder="Search" aria-label="Search" id="searchI">
+                            </div>
                             <div class="btn-group">
                               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Action
@@ -246,8 +254,9 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
+                            <div id="mainD" class="au-card" style="display: flex; flex-direction: row"></div>
                                 <div class="table-responsive table--no-card m-b-30">
-                                    <table class="table table-borderless table-striped table-earning table-responsive-lg">
+                                    <table class="table table-borderless table-striped table-earning table-responsive-lg" id="table">
                                         <thead>
                                             <tr id="noT">
                                                 <th>Emri i Aplikacionit </th>
@@ -259,6 +268,7 @@
                                                 <th>Cover design</th>
                                                 <th>APK</th>
                                                 <th>Review</th>
+                                                <th>Open Review</th>
                                                 <th>Id</th>
                                             </tr>
                                         </thead>
@@ -266,7 +276,17 @@
                                             <?php $num = 0; ?>
                                             <?php foreach ($projekte as $obj) {
                                                 $num+= 1;
-                                                
+                                                $reviewNum = 0;
+                                                $reviewPrintN = 0;
+                                                $PrId = $obj['id'];
+                                                $nice = $con->prepare("SELECT Review FROM reviews WHERE PrId = $PrId");
+                                                $nice->execute();
+                                                $ReviewedD = $nice->fetchAll();
+
+                                                foreach ($ReviewedD as $obje) {
+                                                    $reviewPrintN += (int)($obje["Review"]);
+                                                    $reviewNum++;
+                                                }
                                                 echo "<tr id=Tr$num>";
                                                     echo "<td id='Emri$num'>"           . $obj["Emri"]     ."</td>";
                                                     echo "<td id='username$num'>"       . $obj["username"] ."</td>";
@@ -277,11 +297,26 @@
                                                     echo "<td id='APK$num'> <a href = " . $obj["CD"]       ." download>Cover Designs</a></td>";
                                                     echo "<td id='APK$num'> <a href = " . $obj["APK"]      ." download>APK</a></td>";
                                                     echo "<td id='Rev$num'>"           . $obj["Review"]     ."</td>";
+                                                    echo "<td id='Rev$num'>"           . $reviewPrintN/$reviewNum     ."</td>";
                                                     echo "<td id='Id$num'>"           . $obj["id"]     ."</td>";
                                                 echo "</tr>";
+                                                echo "<div class='card cardS' style='width: 18rem;' id=Card$num>";
+                                                    echo "<img src=" . $obj['CD'] . " class='card-img-top' alt='...'>";
+                                                    echo "<div class='card-body'>";
+                                                        echo "<h5 class='card-title'>". $obj["Emri"] ."</h5>";
+                                                        echo "<p class='card-text'>". $obj["Short"] ."</p>";
+                                                    echo "</div>";
+                                                    echo "<ul class='list-group list-group-flush'>";
+                                                        echo "<li class='list-group-item'>". $obj["username"] ."</li>";
+                                                    echo "</ul>";
+                                                    echo "<div class='card-body'>";
+                                                        echo "<a href='#' class='card-link' id=CL$num>Card link</a>";
+                                                    echo "</div>";
+                                                echo "</div>";
                                             } 
                                              ?>
                                         </tbody>
+                                        <script src="js/admin.js"></script>
                                         <script type="text/javascript">
                                         var count = $("#TB tr").length;
                                         RatingS = {};
@@ -289,11 +324,14 @@
                                             if ($("#Rev" + i).text() == "11") {
                                                $("#Rev" + i).text("Not reviewed");
                                                RatingS["#Tr" + i] = 0;
+                                               $("#Card" + i).appendTo("#mainD");
                                             }else{
                                                  RatingS["#Tr" + i] = $("#Rev" + i).text();
                                             }
                                         }
                                         keysSorted = Object.keys(RatingS).sort(function(a,b){return RatingS[b]-RatingS[a]})
+                                        $("#table").hide();
+                                        $(".toggle-on").text("card");
                                         </script>
                                     </table>
                                 </div>
@@ -405,8 +443,7 @@
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js"></script>
-
-    <script src="js/admin.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="js/main.js"></script>
 
 </body>

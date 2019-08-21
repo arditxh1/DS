@@ -7,3 +7,37 @@
 	user-select: none;
 	cursor: pointer; 
 }
+
+.cardS{
+	margin: 10px !important;
+}
+
+#togg{
+	margin-top: 20px !important;
+}
+
+.toggle-handle{
+	background-color: white;
+}
+
+.off{
+	border: 1px solid #007bff;
+}
+
+.toggle{
+	margin-left: 17px;
+}
+
+#searchI{
+	margin-left: 10px;
+	background-color: transparent !important;
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	border-bottom: solid 1px gray;
+	transition: .3s ease-out;
+}
+
+#searchI:focus{
+	border-bottom: solid 2px #007bff;
+}

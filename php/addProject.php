@@ -62,8 +62,9 @@
   $Cover = $CoverDB;
   $APK = $APKDB;
   $username = $_SESSION['username'];
+  $userId = $_SESSION['id'];
 
-  $sqlQuery = "INSERT INTO projekete_app(Emri, Short, Full, SCR, Icon, CD, APK, username) VALUES(:Name, :Short, :Long, :SCR, :Icon, :Cover, :APK, :username)";
+  $sqlQuery = "INSERT INTO projekete_app(Emri, Short, Full, SCR, Icon, CD, APK, username, user_Id) VALUES(:Name, :Short, :Long, :SCR, :Icon, :Cover, :APK, :username, :userId)";
   $sqlInsert = $con->prepare($sqlQuery);
 
   $sqlInsert->bindParam(':Name', $Name);
@@ -74,6 +75,7 @@
   $sqlInsert->bindParam(':Cover', $Cover);
   $sqlInsert->bindParam(':APK', $APK);
   $sqlInsert->bindParam(':username', $username);
+  $sqlInsert->bindParam(':userId', $userId);
 
     $sqlInsert->execute();
 

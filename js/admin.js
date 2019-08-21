@@ -1,7 +1,8 @@
-$('tr').click(function(){
+ $('.card-link' || 'tr').click(function(){
 	var target = $(event.target);
 	if (!target.is('button')) {
-		console.log(target.nodeName);
+		console.log($(this));
+		console.log(($(this).attr('id')));
 		editId = parseInt($(this).attr('id').substr(-1));
 		$('#exampleModal').modal();
 		$('#emriAM').text($("#Emri" + editId).text());
@@ -37,4 +38,27 @@ $("#addRev").click(function(){
 	//location.reload();
 });
 
+$(function() {
+	$('#togg').bootstrapToggle({
+	  on: 'Cards',
+	  off: 'Table'
+	});
+	$('#togg').change(function() {
+		var temp = $(this).prop('checked');
+	  if (temp == false) {
+	  	$("#mainD").hide();
+	  	$("#table").show();
+	  }else{
+	  	$("#table").hide();
+	  	$("#mainD").show();
+	  }
+	})
+})
 
+$('#searchI').keypress(function(event){
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+		urlS = "dashboardAdmin.php?search=" + $("#searchI").val();
+		window.location = urlS;
+	}
+});

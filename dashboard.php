@@ -34,6 +34,8 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+
 </head>
 
 <?php  
@@ -41,11 +43,16 @@
 
     if (empty($_SESSION["username"])) {
         header('location: login.php');
-        var_dump($_SESSION["username"]);
     }
+    $userReg = $_SESSION["username"];
+    $sql = "SELECT id FROM users WHERE username= :username";
+    $insertSql = $con->prepare($sql);
+    $insertSql->bindParam(':username', $userReg);
+    $insertSql->execute();
+    $data = $insertSql->fetch();
+    $_SESSION["id"] = $data["id"];
 ?>
-
-<?php var_dump($_SESSION['username']);  ?>
+<?php var_dump($_SESSION["id"]) ?>
 
 <body class="animsition">
     <div class="page-wrapper">
@@ -93,7 +100,7 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a href="chart.html">
+                            <a href="dashboard.php">
                                 <i class="fas fa-mobile" ></i>Aplikacion</a>
                         </li>
                         <li>
@@ -102,7 +109,11 @@
                         </li>
                         <li>
                             <a href="leaderboard.php">
-                                <i class="fas fa-trophy"></i>leaderboard</a>
+                                <i class="fas fa-trophy"></i>Leaderboard</a>
+                        </li>
+                        <li>
+                            <a href="rateDashboard.php">
+                                <i class="fas fa-star"></i>Rate</a>
                         </li>
                     </ul>
                 </nav>
@@ -165,40 +176,7 @@
                                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="php/logout.php"></a>
-                                        </div>
-                                        <div class="account-dropdown js-dropdown">
-                                            <div class="info clearfix">
-                                                <div class="image">
-                                                    <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                                    </a>
-                                                </div>
-                                                <div class="content">
-                                                    <h5 class="name">
-                                                        <a href="#"></a>
-                                                    </h5>
-                                                    <span class="email"></span>
-                                                </div>
-                                            </div>
-                                            <div class="account-dropdown__body">
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                                </div>
-                                            </div>
-                                            <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
-                                            </div>
+                                            <a class="js-acc-btn" href="php/logout.php"><?php echo $_SESSION['username']; ?></a>
                                         </div>
                                     </div>
                                 </div>

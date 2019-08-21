@@ -165,40 +165,7 @@
                                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="php/logout.php"></a>
-                                        </div>
-                                        <div class="account-dropdown js-dropdown">
-                                            <div class="info clearfix">
-                                                <div class="image">
-                                                    <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                                    </a>
-                                                </div>
-                                                <div class="content">
-                                                    <h5 class="name">
-                                                        <a href="#"></a>
-                                                    </h5>
-                                                    <span class="email"></span>
-                                                </div>
-                                            </div>
-                                            <div class="account-dropdown__body">
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                                </div>
-                                            </div>
-                                            <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
-                                            </div>
+                                            <a class="js-acc-btn" href="php/logout.php"><?php echo $_SESSION['username']; ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -228,24 +195,36 @@
                                             </tr>
                                         </thead>
                                         <tbody id="TB">
-
                                             <?php  
                                              $query = $con->prepare("SELECT * FROM users");
     
                                              $query->execute();
 
-                                             $projekte = $query->fetchAll();
-                                            ?>
-                                            <?php $num = 0; ?>
-                                            <?php foreach ($projekte as $obj) {
-                                                $num+= 1;
-                                                echo "<tr id=Tr$num>";
-                                                    echo "<td id='Emri$num'>"                   . $obj["id"]     ."</td>";
-                                                    echo "<td id='username$num'>"               . $obj["username"] ."</td>";
-                                                    echo "<td id='Short$num' class='longT'>"    . $obj["email"]    ."</td>";
-                                                    echo "<td id='Short$num' class='longT'>"    . $obj["NrOfPr"]    ."</td>";
-                                                    echo "<td id='Short$num' class='longT'>"    . $obj["Stars"]/$obj["NrOfPr"]    ."</td>";
-                                                    echo "<td id='Short$num' class='longT'>"    . $obj["Stars"]   ."</td>";
+                                             $users = $query->fetchAll();
+                                            $numO = 0;
+                                            foreach ($users as $obj) {
+                                                $reviewPrintN = 0;
+                                                $reviewNum = 0;
+                                                $numO+= 1;
+                                                $idR = $obj["id"];
+                                                $S_query = $con->prepare("SELECT Review FROM reviews WHERE OwnerId = $idR");
+                                            
+                                                $S_query->execute();
+
+                                                $Reviewed = $S_query->fetchAll();
+
+                                                foreach ($Reviewed as $obje) {
+                                                    $reviewPrintN += (int)($obje["Review"]);
+                                                    $reviewNum++;
+                                                }
+
+                                                echo "<tr id=Tr$numO>";
+                                                    echo "<td id='place$numO'>"               . $obj["id"] ."</td>";
+                                                    echo "<td id='username$numO'>"               . $obj["username"] ."</td>";
+                                                    echo "<td id='username$numO'>"               . $obj["email"] ."</td>";
+                                                    echo "<td id='NrOfPr$numO' class='longT'>"    . $reviewNum ."</td>";
+                                                    echo "<td id='AR$numO' class='longT'>"    . $reviewPrintN/$reviewNum   ."</td>";
+                                                    echo "<td id='Stars$numO' class='longT'>"    . $reviewPrintN   ."</td>";
                                                 echo "</tr>";
                                             } 
                                              ?>

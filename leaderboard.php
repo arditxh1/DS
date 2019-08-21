@@ -96,17 +96,21 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                         <li class="has-sub">
+                        <li>
                             <a href="dashboard.php">
-                                <i class="fas fa-mobile aria-hidden='true'" ></i>Aplikacion</a>
+                                <i class="fas fa-mobile" ></i>Aplikacion</a>
                         </li>
                         <li>
                             <a href="chart.html">
                                 <i class="fas fa-laptop"></i>Webfaqe</a>
                         </li>
-                        <li class="active has-sub ">
-                            <a href="chart.html">
-                                <i class="fas fa-trophy"></i>leaderboard</a>
+                        <li  class="active has-sub">
+                            <a href="leaderboard.php">
+                                <i class="fas fa-trophy"></i>Leaderboard</a>
+                        </li>
+                        <li>
+                            <a href="rateDashboard.php">
+                                <i class="fas fa-star"></i>Rate</a>
                         </li>
                     </ul>
                 </nav>
@@ -169,7 +173,7 @@
                                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="php/logout.php"></a>
+                                            <a class="js-acc-btn" href="php/logout.php"><?php echo $_SESSION['username']; ?></a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
@@ -231,23 +235,35 @@
                                             </tr>
                                         </thead>
                                         <tbody id="TB">
-
                                             <?php  
                                              $query = $con->prepare("SELECT * FROM users");
     
                                              $query->execute();
 
-                                             $projekte = $query->fetchAll();
-                                            ?>
-                                            <?php $num = 0; ?>
-                                            <?php foreach ($projekte as $obj) {
-                                                $num+= 1;
-                                                echo "<tr id=Tr$num>";
-                                                    echo "<td id='place$num'>"               . $num ."</td>";
-                                                    echo "<td id='username$num'>"               . $obj["username"] ."</td>";
-                                                    echo "<td id='NrOfPr$num' class='longT'>"    . $obj["NrOfPr"]    ."</td>";
-                                                    echo "<td id='AR$num' class='longT'>"    . $obj["Stars"]/$obj["NrOfPr"]    ."</td>";
-                                                    echo "<td id='Stars$num' class='longT'>"    . $obj["Stars"]   ."</td>";
+                                             $users = $query->fetchAll();
+                                            $numO = 0;
+                                            foreach ($users as $obj) {
+                                                $reviewPrintN = 0;
+                                                $reviewNum = 0;
+                                                $numO+= 1;
+                                                $idR = $obj["id"];
+                                                $S_query = $con->prepare("SELECT Review FROM reviews WHERE OwnerId = $idR");
+                                            
+                                                $S_query->execute();
+
+                                                $Reviewed = $S_query->fetchAll();
+
+                                                foreach ($Reviewed as $obje) {
+                                                    $reviewPrintN += (int)($obje["Review"]);
+                                                    $reviewNum++;
+                                                }
+
+                                                echo "<tr id=Tr$numO>";
+                                                    echo "<td id='place$numO'>"               . $numO ."</td>";
+                                                    echo "<td id='username$numO'>"               . $obj["username"] ."</td>";
+                                                    echo "<td id='NrOfPr$numO' class='longT'>"    . $reviewNum ."</td>";
+                                                    echo "<td id='AR$numO' class='longT'>"    . $reviewPrintN/$reviewNum   ."</td>";
+                                                    echo "<td id='Stars$numO' class='longT'>"    . $reviewPrintN   ."</td>";
                                                 echo "</tr>";
                                             } 
                                              ?>
