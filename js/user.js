@@ -1,9 +1,11 @@
 
-$('tr').click(function(){
+$('#TB').click(function(){
 	var target = $(event.target);
+	console.log(target);
 	if (!target.is('button')) {
 		$("#RatingStars").show();
-		editId = parseInt($(this).attr('id').substr(-1));
+		editId = parseInt($(target).attr('id').substr(-1));
+		console.log($(target).attr('id').substr(-1));
 		$('#exampleModal').modal();
 		$('#emriAM').text($("#Emri" + editId).text());
 		$('#emriDM').text($("#username" + editId).text());
@@ -17,11 +19,6 @@ $('tr').click(function(){
 		lastUser = $("#emriDM").text();
 		lastId = $("#idM").text();
 		ownerId = $("#user_id" + editId).text();
-		if (reviewedProjectsR.includes(lastId)) {
-			$("#starN").text("You already rated.");
-			$("#starN").css("font-size","22px");
-			$("#RatingStars").hide();
-		}
 	}	
 });
 

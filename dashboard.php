@@ -204,7 +204,7 @@
                                             <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Name">
 
                                             <label for="textarea">Short description</label>
-                                            <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short"></textarea>
+                                            <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80"></textarea>
 
                                             <label for="textarea">Full description</label>
                                             <textarea id="textarea" class="form-control mb-4" placeholder="" name="Long"></textarea>
@@ -214,8 +214,8 @@
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput" name="APK">
-                                                    <label class="custom-file-label" for="fileInput">APK File</label>
+                                                    <input type="file" class="custom-file-input" id="fileInputAPK" aria-describedby="fileInput" name="APK">
+                                                    <label class="custom-file-label" for="fileInput" id="apkLabel">APK File</label>
                                                 </div>
                                             </div>
 
@@ -228,8 +228,8 @@
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput" name="SCR">
-                                                    <label class="custom-file-label" for="fileInput">Img File</label>
+                                                    <input type="file" class="custom-file-input imgInp" id="1" aria-describedby="fileInput" name="SCR" id="1">
+                                                    <label class="custom-file-label" for="fileInput" id="N1">Img File</label>
                                                 </div>
                                             </div>
                                             <label for="textInput">Icon </label>
@@ -238,8 +238,8 @@
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput" name="Icon">
-                                                    <label class="custom-file-label" for="fileInput">Img File</label>
+                                                    <input type="file" class="custom-file-input imgInp" id="2" aria-describedby="fileInput" name="Icon" id="2">
+                                                    <label class="custom-file-label" for="fileInput" id="N2">Img File</label>
                                                 </div>
                                             </div>
                                             <label for="textInput">Cover design</label>
@@ -249,8 +249,8 @@
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput" name="Cover">
-                                                    <label class="custom-file-label" for="fileInput">Img File</label>
+                                                    <input type="file" class="custom-file-input imgInp" id="3" aria-describedby="fileInput" name="Cover" id="3">
+                                                    <label class="custom-file-label" for="fileInput" id="N3">Img File</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -268,59 +268,31 @@
             <!-- END PAGE CONTAINER-->
         </div>
 
-        <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                <form>
-                    <div class="modal-body">
-                    <div class="input-group mb-3">
-                      <input type="text" name="product" id="namePro"class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Name of the Product...">
-                    </div>               
-                    <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">$</span>
-                          </div>
-                          <input type="text" name="price" id="pricePro" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Price of the product">
-                    </div>
-                    <div class="input-group mb-3">
-                      <input type="text" name="stock" id="stockPro" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="How much in stock">
-                    </div>  
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-secondary" id="addCate">Add</button>
-                        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu" id="listCate">
-                          <a class="dropdown-item" href="#" id="Cate" >No categories found.</a>
-                        </div>
-                      </div>
-                      <input type="text" name="category" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="Add a category..." id="inputCate">
-                    </div>
-                  </div>
-                  </form>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="submit" class="btn btn-primary" id="addPro" data-dismiss="modal">Add Product</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </form>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <p id="warningP"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
+    <script type="js/jquery.checkImageSize.js"></script>
     <script src="vendor/slick/slick.min.js"></script>
     <script src="vendor/wow/wow.min.js"></script>
     <script src="vendor/animsition/animsition.min.js"></script>
@@ -331,9 +303,10 @@
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js"></script>
-
     <script src="js/logic.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+
 
 </body>
 

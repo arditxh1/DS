@@ -224,7 +224,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="table-responsive table--no-card m-b-30">
-                                    <table class="table table-borderless table-striped table-earning table-responsive-lg">
+                                    <table class="table table-borderless table-striped table-earning table-responsive-lg" id="leaderboardT">
                                         <thead>
                                             <tr id="noT">
                                                 <th>#</th>

@@ -251,20 +251,20 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="table-responsive table--no-card m-b-30">
-                                    <table class="table table-borderless table-striped table-earning table-responsive-lg">
+                                    <table class="table table-borderless table-striped table-earning table-responsive-lg" id="table">
                                         <thead>
                                             <tr id="noT">
-                                                <th>user id</th>
-                                                <th>Emri i Aplikacionit </th>
-                                                <th>Emri i Dorezimit</th>
-                                                <th>Short description</th>
-                                                <th>Full description</th>
-                                                <th>App's Screenshots</th>
-                                                <th>Icon</th>
-                                                <th>Cover design</th>
-                                                <th>APK</th>
-                                                <th>Review</th>
-                                                <th>Id</th>
+                                                <th onclick='sortTable(0)'>user id</th>
+                                                <th onclick='sortTable(1)'>Emri i Aplikacionit </th>
+                                                <th onclick='sortTable(2)'>Emri i Dorezimit</th>
+                                                <th onclick='sortTable(3)'>Short description</th>
+                                                <th onclick='sortTable(4)'>Full description</th>
+                                                <th onclick='sortTable(5)'>App's Screenshots</th>
+                                                <th onclick='sortTable(6)'>Icon</th>
+                                                <th onclick='sortTable(7)'>Cover design</th>
+                                                <th onclick='sortTable(8)'>APK</th>
+                                                <th onclick='sortTable(9)'>Review</th>
+                                                <th onclick='sortTable(10)'>Id</th>
                                             </tr>
                                         </thead>
                                         <tbody id="TB">
@@ -432,7 +432,7 @@
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js"></script>
-
+    <script src="js/tableSort.js"></script>
     <script src="js/user.js"></script>
     <script src="js/main.js"></script>
 

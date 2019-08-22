@@ -62,3 +62,16 @@ $('#searchI').keypress(function(event){
 		window.location = urlS;
 	}
 });
+
+ $('th').click(function(){
+	  if ($(this).text().substr(-1) =="▼") {
+	    var temp = $(this).text()
+	    var string = temp.substring(0, temp.length - 1);
+	    $(this).text(string + " ▲")
+	  }else{
+	    var temp = $(this).text()
+	    var string = temp.substring(0, temp.length - 2);
+	    console.log(string);
+	    $(this).text(string + " ▼")
+	  }
+});

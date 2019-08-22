@@ -254,22 +254,22 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                            <div id="mainD" class="au-card" style="display: flex; flex-direction: row"></div>
+                            <div id="mainD" class="au-card" style="display: flex; flex-direction: row; flex-wrap: wrap;"></div>
                                 <div class="table-responsive table--no-card m-b-30">
                                     <table class="table table-borderless table-striped table-earning table-responsive-lg" id="table">
                                         <thead>
                                             <tr id="noT">
-                                                <th>Emri i Aplikacionit </th>
-                                                <th>Emri i Dorezimit</th>
-                                                <th>Short description</th>
-                                                <th>Full description</th>
-                                                <th>App's Screenshots</th>
-                                                <th>Icon</th>
-                                                <th>Cover design</th>
-                                                <th>APK</th>
-                                                <th>Review</th>
-                                                <th>Open Review</th>
-                                                <th>Id</th>
+                                                <th onclick='sortTable(0)'>Emri i Aplikacionit ▼</th>
+                                                <th onclick='sortTable(1)'>Emri i Dorezimit ▼</th>
+                                                <th onclick='sortTable(2)'>Short description</th>
+                                                <th onclick='sortTable(3)'>Full description</th>
+                                                <th onclick='sortTable(4)'>App's Screenshots</th>
+                                                <th onclick='sortTable(5)'>Icon</th>
+                                                <th onclick='sortTable(6)'>Cover design</th>
+                                                <th onclick='sortTable(7)'>APK</th>
+                                                <th onclick='sortTable(8)'>Review ▼</th>
+                                                <th onclick='sortTable(9)'>Open Review ▼</th>
+                                                <th onclick='sortTable(10)'>Id ▼</th>
                                             </tr>
                                         </thead>
                                         <tbody id="TB">
@@ -310,7 +310,7 @@
                                                         echo "<li class='list-group-item'>". $obj["username"] ."</li>";
                                                     echo "</ul>";
                                                     echo "<div class='card-body'>";
-                                                        echo "<a href='#' class='card-link' id=CL$num>Card link</a>";
+                                                        echo "<a href='#' class='card-link' id=CL$num>View More</a>";
                                                     echo "</div>";
                                                 echo "</div>";
                                             } 
@@ -445,6 +445,7 @@
     <script src="vendor/select2/select2.min.js"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/tableSort.js"></script>
 
 </body>
 
