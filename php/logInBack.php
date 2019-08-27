@@ -32,7 +32,7 @@
 						$_SESSION["id"] = $data['id'];
 						$_SESSION["email"] = $data['email'];
 
-						header('location: ../dashboard.php');
+						header('location: ../intro.php');
 					} else{
 						$_SESSION['error'] = "Wrong Password !";
 						$_SESSION['error1'] = " The username and password dont match.";

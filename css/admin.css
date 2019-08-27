@@ -41,3 +41,32 @@
 #searchI:focus{
 	border-bottom: solid 2px #007bff;
 }
+
+#idM{
+	position: absolute;
+    top: 0px;
+    right: 20px;
+}
+
+.card-body{
+	min-height: 125px !important;
+	border-top: 1px solid #dcdcdc;
+}
+
+.card-bot{
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.icons{
+	width: 32px;
+	height: 32px;
+	filter: grayscale(100%);
+	transition: .3s ease;
+}
+
+.icons:hover{
+	filter: none;
+	transition: .3s ease;
+}

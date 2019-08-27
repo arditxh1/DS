@@ -34,28 +34,13 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="css/intro.css">
 
-    <link rel="stylesheet" type="text/css" href="css/iconsD.css">
-
-</head>
+</head> 
 
 <?php  
     include 'php/dbh.php';
-
-    if (empty($_SESSION["username"])) {
-        header('location: login.php');
-    }
-    $userReg = $_SESSION["username"];
-    $sql = "SELECT id FROM users WHERE username= :username";
-    $insertSql = $con->prepare($sql);
-    $insertSql->bindParam(':username', $userReg);
-    $insertSql->execute();
-    $data = $insertSql->fetch();
-    $_SESSION["id"] = $data["id"];
 ?>
-<?php var_dump($_SESSION["id"]) ?>
-
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -92,61 +77,6 @@
         <!-- END HEADER MOBILE-->
 
         <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
-                <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li>
-                            <a href="code.php">
-                                <img src="images/code.png" class="icons">
-                                Code.Org
-                            </a>
-                        </li>
-                        <li>
-                            <a href="scratch.php">
-                                <img src="images/Scratch_Cat.png" class="icons">
-                                Scratch
-                            </a>
-                        </li>
-                        <li>
-                            <a href="kodu.php">
-                                <img src="images/kodu.png" class="icons">
-                                Kodu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="stencyl.php">
-                                <img src="images/StencylLogo.png" class="icons">
-                                Stencyl
-                            </a>
-                        </li>
-                        <li class="active has-sub">
-                            <a href="dashboard.php">
-                                <img src="images/app.png" class="icons">
-                                App Inventor
-                            </a>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-laptop"></i>Webfaqe</a>
-                        </li>
-                        <li>
-                            <a href="leaderboard.php">
-                                <i class="fas fa-trophy"></i>Leaderboard</a>
-                        </li>
-                        <li>
-                            <a href="rateDashboard.php">
-                                <i class="fas fa-star"></i>Rate</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
         <!-- END MENU SIDEBAR-->
 
         <!-- PAGE CONTAINER-->
@@ -204,7 +134,7 @@
                                             <img src="images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="php/logout.php"><?php echo $_SESSION['username']; ?></a>
+                                            <a class="js-acc-btn" href="php/logout.php"><?php echo $_SESSION["username"]; ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -221,70 +151,31 @@
                     <div class="container-fluid">
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-12 ">
-                                <div class="au-card d-flex justify-content-center flex-column">
-                                    <p class="h3 mb-4 text-center">Dorëzo Aplikacionin</p>
-                                    <form action="php/addProject.php" method="POST" enctype="multipart/form-data">
-                                    <div class="row " >
-                                        <!-- Default form contact -->
-                                        <div class="border border-light p-5 col-6">
-
-                                            <label for="textInput">Emri i aplikacionit</label>
-                                            <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Name">
-
-                                            <label for="textarea">Short description</label>
-                                            <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80"></textarea>
-
-                                            <label for="textarea">Full description</label>
-                                            <textarea id="textarea" class="form-control mb-4" placeholder="" name="Long"></textarea>
-
-                                            <div class="input-group mb-4">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Upload</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="fileInputAPK" aria-describedby="fileInput" name="APK">
-                                                    <label class="custom-file-label" for="fileInput" id="apkLabel">APK File</label>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="border border-light p-5 col-6 ">
-
-                                            <label for="textInput">App's Screenshots</label>
-                                            <div class="input-group mb-4">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Upload</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input imgInp" id="1" aria-describedby="fileInput" name="SCR" id="1">
-                                                    <label class="custom-file-label" for="fileInput" id="N1">Img File</label>
-                                                </div>
-                                            </div>
-                                            <label for="textInput">Icon </label>
-                                            <div class="input-group mb-4">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Upload</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input imgInp" id="2" aria-describedby="fileInput" name="Icon" id="2">
-                                                    <label class="custom-file-label" for="fileInput" id="N2">Img File</label>
-                                                </div>
-                                            </div>
-                                            <label for="textInput">Cover design</label>
-
-                                            <div class="input-group mb-4">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Upload</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input imgInp" id="3" aria-describedby="fileInput" name="Cover" id="3">
-                                                    <label class="custom-file-label" for="fileInput" id="N3">Img File</label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="au-card d-flex justify-content-center flex-column" cl>
+                                    <h1 id="titleI">Choose your project type: </h1>
+                                    <div id="introDiv">
+                                        <a href="code.php" class="introD">
+                                            <img src="images/code.png" draggable="false">
+                                        </a>
+                                        <a href="#" class="introD">
+                                            <img src="images/Scratch_cat.png"draggable="false" id="scratch">
+                                        </a>
+                                        <a href="" class="introD">
+                                            <img src="images/kodu.png"draggable="false">
+                                        </a>
+                                        <a href="" class="introD">
+                                            <img src="images/StencylLogo.png"draggable="false">
+                                        </a>
+                                        <a href="dashboard.php" class="introD">
+                                            <img src="images/app.png" draggable="false">
+                                        </a>
+                                        <a href="" class="introD">
+                                            <img src="images/html.png" draggable="false">
+                                        </a>
+                                        <a href="#" class="introD">
+                                            <img src="images/wp.png" draggable="false">
+                                        </a>
                                     </div>
-                                    <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit">Send</button>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -339,4 +230,4 @@
 </body>
 
 </html>
-<!-- end document-->
+<!-- end <document--></document-->

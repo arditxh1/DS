@@ -241,14 +241,18 @@
                             </div>
                             <div class="btn-group">
                               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action
+                                Filter
                               </button>
                               <div class="dropdown-menu">
-                                <a class="dropdown-item active" href="#">Recent</a>
-                                <a class="dropdown-item" id="ReviewS" href="dashboardAdmin.php?type=Review DESC">Review</a>
-                                <a class="dropdown-item" id="AlphaS" href="dashboardAdmin.php?type=Emri">Alphabetically</a>
+                                <a class="dropdown-item active FilterB" id="codeF"href="#">Code</a>
+                                <a class="dropdown-item FilterB" id="scratchF">Scratch</a>
+                                <a class="dropdown-item FilterB" id="koduF">Kodu</a>
+                                <a class="dropdown-item FilterB" id="stencylF">Stencyl</a>
+                                <a class="dropdown-item FilterB" id="appF">App Inventor</a>
+                                <a class="dropdown-item FilterB" id="webF">Web</a>
+                                <a class="dropdown-item FilterB" id="wordF">Wordpress</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Lorem Ipsum</a>
+                                <a class="dropdown-item FilterB" href="#" id="allF">All</a>
                               </div>
                             </div>
                         </div>
@@ -273,32 +277,39 @@
                                             </tr>
                                         </thead>
                                         <tbody id="TB">
-                                            <?php $num = 0; ?>
+                                            <?php $num = 0; 
+                                            $checkedId = array();
+                                            ?>
                                             <?php foreach ($projekte as $obj) {
                                                 $num+= 1;
-                                                $reviewNum = 0;
+                                                $prNum = 0;
                                                 $reviewPrintN = 0;
+                                                $reviewNum = 0;
                                                 $PrId = $obj['id'];
-                                                $nice = $con->prepare("SELECT Review FROM reviews WHERE PrId = $PrId");
+                                                $nice = $con->prepare("SELECT * FROM reviews WHERE PrId = $PrId");
                                                 $nice->execute();
                                                 $ReviewedD = $nice->fetchAll();
 
                                                 foreach ($ReviewedD as $obje) {
                                                     $reviewPrintN += (int)($obje["Review"]);
                                                     $reviewNum++;
+                                                    if (!in_array($obje["PrId"], $checkedId)) {
+                                                       $prNum++;
+                                                       array_push($checkedId, $obje["PrId"]);
+                                                    }
                                                 }
                                                 echo "<tr id=Tr$num>";
-                                                    echo "<td id='Emri$num'>"           . $obj["Emri"]     ."</td>";
-                                                    echo "<td id='username$num'>"       . $obj["username"] ."</td>";
-                                                    echo "<td id='Short$num' class='longT'>"          . $obj["Short"]    ."</td>";
-                                                    echo "<td id='Full$num' class='longT'>"           . $obj["Full"]     ."</td>";
-                                                    echo "<td id='APK$num'> <a href = " . $obj["SCR"]      ." download>Screenshots</a></td>";
-                                                    echo "<td id='APK$num'> <a href = " . $obj["Icon"]     ." download>Icons</a></td>";
-                                                    echo "<td id='APK$num'> <a href = " . $obj["CD"]       ." download>Cover Designs</a></td>";
-                                                    echo "<td id='APK$num'> <a href = " . $obj["APK"]      ." download>APK</a></td>";
-                                                    echo "<td id='Rev$num'>"           . $obj["Review"]     ."</td>";
-                                                    echo "<td id='Rev$num'>"           . $reviewPrintN/$reviewNum     ."</td>";
-                                                    echo "<td id='Id$num'>"           . $obj["id"]     ."</td>";
+                                                    echo "<td id='Emri$num'>"                . $obj["Emri"]     ."</td>";
+                                                    echo "<td id='username$num'>"            . $obj["username"] ."</td>";
+                                                    echo "<td id='Short$num' class='longT'>" . $obj["Short"]    ."</td>";
+                                                    echo "<td id='Full$num' class='longT'>"  . $obj["Full"]     ."</td>";
+                                                    echo "<td id='SCR$num'> <a href = "      . $obj["SCR"]      ." download>Screenshots</a></td>";
+                                                    echo "<td id='Icon$num'> <a href = "      . $obj["Icon"]     ." download>Icons</a></td>";
+                                                    echo "<td id='CD$num'> <a href = "      . $obj["CD"]       ." download>Cover Designs</a></td>";
+                                                    echo "<td id='APK$num'> <a href = "      . $obj["APK"]      ." download>APK</a></td>";
+                                                    echo "<td id='Rev$num'>"                 . $obj["Review"]     ."</td>";
+                                                    echo "<td id='ORev$num'>"                 . $reviewPrintN/$reviewNum     ."</td>";
+                                                    echo "<td id='Id$num'>"                  . $obj["id"]     ."</td>";
                                                 echo "</tr>";
                                                 echo "<div class='card cardS' style='width: 18rem;' id=Card$num>";
                                                     echo "<img src=" . $obj['CD'] . " class='card-img-top' alt='...'>";
@@ -309,27 +320,97 @@
                                                     echo "<ul class='list-group list-group-flush'>";
                                                         echo "<li class='list-group-item'>". $obj["username"] ."</li>";
                                                     echo "</ul>";
-                                                    echo "<div class='card-body'>";
+                                                    echo "<div class='card-bot'>";
                                                         echo "<a href='#' class='card-link' id=CL$num>View More</a>";
+                                                        echo "<img src='images/app.png' class='icons'>";
                                                     echo "</div>";
                                                 echo "</div>";
-                                            } 
+                                                    }
+                                                $query = $con->prepare("SELECT * FROM code_projekte");
+                                                $query->execute();
+                                                $projekte = $query->fetchAll();
+                                                foreach ($projekte as $obj) {
+                                                    $num++;
+                                                echo "<div class='card cardS' style='width: 18rem;' id=Card$num>";
+                                                    echo "<img src=images/codeCover.png class='card-img-top' alt='...'>";
+                                                    echo "<div class='card-body'>";
+                                                        echo "<h5 class='card-title'>". $obj["Emri"] ."</h5>";
+                                                        echo "<p class='card-text'>". $obj["Short"] ."</p>";
+                                                    echo "</div>";
+                                                    echo "<ul class='list-group list-group-flush'>";
+                                                        echo "<li class='list-group-item'>". $obj["username"] ."</li>";
+                                                    echo "</ul>";
+                                                    echo "<div class='card-bot'>";
+                                                        echo "<a href=". $obj['Link'] ." class='card-link'>View Project</a>";
+                                                        echo "<img src='images/code.png' class='icons'>";
+                                                    echo "</div>";
+                                                echo "</div>";
+                                                }
+                                                $query = $con->prepare("SELECT * FROM scratch_projekte");
+                                                $query->execute();
+                                                $projekte = $query->fetchAll();
+                                                foreach ($projekte as $obj) {
+                                                    $num++;
+                                                    $url1 = "http://cdn2.scratch.mit.edu/get_image/project/";
+                                                    $urlCode = str_replace("https://scratch.mit.edu/projects/","",$obj["Link"]);
+                                                    $urlCode = str_replace("/", "", $urlCode);
+                                                    $url2 = "_400x240.png";
+                                                echo "<div class='card cardS' style='width: 18rem;' id=Card$num>";
+                                                    echo "<img src=".$url1 . $urlCode . $url2." class='card-img-top' alt='...'>";
+                                                    echo "<div class='card-body'>";
+                                                        echo "<h5 class='card-title'>". $obj["Emri"] ."</h5>";
+                                                        echo "<p class='card-text'>". $obj["Short"] ."</p>";
+                                                    echo "</div>";
+                                                    echo "<ul class='list-group list-group-flush'>";
+                                                        echo "<li class='list-group-item'>". $obj["username"] ."</li>";
+                                                    echo "</ul>";
+                                                    echo "<div class='card-bot'>";
+                                                        echo "<a href=". $obj['Link'] ." class='card-link' target='_blank'>View Project</a>";
+                                                        echo "<img src='images/Scratch_Cat.png' class='icons'>";
+                                                    echo "</div>";
+                                                echo "</div>";
+                                                }
+                                                $query = $con->prepare("SELECT * FROM kodu_projekte");
+                                                $query->execute();
+                                                $projekte = $query->fetchAll();
+                                                foreach ($projekte as $obj) {
+                                                    $num++;
+                                                    $url1 = "http://cdn2.scratch.mit.edu/get_image/project/";
+                                                    $urlCode = str_replace("https://scratch.mit.edu/projects/","",$obj["Link"]);
+                                                    $urlCode = str_replace("/", "", $urlCode);
+                                                    $url2 = "_400x240.png";
+                                                    if ($obj["Link"] == "") {
+                                                        $projektK = $obj["File"];
+                                                    }else{
+                                                        $projektK = $obj["Link"];
+                                                    }
+                                                echo "<div class='card cardS' style='width: 18rem;' id=Card$num>";
+                                                    echo "<img src=images/koduC.jpeg class='card-img-top' alt='...'>";
+                                                    echo "<div class='card-body'>";
+                                                        echo "<h5 class='card-title'>". $obj["Emri"] ."</h5>";
+                                                        echo "<p class='card-text'>". $obj["Short"] ."</p>";
+                                                    echo "</div>";
+                                                    echo "<ul class='list-group list-group-flush'>";
+                                                        echo "<li class='list-group-item'>". $obj["username"] ."</li>";
+                                                    echo "</ul>";
+                                                    echo "<div class='card-bot'>";
+                                                        echo "<a href=". $projektK ." class='card-link' target='_blank'>View Project</a>";
+                                                        echo "<img src='images/kodu.png' class='icons'>";
+                                                    echo "</div>";
+                                                echo "</div>";
+                                                }
                                              ?>
                                         </tbody>
                                         <script src="js/admin.js"></script>
                                         <script type="text/javascript">
-                                        var count = $("#TB tr").length;
+                                        var count = <?php echo $num;   ?>;
                                         RatingS = {};
                                         for (var i = count; i >= 0; i--) {
+                                            $("#Card" + i).appendTo("#mainD");
                                             if ($("#Rev" + i).text() == "11") {
                                                $("#Rev" + i).text("Not reviewed");
-                                               RatingS["#Tr" + i] = 0;
-                                               $("#Card" + i).appendTo("#mainD");
-                                            }else{
-                                                 RatingS["#Tr" + i] = $("#Rev" + i).text();
                                             }
                                         }
-                                        keysSorted = Object.keys(RatingS).sort(function(a,b){return RatingS[b]-RatingS[a]})
                                         $("#table").hide();
                                         $(".toggle-on").text("card");
                                         </script>
@@ -365,19 +446,28 @@
                           <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
                             <h4 id="list-item-1">Emri I Aplikacionit</h4>
                             <br>
-                            <p id="emriAM">Ex consequat commodo adipisicing exercitation aute excepteur occaecat ullamco duis aliqua id magna ullamco eu. Do aute ipsum ipsum ullamco cillum consectetur ut et aute consectetur labore. Fugiat laborum incididunt tempor eu consequat enim dolore proident. Qui laborum do non excepteur nulla magna eiusmod consectetur in. Aliqua et aliqua officia quis et incididunt voluptate non anim reprehenderit adipisicing dolore ut consequat deserunt mollit dolore. Aliquip nulla enim veniam non fugiat id cupidatat nulla elit cupidatat commodo velit ut eiusmod cupidatat elit dolore.</p>
+                            <p id="emriAM"></p>
                             <br>
                             <h4 id="list-item-2">Emri I Dorezimit</h4>
                             <br>
-                            <p id="emriDM">Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex nulla tempor. Laborum consequat non elit enim exercitation cillum aliqua consequat id aliqua. Esse ex consectetur mollit voluptate est in duis laboris ad sit ipsum anim Lorem. Incididunt veniam velit elit elit veniam Lorem aliqua quis ullamco deserunt sit enim elit aliqua esse irure. Laborum nisi sit est tempor laborum mollit labore officia laborum excepteur commodo non commodo dolor excepteur commodo. Ipsum fugiat ex est consectetur ipsum commodo tempor sunt in proident.</p>
+                            <p id="emriDM"></p>
                             <br>
                             <h4>Short Description</h4>
                             <br>
-                            <p id="sdM">Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+                            <p id="sdM"></p>
                             <br>
                             <h4>Full Description</h4>
                             <br>
-                            <p id="ldM">Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+                            <p id="ldM"></p>
+                            <h4 id="idM"></h4>
+                            <a id="iconM" download>Icon</a>
+                            <br>
+                            <a id="scrM" download>Screenshot</a>
+                            <br>
+                            <a id="cdM" download>Cover Design</a>
+                            <br>
+                            <a id="apkM" download>APK</a>
+                            <br>
                             <!--Stars -->
                             <link rel="stylesheet" type="text/css" href="css/stars.css">
                                <div id="half-stars-example" style="  margin-top: 4rem; margin-left: 25rem; display: flex; justify-content: center; align-items: flex-end; flex-direction: column;">

@@ -3,7 +3,7 @@
 	error_reporting(E_ERROR | E_PARSE);
 	$host = "localhost";
 	$user = "root";
-	$pass = "123";
+	$pass = "";
 	$db = "ds";
 
 	try {

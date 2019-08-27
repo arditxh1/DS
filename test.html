@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="test">
+	<script type="text/javascript">
+
+	UrlExists("https://scratch.mit.edu/projects/204765813/")
+	function UrlExists(url)
+	{
+	    var http = new XMLHttpRequest();
+	    http.open('HEAD', url, false);
+	    http.send();
+	    cosnole.log(http.status);''
+	}
+	</script>
+</body>
+</html>

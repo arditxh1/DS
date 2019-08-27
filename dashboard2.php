@@ -202,12 +202,14 @@
 
                                              $users = $query->fetchAll();
                                             $numO = 0;
+                                            $checkedId = array();
                                             foreach ($users as $obj) {
+                                                $PrNum = 0;
                                                 $reviewPrintN = 0;
                                                 $reviewNum = 0;
                                                 $numO+= 1;
                                                 $idR = $obj["id"];
-                                                $S_query = $con->prepare("SELECT Review FROM reviews WHERE OwnerId = $idR");
+                                                $S_query = $con->prepare("SELECT * FROM reviews WHERE OwnerId = $idR");
                                             
                                                 $S_query->execute();
 
@@ -216,13 +218,17 @@
                                                 foreach ($Reviewed as $obje) {
                                                     $reviewPrintN += (int)($obje["Review"]);
                                                     $reviewNum++;
+                                                    if (!in_array($obje["PrId"], $checkedId)) {
+                                                       $PrNum++;
+                                                       array_push($checkedId, $obje["PrId"]);
+                                                    }
                                                 }
 
                                                 echo "<tr id=Tr$numO>";
                                                     echo "<td id='place$numO'>"               . $obj["id"] ."</td>";
                                                     echo "<td id='username$numO'>"               . $obj["username"] ."</td>";
                                                     echo "<td id='username$numO'>"               . $obj["email"] ."</td>";
-                                                    echo "<td id='NrOfPr$numO' class='longT'>"    . $reviewNum ."</td>";
+                                                    echo "<td id='NrOfPr$numO' class='longT'>"    . $PrNum ."</td>";
                                                     echo "<td id='AR$numO' class='longT'>"    . $reviewPrintN/$reviewNum   ."</td>";
                                                     echo "<td id='Stars$numO' class='longT'>"    . $reviewPrintN   ."</td>";
                                                 echo "</tr>";

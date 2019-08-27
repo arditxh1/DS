@@ -34,7 +34,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="css/code.css">
 
     <link rel="stylesheet" type="text/css" href="css/iconsD.css">
 
@@ -113,7 +113,7 @@
                                 Scratch
                             </a>
                         </li>
-                        <li>
+                        <li class="active has-sub">
                             <a href="kodu.php">
                                 <img src="images/kodu.png" class="icons">
                                 Kodu
@@ -125,7 +125,7 @@
                                 Stencyl
                             </a>
                         </li>
-                        <li class="active has-sub">
+                        <li>
                             <a href="dashboard.php">
                                 <img src="images/app.png" class="icons">
                                 App Inventor
@@ -210,9 +210,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>  
                 </div>
-            </header>
+            </header>   
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
@@ -222,68 +222,33 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-12 ">
                                 <div class="au-card d-flex justify-content-center flex-column">
-                                    <p class="h3 mb-4 text-center">Dorëzo Aplikacionin</p>
-                                    <form action="php/addProject.php" method="POST" enctype="multipart/form-data">
-                                    <div class="row " >
+                                    <p class="h3 mb-4 text-center">Dorëzo Kodu Project</p>
+                                    <form action="php/addProjectKodu.php" method="POST" enctype="multipart/form-data">
+                                    <div class="row">
                                         <!-- Default form contact -->
-                                        <div class="border border-light p-5 col-6">
-
-                                            <label for="textInput">Emri i aplikacionit</label>
-                                            <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Name">
-
-                                            <label for="textarea">Short description</label>
-                                            <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80"></textarea>
-
-                                            <label for="textarea">Full description</label>
-                                            <textarea id="textarea" class="form-control mb-4" placeholder="" name="Long"></textarea>
-
+                                            <div>
+                                                    <label for="textInput">Emri i projektit</label>
+                                                    <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Name">
+                                            </div>
+                                            <div>
+                                                    <label for="textInput">Linku i projektit</label>
+                                                    <input type="text" id="textInput" class="form-control mb-4" placeholder="U can leave it blank." name="Link">
+                                            </div>
+                                            <div>
+                                                    <label for="textarea">Short description</label>
+                                                    <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80"></textarea>
+                                            </div>
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="fileInputAPK" aria-describedby="fileInput" name="APK">
-                                                    <label class="custom-file-label" for="fileInput" id="apkLabel">APK File</label>
+                                                    <input type="file" class="custom-file-input" id="fileInputAPK" aria-describedby="fileInput" name="File">
+                                                    <label class="custom-file-label" for="fileInput" id="apkLabel">Kodu File</label>
                                                 </div>
                                             </div>
-
-                                        </div>
-                                        <div class="border border-light p-5 col-6 ">
-
-                                            <label for="textInput">App's Screenshots</label>
-                                            <div class="input-group mb-4">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Upload</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input imgInp" id="1" aria-describedby="fileInput" name="SCR" id="1">
-                                                    <label class="custom-file-label" for="fileInput" id="N1">Img File</label>
-                                                </div>
-                                            </div>
-                                            <label for="textInput">Icon </label>
-                                            <div class="input-group mb-4">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Upload</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input imgInp" id="2" aria-describedby="fileInput" name="Icon" id="2">
-                                                    <label class="custom-file-label" for="fileInput" id="N2">Img File</label>
-                                                </div>
-                                            </div>
-                                            <label for="textInput">Cover design</label>
-
-                                            <div class="input-group mb-4">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Upload</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input imgInp" id="3" aria-describedby="fileInput" name="Cover" id="3">
-                                                    <label class="custom-file-label" for="fileInput" id="N3">Img File</label>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit">Send</button>
+                                    <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit" id="btnS">Send</button>
                                     </form>
                                 </div>
                             </div>
@@ -333,7 +298,7 @@
     <script src="vendor/select2/select2.min.js"></script>
     <script src="js/logic.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="js/kodu.js"></script>
 
 
 </body>

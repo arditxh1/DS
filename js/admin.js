@@ -9,6 +9,11 @@
 		$('#emriDM').text($("#username" + editId).text());
 		$('#sdM').text($("#Short" + editId).text());
 		$('#ldM').text($("#Full" + editId).text());
+		$('#idM').text("Id." + $("#Id" + editId).text());
+		$('#iconM').attr("href", $("#Icon" + editId).children().attr("href"));
+		$('#scrM').attr("href", $("#SCR" + editId).children().attr("href"));
+		$('#cdM').attr("href", $("#CD" + editId).children().attr("href"));
+		$('#apkM').attr("href", $("#APK" + editId).children().attr("href"));
 		$("#exampleModalLabel").text("Project of " + $("#username" + editId).text());
 		$("#starN").text($("#Rev" + editId).text());
 		dbId = $("#Id" + editId).text();
@@ -75,3 +80,43 @@ $('#searchI').keypress(function(event){
 	    $(this).text(string + " ▼")
 	  }
 });
+
+
+$(".FilterB").click(function(){
+	if ($(this).attr("id") == "codeF") {
+		filter("images/code.png")
+	}
+	else if ($(this).attr("id") == "scratchF") {
+		filter("images/Scratch_Cat.png")
+		console.log()
+	}
+	else if ($(this).attr("id") == "koduF") {
+		filter("images/app.png");
+	}
+	else if ($(this).attr("id") == "stencylF") {
+		filter("images/app.png");
+	}
+	else if ($(this).attr("id") == "appF") {
+		filter("images/app.png");
+	}
+	else if ($(this).attr("id") == "webF") {
+		filter("images/app.png");
+	}
+	else if ($(this).attr("id") == "wordF") {
+		filter("images/app.png");
+	}
+	else if ($(this).attr("id") == "allF") {
+		filter("images/app.png");
+	}
+});
+
+function filter(type){
+	for (var i = count; i >= 1; i--) {
+		$("#Card" + i).show();
+	}
+	for (var i = count; i >= 1; i--) {
+	    if ($("#Card" + i).find(".icons").attr("src") != type) {
+	    	$("#Card" + i).hide();
+	    }
+	}
+}
