@@ -2,69 +2,32 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
+    <?php include 'components/head.php'; ?>
 
-    <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Code</title>
 
-    <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="css/admin.css">
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <!-- Stars-->
-
-    <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
-<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="vendor/jquery-3.2.1.min.js"></script>
 
 </head>
-    <script src="vendor/jquery-3.2.1.min.js"></script>
- <?php  
+
+<?php  
     include 'php/dbh.php';
 
     if (empty($_SESSION["username"])) {
         header('location: login.php');
     }
-
-    if ($_GET['type'] == "") {
-        $typeR = "id";
-    }else{
-        $typeR = $_GET['type'];
-    }
+    $userReg = $_SESSION["username"];
+    $sql = "SELECT id FROM users WHERE username= :username";
+    $insertSql = $con->prepare($sql);
+    $insertSql->bindParam(':username', $userReg);
+    $insertSql->execute();
+    $data = $insertSql->fetch();
+    $_SESSION["id"] = $data["id"];
+    $_SESSION["PrType"] = "code_projekte";
 ?>
+<?php var_dump($_SESSION["id"]) ?>
 
-    <?php  
-        $query = $con->prepare("SELECT * FROM projekete_app ORDER BY $typeR");
-
-        $query->execute();
-
-        $projekte = $query->fetchAll();
-    ?>
-
-    <script src="vendor/jquery-3.2.1.min.js"></script>
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
@@ -79,7 +42,7 @@
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
                             </span>
-                        </button>f
+                        </button>
                     </div>
                 </div>
             </div>
@@ -88,11 +51,11 @@
                     <ul class="navbar-mobile__list list-unstyled">
                          <li class="active has-sub">
                             <a href="chart.html">
-                                <i class="fas fa-laptop" ></i>Dashboard</a>
+                                <i class="fas fa-mobile" ></i>Aplikacion</a>
                         </li>
                         <li>
                             <a href="chart.html">
-                                <i class="fas fa-cog"></i>Settings</a>
+                                <i class="fas fa-laptop"></i>Webfaqe</a>
                         </li>
                     </ul>
                 </div>
@@ -110,22 +73,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li>
-                            <a href="dashboard.php">
-                                <i class="fas fa-mobile" ></i>Aplikacion</a>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-laptop"></i>Webfaqe</a>
-                        </li>
-                        <li>
-                            <a href="leaderboard.php">
-                                <i class="fas fa-trophy"></i>Leaderboard</a>
-                        </li>
-                        <li class="active has-sub">
-                            <a href="rateDashboard.php">
-                                <i class="fas fa-star"></i>Rate</a>
-                        </li>
+                        <?php require_once('components/sidebar.php');?>
                     </ul>
                 </nav>
             </div>
@@ -189,144 +137,194 @@
                                         <div class="content">
                                             <a class="js-acc-btn" href="php/logout.php"><?php echo $_SESSION['username']; ?></a>
                                         </div>
-                                        <div class="account-dropdown js-dropdown">
-                                            <div class="info clearfix">
-                                                <div class="image">
-                                                    <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                                    </a>
-                                                </div>
-                                                <div class="content">
-                                                    <h5 class="name">
-                                                        <a href="#"><?php echo $_SESSION['username']; ?></a>
-                                                    </h5>
-                                                    <span class="email"><?php echo $_SESSION['email']; ?></span>
-                                                </div>
-                                            </div>
-                                            <div class="account-dropdown__body">
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                                </div>
-                                            </div>
-                                            <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>  
                 </div>
             </header>
             <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="row" style="display: flex; justify-content: flex-end; align-items: center; padding-bottom: 20px; padding-right: 20px;">
-                            <!-- Example single danger button -->
-                            <div class="btn-group">
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action
-                              </button>
-                              <div class="dropdown-menu">
-                                <a class="dropdown-item active" href="#">Recent</a>
-                                <a class="dropdown-item" id="ReviewS" href="rateDashboard.php?type=Review DESC">Review</a>
-                                <a class="dropdown-item" id="AlphaS" href="rateDashboard.php?type=Emri">Alphabetically</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Lorem Ipsum</a>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="table-responsive table--no-card m-b-30">
-                                    <table class="table table-borderless table-striped table-earning table-responsive-lg" id="table">
-                                        <thead>
-                                            <tr id="noT">
-                                                <th onclick='sortTable(0)'>user id</th>
-                                                <th onclick='sortTable(1)'>Emri i Aplikacionit </th>
-                                                <th onclick='sortTable(2)'>Emri i Dorezimit</th>
-                                                <th onclick='sortTable(3)'>Short description</th>
-                                                <th onclick='sortTable(4)'>Full description</th>
-                                                <th onclick='sortTable(5)'>App's Screenshots</th>
-                                                <th onclick='sortTable(6)'>Icon</th>
-                                                <th onclick='sortTable(7)'>Cover design</th>
-                                                <th onclick='sortTable(8)'>APK</th>
-                                                <th onclick='sortTable(9)'>Review</th>
-                                                <th onclick='sortTable(10)'>Id</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="TB">
-                                            <?php $num = 0; 
-                                            $username = $_SESSION["username"];
-                                            ?>
-                                            <?php foreach ($projekte as $obj) {
-                                                $reviewPrintN = 0;
-                                                $reviewNum = 0;
-                                                $num+= 1;
-
-                                                $PrId = $obj['id'];
-
-                                                $nice = $con->prepare("SELECT Review FROM reviews WHERE PrId =  $PrId");
-
-                                                $nice->execute();
-
-                                                $ReviewedD = $nice->fetchAll();
-
-                                                foreach ($ReviewedD as $obje) {
-                                                    $reviewPrintN += (int)($obje["Review"]);
-                                                    $reviewNum++;
-                                                }
-                                                
-                                                echo "<tr id=Tr$num>";
-                                                    echo "<td id='user_id$num'>"           . $obj["user_id"]     ."</td>";
-                                                    echo "<td id='Emri$num'>"           . $obj["Emri"]     ."</td>";
-                                                    echo "<td id='username$num'>"       . $obj["username"] ."</td>";
-                                                    echo "<td id='Short$num' class='longT'>"          . $obj["Short"]    ."</td>";
-                                                    echo "<td id='Full$num' class='longT'>"           . $obj["Full"]     ."</td>";
-                                                    echo "<td id='APK$num'> <a href = " . $obj["SCR"]      ." download>Screenshots</a></td>";
-                                                    echo "<td id='APK$num'> <a href = " . $obj["Icon"]     ." download>Icons</a></td>";
-                                                    echo "<td id='APK$num'> <a href = " . $obj["CD"]       ." download>Cover Designs</a></td>";
-                                                    echo "<td id='APK$num'> <a href = " . $obj["APK"]      ." download>APK</a></td>";
-                                                    echo "<td id='Rev$num'>"           . $reviewPrintN/$reviewNum     ."</td>";
-                                                    echo "<td id='Id$num'>"           . $obj["id"]     ."</td>";
-                                                echo "</tr>";
-                                            } 
-                                             ?>
-                                        </tbody>
-                                        <script type="text/javascript">
-                                        var count = $("#TB tr").length;
-                                        RatingS = {};
-                                        for (var i = count; i >= 0; i--) {
-                                            if ($("#Rev" + i).text() == "11") {
-                                               $("#Rev" + i).text("Not reviewed");
-                                               RatingS["#Tr" + i] = 0;
-                                            }else{
-                                                 RatingS["#Tr" + i] = $("#Rev" + i).text();
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-12 ">
+                                <div class="au-card d-flex justify-content-center flex-column">
+                                    <p class="h3 mb-4 text-center">Rate Projects</p>
+                                    <div class="row" id="mainD" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                                    <div class='card cardS' style='width: 18rem;' id="CardC">
+                                         <img src="images/codeCover.png" class='card-img-top imgC' alt='...'>
+                                         <div class='card-body'>
+                                             <h5 class='card-title'>Title</h5>
+                                             <p class='card-text'>Descriptions</p>
+                                         </div>
+                                         <ul class='list-group list-group-flush'>
+                                             <li class='list-group-item ownerPR'>Made By</li>
+                                         </ul>
+                                         <div class='card-bot'>
+                                             <a class='card-link'>View More...</a>
+                                             <img src='images/web.png' class='icons'>
+                                         </div>
+                                     </div>
+                                     <script type="text/javascript">
+                                        
+                                        var code_Obj = {};
+                                        <?php
+                                            $usernameQ = $_SESSION["id"];
+                                            $codeN=-1;
+                                            $query = $con->prepare("SELECT * FROM code_projekte WHERE user_id != $usernameQ");
+                                            $query->execute();
+                                            $projekte = $query->fetchAll();
+                                        ?>
+                                        <?php foreach ($projekte as $obj) {?>
+                                            <?php $codeN++ ?> 
+                                            code_Obj["<?php echo "$codeN";?>"] = {
+                                                    "id": "<?php echo $obj["id"];?>",
+                                                    "name": "<?php echo $obj["Emri"];?>",
+                                                    "short": "<?php echo $obj["Short"];?>",
+                                                    "link": "<?php echo $obj["Link"];?>",
+                                                    "username": "<?php echo $obj["username"];?>",
+                                                    "user_id": "<?php echo $obj["user_id"];?>",
+                                                    "type": "<?php echo $obj["type"];?>"
                                             }
-                                        }
-                                        keysSorted = Object.keys(RatingS).sort(function(a,b){return RatingS[b]-RatingS[a]})
-                                        </script>
-                                    </table>
+                                        <?php } ?>
+
+
+                                        var scratch_Obj = {};
+                                        <?php
+                                            $scratchN=-1;
+                                            $query = $con->prepare("SELECT * FROM scratch_projekte WHERE user_id != $usernameQ");
+                                            $query->execute();
+                                            $projekte = $query->fetchAll();
+                                        ?>
+                                        <?php foreach ($projekte as $obj) {?>
+                                            <?php $scratchN++ ?> 
+                                            scratch_Obj["<?php echo "$scratchN";?>"] = {
+                                                    "id": "<?php echo $obj["id"];?>",
+                                                    "name": "<?php echo $obj["Emri"];?>",
+                                                    "short": "<?php echo $obj["Short"];?>",
+                                                    "link": "<?php echo $obj["Link"];?>",
+                                                    "username": "<?php echo $obj["username"];?>",
+                                                    "user_id": "<?php echo $obj["user_id"];?>",
+                                                    "type": "<?php echo $obj["type"];?>"
+                                            }
+                                        <?php } ?>
+
+
+                                        var kodu_Obj = {};
+                                        <?php
+                                            $koduN=-1;
+                                            $query = $con->prepare("SELECT * FROM kodu_projekte WHERE user_id != $usernameQ");
+                                            $query->execute();
+                                            $projekte = $query->fetchAll();
+                                        ?>
+                                        <?php foreach ($projekte as $obj) {?>
+                                            <?php $koduN++ ?> 
+                                            kodu_Obj["<?php echo "$koduN";?>"] = {
+                                                    "id": "<?php echo $obj["id"];?>",
+                                                    "name": "<?php echo $obj["Emri"];?>",
+                                                    "short": "<?php echo $obj["Short"];?>",
+                                                    "file": "<?php echo $obj["File"];?>",
+                                                    "link": "<?php echo $obj["Link"];?>",
+                                                    "username": "<?php echo $obj["username"];?>",
+                                                    "user_id": "<?php echo $obj["user_id"];?>",
+                                                    "type": "<?php echo $obj["type"];?>"
+                                            }
+                                        <?php } ?>
+
+
+                                        var stencyl_Obj = {};
+                                        <?php
+                                            $stenN=-1;
+                                            $query = $con->prepare("SELECT * FROM stencyl_projekte WHERE user_id != $usernameQ");
+                                            $query->execute();
+                                            $projekte = $query->fetchAll();
+                                        ?>
+                                        <?php foreach ($projekte as $obj) {?>
+                                            <?php $stenN++ ?> 
+                                            stencyl_Obj["<?php echo "$stenN";?>"] = {
+                                                    "id": "<?php echo $obj["id"];?>",
+                                                    "name": "<?php echo $obj["Emri"];?>",
+                                                    "short": "<?php echo $obj["Short"];?>",
+                                                    "file": "<?php echo $obj["File"];?>",
+                                                    "SCR": "<?php echo $obj["SCR"];?>",
+                                                    "username": "<?php echo $obj["username"];?>",
+                                                    "user_id": "<?php echo $obj["user_id"];?>",
+                                                    "type": "<?php echo $obj["type"];?>"
+                                            }
+                                        <?php } ?>
+
+
+                                        var app_Obj = {};
+                                        <?php
+                                            $appN=-1;
+                                            $query = $con->prepare("SELECT * FROM projekete_app WHERE user_id != $usernameQ");
+                                            $query->execute();
+                                            $projekte = $query->fetchAll();
+                                        ?>
+                                        <?php foreach ($projekte as $obj) {?>
+                                            <?php $appN++ ?> 
+                                            app_Obj["<?php echo "$appN";?>"] = {
+                                                    "id": "<?php echo $obj["id"];?>",
+                                                    "name": "<?php echo $obj["Emri"];?>",
+                                                    "short": "<?php echo $obj["Short"];?>",
+                                                    "full": "<?php echo $obj["Full"];?>",
+                                                    "SCR": "<?php echo $obj["SCR"];?>",
+                                                    "Icon": "<?php echo $obj["Icon"];?>",
+                                                    "CD": "<?php echo $obj["CD"];?>",
+                                                    "APK": "<?php echo $obj["APK"];?>",
+                                                    "user_id": "<?php echo $obj["user_id"];?>",
+                                                    "username": "<?php echo $obj["username"];?>",
+                                                    "Review": "<?php echo $obj["Review"];?>",
+                                                    "type": "<?php echo $obj["type"];?>"
+                                            }
+                                        <?php } ?>
+
+
+                                         var html_Obj = {};
+                                        <?php
+                                            $webN=-1;
+                                            $query = $con->prepare("SELECT * FROM web_projekte WHERE user_id != $usernameQ");
+                                            $query->execute();
+                                            $projekte = $query->fetchAll();
+                                        ?>
+                                        <?php foreach ($projekte as $obj) {?>
+                                            <?php $webN++ ?> 
+                                            html_Obj["<?php echo "$webN";?>"] = {
+                                                    "id": "<?php echo $obj["id"];?>",
+                                                    "name": "<?php echo $obj["Emri"];?>",
+                                                    "short": "<?php echo $obj["Short"];?>",
+                                                    "full": "<?php echo $obj["Full"];?>",
+                                                    "file": "<?php echo $obj["File"];?>",
+                                                    "link": "<?php echo $obj["Link"];?>",
+                                                    "user_id": "<?php echo $obj["user_id"];?>",
+                                                    "username": "<?php echo $obj["username"];?>",
+                                                    "SCR": "<?php echo $obj["screenshot"];?>",
+                                                    "type": "<?php echo $obj["type"];?>"
+                                            }
+                                        <?php } ?>
+
+                                        var all_projects = {code_Obj, scratch_Obj, kodu_Obj, stencyl_Obj, app_Obj, html_Obj}
+
+                                     </script>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<script src="js/admin.js"></script>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
        <div class="modal-dialog" role="document" style="margin: 1.75rem 28rem">
           <div class="modal-content" style="width: 1000px;">
              <div class="modal-header">
@@ -336,42 +334,71 @@
                 </button>
              </div>
              <form>
-                <div class="modal-body" style="overflow:scroll; height:600px; overflow-x: hidden;">
+                <div class="modal-body" style="height:600px; overflow: hidden;">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-4" style="height: 600px; overflow:scroll; overflow-x: hidden;" id="modalLeft">
                           <div id="list-example" class="list-group">
                             <a class="list-group-item list-group-item-action active" href="#list-item-1">Emri I Aplikacionit</a>
                             <a class="list-group-item list-group-item-action" href="#list-item-2">Emri I Dorezimit</a>
                             <a class="list-group-item list-group-item-action" href="#list-item-3">Short Description</a>
-                            <a class="list-group-item list-group-item-action" href="#list-item-4">Full Description</a>
+                            <a class="list-group-item list-group-item-action" href="#fullDesc">Full Description</a>
                           </div>
+                          <div id="comments">
+                            <div id="titleC" style="display: flex; align-items: center; justify-content: flex-start; margin-top: 30px;">
+                                <i class="fas fa-comments"></i>
+                                <h3>Comments</h3>
+                            </div>
+                            <div class="input-group mb-3"  style="margin-top: 30px;">
+                              <input type="text" class="form-control" placeholder="Your commment" aria-label="Recipient's username" aria-describedby="basic-addon2" id="commentI">
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="btnCS">Enter</button>
+                              </div>
+                            </div>
+                          </div>
+                        <div class="single-comment" id="clone-comment">
+                            <div class="top-single-comment" style="display: flex; align-items: flex-start;">
+                                <div class="image-cropper">
+                                    <img src="images/icon.jpg" class="profile_pic">
+                                </div>
+                                    <div style="margin-left: 10px;">
+                                        <h4 class="username">Kujtim Nejziraj</h4>
+                                        <p class="time">May 21 at 8:37 PM</p>
+                                </div>
+                            </div>
+                            <div style="word-break: break-all; word-wrap: break-word;">
+                                <p class="messageS">a</p>
+                            </div>
                         </div>
-                        <div class="col-8">
-                          <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
-                            <h4 id="list-item-1">Emri I Aplikacionit</h4>
-                            <br>
-                            <p id="emriAM">Ex consequat commodo adipisicing exercitation aute excepteur occaecat ullamco duis aliqua id magna ullamco eu. Do aute ipsum ipsum ullamco cillum consectetur ut et aute consectetur labore. Fugiat laborum incididunt tempor eu consequat enim dolore proident. Qui laborum do non excepteur nulla magna eiusmod consectetur in. Aliqua et aliqua officia quis et incididunt voluptate non anim reprehenderit adipisicing dolore ut consequat deserunt mollit dolore. Aliquip nulla enim veniam non fugiat id cupidatat nulla elit cupidatat commodo velit ut eiusmod cupidatat elit dolore.</p>
-                            <br>
-                            <h4 id="list-item-2">Emri I Dorezimit</h4>
-                            <br>
-                            <p id="emriDM">Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex nulla tempor. Laborum consequat non elit enim exercitation cillum aliqua consequat id aliqua. Esse ex consectetur mollit voluptate est in duis laboris ad sit ipsum anim Lorem. Incididunt veniam velit elit elit veniam Lorem aliqua quis ullamco deserunt sit enim elit aliqua esse irure. Laborum nisi sit est tempor laborum mollit labore officia laborum excepteur commodo non commodo dolor excepteur commodo. Ipsum fugiat ex est consectetur ipsum commodo tempor sunt in proident.</p>
-                            <br>
-                            <h4>Short Description</h4>
-                            <br>
-                            <p id="sdM">Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
-                            <br>
-                            <h4>Full Description</h4>
-                            <br>
-                            <p id="ldM">Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
-                            <br>
-                            <h4>Id</h4>
-                            <br>
-                            <p id="idM">Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+                        </div>
+                        <div class="col-8" style="display: flex; flex-direction: column; height: 600px; overflow: scroll;" id="modalRight">
+                          <div data-target="#list-example" data-offset="0" id="modal-body-b">
+                                <h4 id="list-item-1">Emri I Aplikacionit</h4>
+                                    <p id="nameM"></p>
+                                <h4 id="list-item-2">Emri I Dorezimit</h4>
+                                    <p id="usernameM"></p>
+                                <h4 id="list-item-3">Short Description</h4>
+                                    <p id="shortM"></p>
+                                <h4 id="fullDesc">Full Description</h4>
+                                    <p id="longM"></p>
+                                <h4 style="display: none;">Id</h4>
+                                    <p id="idM"></p>
+                                <h4 id="LinkT"><a href="" id="linkF" target="_blank">Link</a></h4>
+                                    <p id="linkM"></p>
+                                <a id="iconM" class="linkMS" download>Icon</a>
+                                    <div class="imgPrev" id="iconP"><img src="" id="iconMS"></div><br id="br1">
+                                <a id="scrM" class="linkMS" download>Screenshot</a>
+                                    <div class="imgPrev" id="scrP"><img src="" id="srcMS"></div><br>
+                                <a id="cdM" class="linkMS" download>Cover Design</a>
+                                    <div class="imgPrev" id="cdP"><img src="" id="cdMS"></div><br>
+                                <a id="apkM" class="linkMS" download>APK</a>
+                                <a id="fileM" class="linkMS" download>File</a>
+                                <img src="" id="typeM">
+
                             <!--Stars -->
                             <link rel="stylesheet" type="text/css" href="css/stars.css">
-                               <div id="half-stars-example" style="  margin-top: 4rem; margin-left: 25rem; display: flex; justify-content: center; align-items: flex-end; flex-direction: column;">
+                               <div id="half-stars-example" style="margin-left: auto; display: flex; justify-content: center; align-items: flex-end; flex-direction: column;">
                                     <h3 id="starN" style="    padding-right: 10px;">0</h3>
-                                  <div class="rating-group" id="RatingStars">
+                                  <div class="rating-group">
                                      <input class="rating__input rating__input--none" checked="" name="rating2" id="rating0" value="0" type="radio">
                                      <label aria-label="0 stars" class="rating__label" for="rating0">&nbsp;</label>
                                      <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating1"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
@@ -417,11 +444,15 @@
        </div>
     </div>
     <!-- Jquery JS-->
+    <style type="text/css">
+        #modalLeft::-webkit-scrollbar { width: 0 !important }
+        #modalRight::-webkit-scrollbar { width: 0 !important }
+    </style>
+    <!-- Jquery JS-->
 
     <!-- Bootstrap JS-->
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
     <script src="vendor/slick/slick.min.js"></script>
     <script src="vendor/wow/wow.min.js"></script>
     <script src="vendor/animsition/animsition.min.js"></script>
@@ -430,12 +461,46 @@
     <script src="vendor/counter-up/jquery.counterup.min.js"></script>
     <script src="vendor/circle-progress/circle-progress.min.js"></script>
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js"></script>
-    <script src="js/tableSort.js"></script>
     <script src="js/user.js"></script>
-    <script src="js/main.js"></script>
+    <script type="text/javascript">$("li:nth-child(9)").attr("class","active has-sub")
+    $("#commentI").focus(function(){
+        $("#btnCS").css({"width": "80px" ,"opacity": "1"})
+    })
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
 
+    const d = new Date();
+    var date = monthNames[d.getMonth()] + " " + d.getDate() + " at " + d.getHours() + ":" + d.getMinutes();
+    var numC = 0;
+    var usernameC = "<?php echo $_SESSION["username"];  ?>";
+    $("#btnCS").click(function(){
+        numC++
+        var str = $("#idM").text();
+        var Message = $("#commentI").val();
+        var idOfPr = str.replace("Id. ", "");
+        $("#commentI").val("");
+        $("#clone-comment").clone(true).appendTo("#modalLeft").attr("id","comment" + numC);
+        $("#comment" + numC).find(".messageS").text(Message);
+        $("#comment" + numC).find(".username").text(usernameC);
+        $("#comment" + numC).find(".time").text(date);
+        $.post( "php/addComment.php", 
+        { 
+            idOfPr: idOfPr,
+            TypeOfPr: $typeCo,
+            Message: Message,
+            date: date
+        });
+    })
+    $("#commentI").focusout(function(){
+         setTimeout(function(){        
+        $("#btnCS").css({"width": "0px" ,"opacity": "0"});
+
+    }, 150);
+    })
+
+</script>
 </body>
 
 </html>

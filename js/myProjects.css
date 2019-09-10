@@ -1,0 +1,76 @@
+.longT{
+    overflow: hidden;
+    max-width: 25ch;
+}
+
+#ReviewA{
+	user-select: none;
+	cursor: pointer; 
+}
+
+.cardS{
+	margin: 8px !important;
+}
+
+#togg{
+	margin-top: 20px !important;
+}
+
+.toggle-handle{
+	background-color: white;
+}
+
+.off{
+	border: 1px solid #007bff;
+}
+
+.toggle{
+	margin-left: 17px;
+}
+
+#searchI{
+	margin-left: 10px;
+	background-color: transparent !important;
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	border-bottom: solid 1px gray;
+	transition: .3s ease-out;
+}
+
+#searchI:focus{
+	border-bottom: solid 2px #007bff;
+}
+
+#idM{
+	position: absolute;
+    top: 0px;
+    right: 20px;
+}
+
+.card-body{
+	min-height: 125px !important;
+	border-top: 1px solid #dcdcdc;
+}
+
+.card-bot{
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.icons{
+	width: 32px;
+	height: 32px;
+	filter: grayscale(100%);
+	transition: .3s ease;
+}
+
+.icons:hover{
+	filter: none;
+	transition: .3s ease;
+}
+
+.card-img-top{
+	min-height: 160px !important;
+}

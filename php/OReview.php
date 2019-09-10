@@ -3,32 +3,33 @@
   require_once('dbh.php');
 
     $rev  = $_POST["rev"];
-    $id  = $_POST["lastId"];
-    $userId = $_SESSION["id"];
-    $OwnerId = $_POST["ownerId"];
+    $PrId  = $_POST["PrId"];
+    $UserId = $_SESSION["id"];
+    $OwnerId = $_POST["revOwnerId"];
+    $RevType = $_POST["RevType"];
+    echo "INSERT INTO reviews(Review,PrId,UserId,OwnerId,RevType) VALUES($rev,$PrId,$UserId,$OwnerId,'$RevType')";
 
-    $query = $con->prepare("SELECT * FROM reviews WHERE PrId = $id AND UserId = $userId");
+
+    $query = $con->prepare("SELECT * FROM reviews WHERE PrId = $PrId AND UserId = $UserId AND RevType = '$RevType'");
 
     $query->execute();
 
     $reviewed = $query->fetchAll();
 
     if (empty($reviewed)) {
-        echo "create";
-        $sqlInsert = $con->prepare("INSERT INTO reviews(Review,PrId,UserId,OwnerId) VALUES($rev,$id,$userId,$OwnerId)");
+        $sqlInsert = $con->prepare("INSERT INTO reviews(Review,PrId,UserId,OwnerId,RevType) VALUES($rev,$PrId,$UserId,$OwnerId,'$RevType')");
 
-        $sqlInsert->bindParam(':rev', $rev);
+/*        $sqlInsert->bindParam(':rev', $rev);
         $sqlInsert->bindParam(':id', $id);
-        $sqlInsert->bindParam(':userId', $userId);
+        $sqlInsert->bindParam(':userId', $userId);*/
 
         $sqlInsert->execute();
     }else{
-        echo "update";
-        $sqlInsert = $con->prepare("UPDATE reviews SET Review = $rev, PrId = $id, UserId = $userId, OwnerId = $OwnerId WHERE UserId = $userId AND PrId = $id");
+        $sqlInsert = $con->prepare("UPDATE reviews SET Review = $rev, PrId = $PrId, UserId = $UserId, OwnerId = $OwnerId, RevType = $RevType WHERE UserId = $UserId AND PrId = $PrId AND RevType = '$RevType'");
 
-        $sqlInsert->bindParam(':rev', $rev);
+/*        $sqlInsert->bindParam(':rev', $rev);
         $sqlInsert->bindParam(':id', $id);
-        $sqlInsert->bindParam(':userId', $userId);
+        $sqlInsert->bindParam(':userId', $userId);*/
 
         $sqlInsert->execute();
     }

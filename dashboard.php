@@ -2,41 +2,13 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
-
+    
+    <?php include 'components/head.php'; ?>
+    
     <!-- Title Page-->
-    <title>Dashboard</title>
-
-    <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Apps</title>
 
     <link rel="stylesheet" type="text/css" href="css/dashboard.css">
-
-    <link rel="stylesheet" type="text/css" href="css/iconsD.css">
 
 </head>
 
@@ -101,48 +73,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li>
-                            <a href="code.php">
-                                <img src="images/code.png" class="icons">
-                                Code.Org
-                            </a>
-                        </li>
-                        <li>
-                            <a href="scratch.php">
-                                <img src="images/Scratch_Cat.png" class="icons">
-                                Scratch
-                            </a>
-                        </li>
-                        <li>
-                            <a href="kodu.php">
-                                <img src="images/kodu.png" class="icons">
-                                Kodu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="stencyl.php">
-                                <img src="images/StencylLogo.png" class="icons">
-                                Stencyl
-                            </a>
-                        </li>
-                        <li class="active has-sub">
-                            <a href="dashboard.php">
-                                <img src="images/app.png" class="icons">
-                                App Inventor
-                            </a>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-laptop"></i>Webfaqe</a>
-                        </li>
-                        <li>
-                            <a href="leaderboard.php">
-                                <i class="fas fa-trophy"></i>Leaderboard</a>
-                        </li>
-                        <li>
-                            <a href="rateDashboard.php">
-                                <i class="fas fa-star"></i>Rate</a>
-                        </li>
+                        <?php require_once('components/sidebar.php');?>
                     </ul>
                 </nav>
             </div>
@@ -229,20 +160,20 @@
                                         <div class="border border-light p-5 col-6">
 
                                             <label for="textInput">Emri i aplikacionit</label>
-                                            <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Name">
+                                            <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Name" required>
 
                                             <label for="textarea">Short description</label>
-                                            <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80"></textarea>
+                                            <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80" required></textarea>
 
                                             <label for="textarea">Full description</label>
-                                            <textarea id="textarea" class="form-control mb-4" placeholder="" name="Long"></textarea>
+                                            <textarea id="textarea" class="form-control mb-4" placeholder="" name="Long" required></textarea>
 
                                             <div class="input-group mb-4">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="fileInputAPK" aria-describedby="fileInput" name="APK">
+                                                    <input type="file" class="custom-file-input" id="fileInputAPK" aria-describedby="fileInput" name="APK" required>
                                                     <label class="custom-file-label" for="fileInput" id="apkLabel">APK File</label>
                                                 </div>
                                             </div>
@@ -256,7 +187,7 @@
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input imgInp" id="1" aria-describedby="fileInput" name="SCR" id="1">
+                                                    <input type="file" class="custom-file-input imgInp" id="1" aria-describedby="fileInput" name="SCR" id="1" required>
                                                     <label class="custom-file-label" for="fileInput" id="N1">Img File</label>
                                                 </div>
                                             </div>
@@ -266,7 +197,7 @@
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input imgInp" id="2" aria-describedby="fileInput" name="Icon" id="2">
+                                                    <input type="file" class="custom-file-input imgInp" id="2" aria-describedby="fileInput" name="Icon" id="2" required>
                                                     <label class="custom-file-label" for="fileInput" id="N2">Img File</label>
                                                 </div>
                                             </div>
@@ -277,12 +208,13 @@
                                                     <span class="input-group-text">Upload</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input imgInp" id="3" aria-describedby="fileInput" name="Cover" id="3">
+                                                    <input type="file" class="custom-file-input imgInp" id="3" aria-describedby="fileInput" name="Cover" id="3" required>
                                                     <label class="custom-file-label" for="fileInput" id="N3">Img File</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="alert alert-danger" role="alert" id="errorD"><?php echo $_SESSION["q_error"];$_SESSION["q_error"] = "";?></div>
                                     <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit">Send</button>
                                     </form>
                                 </div>
@@ -334,6 +266,11 @@
     <script src="js/logic.js"></script>
     <script src="js/main.js"></script>
     <script src="js/dashboard.js"></script>
+    <script type="text/javascript">$("li:nth-child(5)").attr("class","active has-sub")
+        if ($("#errorD").text() != "Please input a image that suits a cover (it needs to be horizontal).") {
+            $("#errorD").hide();
+        }</script>
+
 
 
 </body>

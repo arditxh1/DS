@@ -2,41 +2,11 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
+    <?php include 'components/head.php'; ?>
 
-    <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Scratch</title>
 
-    <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
-    <link rel="stylesheet" type="text/css" href="css/code.css">
-
-    <link rel="stylesheet" type="text/css" href="css/iconsD.css">
+    <link rel="stylesheet" type="text/css" href="css/smalForm.css">
 
 </head>
 
@@ -102,48 +72,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li>
-                            <a href="code.php">
-                                <img src="images/code.png" class="icons">
-                                Code.Org
-                            </a>
-                        </li>
-                        <li class="active has-sub">
-                            <a href="scratch.php">
-                                <img src="images/Scratch_Cat.png" class="icons">
-                                Scratch
-                            </a>
-                        </li>
-                        <li>
-                            <a href="kodu.php">
-                                <img src="images/kodu.png" class="icons">
-                                Kodu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="stencyl.php">
-                                <img src="images/StencylLogo.png" class="icons">
-                                Stencyl
-                            </a>
-                        </li>
-                        <li>
-                            <a href="dashboard.php">
-                                <img src="images/app.png" class="icons">
-                                App Inventor
-                            </a>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-laptop"></i>Webfaqe</a>
-                        </li>
-                        <li>
-                            <a href="leaderboard.php">
-                                <i class="fas fa-trophy"></i>Leaderboard</a>
-                        </li>
-                        <li>
-                            <a href="rateDashboard.php">
-                                <i class="fas fa-star"></i>Rate</a>
-                        </li>
+                        <?php require_once('components/sidebar.php');?>
                     </ul>
                 </nav>
             </div>
@@ -229,15 +158,15 @@
                                         <!-- Default form contact -->
                                             <div>
                                                     <label for="textInput">Emri i projektit</label>
-                                                    <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Name">
+                                                    <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Name" required>
                                             </div>
                                             <div>
                                                     <label for="textInput">Linku i projektit</label>
-                                                    <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Link">
+                                                    <input type="url" id="textInput" class="form-control mb-4" placeholder="" name="Link" required>
                                             </div>
                                             <div>
                                                     <label for="textarea">Short description</label>
-                                                    <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80"></textarea>
+                                                    <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80" required></textarea>
                                             </div>
                                     </div>
                                     <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit" id="btnS">Send</button>
@@ -291,6 +220,7 @@
     <script src="js/logic.js"></script>
     <script src="js/main.js"></script>
     <script src="js/dashboard.js"></script>
+    <script type="text/javascript">$("li:nth-child(2)").attr("class","active has-sub")</script>
 
 
 </body>

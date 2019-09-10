@@ -70,3 +70,131 @@
 	filter: none;
 	transition: .3s ease;
 }
+
+.card-img-top{
+	min-height: 160px !important;
+}
+
+.card-link{
+	cursor: pointer !important;
+	color: #4272d7 !important;
+
+}
+
+.linkMS{
+	color: #007bff;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    font-size: 18px;
+}
+
+.imgPrev{
+	background-color: white;
+	box-shadow: 0px 0px 5px 0px;
+	width: 30%;
+	height: 0px;
+	opacity: 0;
+	transition: .3s ease;
+	z-index: 2;
+	position: absolute;
+	display: none;
+	user-select: none;
+}
+
+.imgPrev img{
+	padding: 10px;
+}
+
+#iconM:hover + #iconP{
+	transition: .3s ease;
+	display: block;
+	height: inherit;
+	opacity: 1;
+}
+
+#scrM:hover + #scrP{
+	transition: .3s ease;
+	display: block;
+	height: inherit;
+	opacity: 1;
+}
+
+#cdM:hover + #cdP{
+	transition: .3s ease;
+	display: block;
+	height: inherit;
+	opacity: 1;
+}
+
+#modal-body-b > *:nth-child(even) {
+	margin-bottom: 30px;
+}
+
+#modal-body-b > *:nth-child(odd) {
+	margin-bottom: 10px;
+}
+
+.linkMS{
+	margin-bottom: 0px !important;
+}
+
+.fa-comments:before {
+    content: "\f086";
+    font-size: 30px;
+    margin-right: 10px;
+    color: #333;
+}
+
+#btnCS{
+	width: 0;
+	opacity: 0;
+	transition: .3s ease;
+}
+
+.image-cropper {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.profile_pic{
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.time{
+	font-size: 12px;
+}
+
+.messageS{
+	margin-top: 15px;
+	padding: 7px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px 0px;
+}
+
+.single-comment{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#clone-comment{
+	display: none;
+}
+
+.username{
+	font-size: 18px;
+}
+
+.searchD{
+	margin-left: 20px;
+}
+
+#CardC{
+	display: none;
+}

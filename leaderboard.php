@@ -2,38 +2,8 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
-
-    <!-- Title Page-->
-    <title>Dashboard</title>
-
-    <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <?php include 'components/head.php'; ?>
+     <title>Leaderboard</title>
 </head>
 
 <?php  
@@ -96,22 +66,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li>
-                            <a href="dashboard.php">
-                                <i class="fas fa-mobile" ></i>Aplikacion</a>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-laptop"></i>Webfaqe</a>
-                        </li>
-                        <li  class="active has-sub">
-                            <a href="leaderboard.php">
-                                <i class="fas fa-trophy"></i>Leaderboard</a>
-                        </li>
-                        <li>
-                            <a href="rateDashboard.php">
-                                <i class="fas fa-star"></i>Rate</a>
-                        </li>
+                        <?php require_once('components/sidebar.php');?>
                     </ul>
                 </nav>
             </div>
@@ -257,9 +212,9 @@
                                                 foreach ($Reviewed as $obje) {
                                                     $reviewPrintN += (int)($obje["Review"]);
                                                     $reviewNum++;
-                                                    if (!in_array($obje["PrId"], $checkedId)) {
+                                                    if (!in_array($obje["PrId"] . $obje["RevType"], $checkedId)) {
                                                        $PrNum++;
-                                                       array_push($checkedId, $obje["PrId"]);
+                                                       array_push($checkedId, $obje["PrId"] . $obje["RevType"]);
                                                     }
                                                 }
 
@@ -351,6 +306,7 @@
     <script src="js/leaderboard.js"></script>
     <script src="js/logic.js"></script>
     <script src="js/main.js"></script>
+    <script type="text/javascript">$("li:nth-child(8)").attr("class","active has-sub")</script>
 
 </body>
 

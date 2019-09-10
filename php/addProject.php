@@ -20,10 +20,18 @@
     if (in_array($fileActualExt, $allowed)) {
       if ($fileError === 0) {
         if ($fileSize < 10000000) {
-          $fileNameNew = uniqid('', true). "." . $fileActualExt;
-          $fileDestination = '../uploads/' . $fileNameNew;
-          move_uploaded_file($fileTmpName, $fileDestination);
-          $fileDB = 'uploads/' . $fileNameNew;
+          if ($fileQ == 'Cover') {
+            $image_info = getimagesize($file['tmp_name']);
+            if (($image_info[0]/$image_info[1]) > 1) {
+              $fileNameNew = uniqid('', true). "." . $fileActualExt;
+              $fileDestination = '../uploads/' . $fileNameNew;
+              move_uploaded_file($fileTmpName, $fileDestination);
+              $fileDB = 'uploads/' . $fileNameNew;
+            }else{
+              $_SESSION["q_error"] = "Please input a image that suits a cover (it needs to be horizontal).";
+              header('location: ../dashboard.php');
+            }
+          }
           if ($fileQ == 'SCR') {
             $SCRDB = "$fileDB";
             echo $SCRDB;
@@ -94,5 +102,7 @@
     $sqlInsertT = $con->prepare($sqlQuery);
 
     $sqlInsertT->execute();
+
+    header('location: ../dashboard.php');
 
 ?>

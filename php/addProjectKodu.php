@@ -76,4 +76,6 @@
 
     $sqlInsertT->execute();
 
+    header('location: ../kodu.php');
+
 ?>

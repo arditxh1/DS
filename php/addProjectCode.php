@@ -38,4 +38,8 @@
 
     $sqlInsertT->execute();
 
+    $tableN = str_replace("_projekte","",$tableN);
+
+    header('location: ../'. $tableN . '.php');
+
 ?>

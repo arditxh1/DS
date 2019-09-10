@@ -1,0 +1,192 @@
+.longT{
+    overflow: hidden;
+    max-width: 25ch;
+}
+
+#ReviewA{
+	user-select: none;
+	cursor: pointer; 
+}
+
+.cardS{
+	margin: 8px !important;
+}
+
+#togg{
+	margin-top: 20px !important;
+}
+
+.toggle-handle{
+	background-color: white;
+}
+
+.off{
+	border: 1px solid #007bff;
+}
+
+.toggle{
+	margin-left: 17px;
+}
+
+#searchI{
+	margin-left: 10px;
+	background-color: transparent !important;
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	border-bottom: solid 1px gray;
+	transition: .3s ease-out;
+}
+
+#searchI:focus{
+	border-bottom: solid 2px #007bff;
+}
+
+#idM{
+	position: absolute;
+    top: 0px;
+    right: 20px;
+}
+
+.card-body{
+	min-height: 125px !important;
+	border-top: 1px solid #dcdcdc;
+}
+
+.card-bot{
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.icons{
+	width: 32px;
+	height: 32px;
+	filter: grayscale(100%);
+	transition: .3s ease;
+}
+
+.icons:hover{
+	filter: none;
+	transition: .3s ease;
+}
+
+.card-img-top{
+	min-height: 160px !important;
+}
+
+.card-link{
+	cursor: pointer !important;
+	color: #4272d7 !important;
+
+}
+
+.linkMS{
+	color: #007bff;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    font-size: 18px;
+}
+
+.imgPrev{
+	background-color: white;
+	box-shadow: 0px 0px 5px 0px;
+	width: 30%;
+	height: 0px;
+	opacity: 0;
+	transition: .3s ease;
+	z-index: 2;
+	position: absolute;
+	display: none;
+	user-select: none;
+}
+
+.imgPrev img{
+	padding: 10px;
+}
+
+#iconM:hover + #iconP{
+	transition: .3s ease;
+	display: block;
+	height: inherit;
+	opacity: 1;
+}
+
+#scrM:hover + #scrP{
+	transition: .3s ease;
+	display: block;
+	height: inherit;
+	opacity: 1;
+}
+
+#cdM:hover + #cdP{
+	transition: .3s ease;
+	display: block;
+	height: inherit;
+	opacity: 1;
+}
+
+#modal-body-b > *:nth-child(even) {
+	margin-bottom: 40px;
+}
+
+#modal-body-b > *:nth-child(odd) {
+	margin-bottom: 10px;
+}
+
+.linkMS{
+	margin-bottom: 0px !important;
+}
+
+#half-stars-example{
+	margin-top: 1rem !important;
+}
+
+.fa-comments:before {
+    content: "\f086";
+    font-size: 30px;
+    margin-right: 10px;
+    color: #333;
+}
+
+#btnCS{
+	width: 0;
+	opacity: 0;
+	transition: .3s ease;
+}
+
+.image-cropper {
+    width: 45px;
+    height: 45px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.profile_pic{
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.time{
+	font-size: 10px;
+}
+
+.messageS{
+	margin-top: 15px;
+	padding: 7px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px 0px;
+}
+
+.single-comment{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#clone-comment{
+	display: none;
+}

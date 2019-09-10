@@ -6,8 +6,18 @@ $(document).ready(function(){
         	$("#warningP").text("Please input a kodu file.")
         	$('#myModal').modal();
         	$('#fileInputAPK').val("");
+            $("#apkLabel").text("");
+            $("#linkI").prop("required",true);
         }else{
         	$("#apkLabel").text(fileName);
+            $("#linkI").removeAttr("required");
+        }
+    });
+    $('#linkI').change(function(e){
+        if ($('#linkI').val() != "") {
+            $("#fileInputAPK").removeAttr("required");
+        }else{
+            $("#fileInputAPK").prop("required",true);
         }
     });
 });

@@ -4,27 +4,26 @@
 
     $rev  = $_POST["rev"];
     $id  = $_POST["id"];
-    $username = $_POST["lastUser"];
+    $type = $_POST["type"];
 
-    $sqlQuery = "UPDATE projekete_app set Review = :rev where id = :id";
+    if ($type == "web") {
+        $type = "web_projekte";
+    }else if ($type == "app") {
+        $type = "projekete_app";
+    }else if ($type == "stencyl") {
+        $type = "stencyl_projekte";
+    }else if ($type == "kodu") {
+        $type = "kodu_projekte";
+    }else if ($type == "scratch") {
+        $type = "scratch_projekte";
+    }else if ($type == "code"){
+        $type = "code_projekte";
+    }
+
+    $sqlQuery = "UPDATE $type set Review = :rev where id = :id";
     $sqlInsert = $con->prepare($sqlQuery);
     $sqlInsert->bindParam(':rev', $rev);
     $sqlInsert->bindParam(':id', $id);
-    $sqlInsert->execute();
-
-    $query = $con->prepare("SELECT Review FROM projekete_app WHERE username = '$username'");
-    $query->execute();
-    $StarsG = $query->fetchAll();
-
-    $num = -1;
-    $Stars = 0;
-    foreach ($StarsG as $obj) {
-        $num++;
-        $Stars += $StarsG[$num]["Review"];
-    }
-
-    $sqlQuery = "UPDATE users set Stars = $Stars where username = '$username'";
-    $sqlInsert = $con->prepare($sqlQuery);
     $sqlInsert->execute();
 
 ?>

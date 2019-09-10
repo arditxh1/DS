@@ -1,0 +1,13 @@
+.row{
+	justify-content: center !important;
+	margin: 0px 150px 0px 150px !important;
+	flex-direction: column;
+}
+
+#btnS{
+	margin-left: auto;
+}
+
+.formC{
+	width: 65%;
+}
