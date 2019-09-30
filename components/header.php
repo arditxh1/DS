@@ -1,5 +1,6 @@
 <script type="text/javascript">
     var comments = {};
+    var reviews = {};
     var numTemp = -1;
     <?php 
         $usernameL = $_SESSION['username'];
@@ -26,6 +27,35 @@
             <?php 
         }
      ?>
+    <?php 
+        $usernameL = $_SESSION['username'];
+        $idL = $_SESSION['id'];
+        $query = $con->prepare("SELECT * FROM reviews INNER JOIN users ON reviews.UserId = users.id WHERE OwnerId = $idL");
+        $query->execute();
+        $reviews = $query->fetchAll();
+        $tempNumC = -1;
+        foreach ($reviews as $review) {
+            $tempRevType = $review["RevType"];
+            $tempPrId = (int)$review["PrId"];
+            $query = $con->prepare("SELECT Emri FROM $tempRevType WHERE id = $tempPrId");
+            $query->execute();
+            $PrName = $query->fetchAll();
+            $tempNumC++;
+            if ($review["checked"] == 0) {
+                $notifi++;
+            }
+        ?>
+                numTemp++
+                reviews["<?php echo $tempNumC;  ?>"] = {
+                    "id" : <?php echo $review[0];  ?>,
+                    "ProjectName" : "<?php echo $PrName[0][0];  ?>",
+                    "review" : <?php echo $review["Review"];  ?>,
+                    "checked" : <?php echo $review["checked"];  ?>,
+                    "senderUsername" : "<?php echo $review["username"];  ?>"
+                }
+            <?php 
+        }
+     ?>
 </script>
 <header class="header-desktop">
     <div class="section__content section__content--p30">
@@ -45,6 +75,15 @@
                             </div>
                             <div id="text" style="padding: 5px;">
                                 <p style="font-size: 18px;" id="message">Test ndreq bugin test</p>
+                                <span id="date">April 12, 2018 06:50 by</span> <span id="name" style="font-weight: bold;">Kujtim Neziraj</span> 
+                            </div>
+                        </div>
+                        <div class="notifationsS" id="cloneNotifiStar">
+                            <div class="notfica" style="padding: 10px;">
+                                <i class="fa fa-star" width="32px" height="32px"></i>
+                            </div>
+                            <div id="text" style="padding: 5px;">
+                                <p style="font-size: 18px;" id="message">U got an 8 for "Testi i arritshmerris".</p>
                                 <span id="date">April 12, 2018 06:50 by</span> <span id="name" style="font-weight: bold;">Kujtim Neziraj</span> 
                             </div>
                         </div>
@@ -95,19 +134,26 @@
         $(".quantity").remove()
     }
 
-    $("span").on("click", function(){
-        alert(1)
-        if (this.attr("class") == "toastBtn") {
-            
-            alert(2)
-        }
-    });
+    for (var i = Object.keys(reviews).length - 1; i >= 0; i--) {
+        $("#cloneNotifiStar").clone(true).appendTo("#commentsContainer").attr("id", "reviews_" + i).addClass("");
+        $("#" + "reviews_" + i).find("#message").text("U got a new review: " + reviews[i]["review"] + " for " + '"' +reviews[i]["ProjectName"]+ '"' );
+        var nameTemp = comments[i]["sender_id"];
+        $("#" + "reviews_" + i).find("#date").text(comments[i]["time"] + " by ");
+        $("#" + "reviews_" + i).find("#name").text(reviews[i]["senderUsername"]);
+        console.log(i);
+    }
+
+    if ($(".quantity").text() == "0") {
+        $(".quantity").remove()
+    }
 
 numTempT = 0;
 function yourFunction(){
     $.post("php/getToast.php", function(result){
-        if (result) {
+        if ($.trim(result)) {
+            console.log("nice");
             numTempT++;
+            console.log(result);
             result = JSON.parse(result);
             $("#toastClone").clone(true).appendTo("#notifcationOverlay").attr("id", "toast_" + numTempT);
             var time = result["time"];
@@ -115,7 +161,8 @@ function yourFunction(){
             $("#toast_" + numTempT).find("#NameT").text(result["username"]);
             $("#toast_" + numTempT).find("#timeToast").text(lastFiveTemp);
             $("#toast_" + numTempT).find("#toast-text").text(result["Mesage"]);
-            $("#notifcationOverlay").css({"right": "5rem","transition": ".5s ease"});
+            $("#toast_" + numTempT).css("z-index",numTempT);
+            $("#toast_" + numTempT).animate({right: "5rem"}); 
             console.log(result);
         }
     });
@@ -126,13 +173,12 @@ function yourFunction(){
 yourFunction();
 
 </script>
-
+<?php var_dump($_SESSION["id"]); ?>
 
 <style type="text/css">
 
  #commentsContainer{
     width: 350px;
-    opacity: 0;
     position: absolute;
     top: 3.5rem;
     right: 13.1rem;
@@ -141,9 +187,11 @@ yourFunction();
     transition: .3s ease;
     background-color: white;
     box-shadow: 0px  0px 10px 0px;
-    max-height: 481px;
+    max-height: 0px;
     overflow-x: scroll;
-} 
+    transition: .3s ease;
+    opacity: 0;
+}
 
 ::-webkit-scrollbar { 
     display: none; 
@@ -166,16 +214,12 @@ yourFunction();
 #cloneNotifi{
     display: none;
 }
+#cloneNotifiStar{
+    display: none;
+}
 
 #name{
     font-size: 15px;
-}
-
-#notifcationOverlay{
-    position: absolute;
-    right: -5rem;
-    top: 50rem;
-    transition: .5s ease;
 }
 
 .toast-header {
@@ -209,13 +253,17 @@ yourFunction();
     border: 1px solid rgba(0,0,0,.1);
     border-radius: .25rem;
     box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
     opacity: 0;
+    position: absolute;
+    z-index: 100;
+    right: -100rem;
+    top: 85vh; 
+    transition: 2.5s ease;
 }
 
 #toastClone{
     display: none;
+    position: absolute;
 }
 
 </style>
@@ -225,14 +273,18 @@ yourFunction();
     $(".noti-wrap").click(function(){
         $(".quantity").remove()
         if ($("#commentsContainer").css("opacity") == "0") {
-            $("#commentsContainer").css({"opacity": "1", "transition": ".3s ease","height": "auto"});
+            $("#commentsContainer").css({"opacity":"1","height":"auto","transition":".3 ease","max-height":"481px"});
             checkedMess = true;
             for (var i = Object.keys(comments).length - 1; i >= 0; i--) {
-                var currentCommentId = comments[i]["id"]
-                  $.post("php/checkComments.php", {id: currentCommentId});
+                var currentCommentId = comments[i]["id"];
+                  $.post("php/checkComments.php", {id: currentCommentId, type: "comments"});
+            }
+            for (var i = Object.keys(reviews).length - 1; i >= 0; i--) {
+                var currentReviewtId = reviews[i]["id"];
+                  $.post("php/checkComments.php", {id: currentReviewtId, type: "reviews"});
             }
         }else{
-            $("#commentsContainer").css({"opacity": "0", "transition": ".3s ease","height": "0"});
+            $("#commentsContainer").css({"transition":".3 ease","opacity":"0","height":"0","max-height":"0px"});
         }
     })
-</script>
+</script>   

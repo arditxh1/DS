@@ -35,13 +35,45 @@ $(document).ready(function(){
 			//MadeBy
 			$("#" + type + "_" + x).children().children(".ownerPR").text("Made by: " + card["username"]);
 
+			//View More
 			$("#" + type + "_" + x).children().children(".card-link").attr("id", type + "_" + x + "A");
+
+			//Card pending
+			if (card["approved"] == 0) {
+				$("#" + type + "_" + x).addClass("PendingCard");
+				$("#" + type + "_" + x).children().children(".ownerPR").html($("#" + type + "_" + x).children().children(".ownerPR").text() + "<br>" +"Status: "+ "<b>" +"pending."+"</b>");
+			}else if (card["approved"] == 2) { 
+				$("#" + type + "_" + x).addClass("PendingCard");
+				$("#" + type + "_" + x).children().children(".ownerPR").html($("#" + type + "_" + x).children().children(".ownerPR").text() + "<br>" + "<b>" + "Status:" + "<span class='dec'>" + " declined." + "<p>" + "<span>");
+			}
+
+			current_badge = $("#" + type + "_" + x).children(".badgesCon");
+
+			//Badges
+			if (card["badges"].includes("design")) {
+				current_badge.children("#designB").css({"opacity": "0", "display": "block"});
+				current_badge.children("#designB").addClass("animated zoomInDown").css("opacity", "1");
+			}
+			
+			if(card["badges"].includes("idea")){
+				current_badge.children("#ideaB").css({"opacity": "0", "display": "block"});
+				current_badge.children("#ideaB").addClass("animated zoomInDown").css("opacity", "1");
+			}
+
+			if(card["badges"].includes("code")){
+				current_badge.children("#codeB").css({"opacity": "0", "display": "block"});
+				current_badge.children("#codeB").addClass("animated zoomInDown").css("opacity", "1");
+			}
 
 			//Icons
 			$("#" + type + "_" + x).children().children(".icons").attr("src", "images/" + card['type'] + ".png");
-
 		}
 	}
+
+/*	$( ".imgC" ).on("load",function() {
+		var cHeight = $(this).height();
+		$(this).parent().children(".badgesCon").css("top", cHeight - 24 + "px");
+	});*/
 
   $("#searchI").on("keyup", function() {
   	var found = 0;
@@ -176,6 +208,9 @@ $("a").on("click", function(){
 		//Reset
 		show()
 
+		//Get card
+		lastCardP = $(this).attr("id").slice(0,-1);
+
 		//Save id for reivew
 		dbId = current_pr["id"];
 
@@ -250,6 +285,17 @@ $("a").on("click", function(){
 		//Save type of project to push comments
 		$typeCo = current_pr["type"];
 
+		//Show badges
+		if (current_pr["badges"].includes("design")) {
+			$("#designBM").show();
+		}
+		if (current_pr["badges"].includes("code")) {
+			$("#codeBM").show();
+		}
+		if (current_pr["badges"].includes("idea")){
+			$("#ideaBM").show();
+		}
+
 		//Show modal
 		$("#myModal").modal();
 	}
@@ -315,3 +361,4 @@ function createComments(){
 function resetComments(){
 	$(".commentR").remove();
 }
+

@@ -11,7 +11,7 @@
 
 
 		}else{
-				$sql = "SELECT id,username,email,password FROM users WHERE username= :username";
+				$sql = "SELECT * FROM users WHERE username= :username";
 
 				$insertSql = $con->prepare($sql);
 
@@ -31,12 +31,18 @@
 						$_SESSION["password"] = $password;
 						$_SESSION["id"] = $data['id'];
 						$_SESSION["email"] = $data['email'];
-
-						header('location: ../intro.php');
+						$_SESSION["user_type"] = $data['type'];
+						if ($data['type'] == "user") {
+							header('location: ../intro.php');
+							var_dump($data["type"]);
+						}else if ($data['type'] == "admin") {
+							header('location: ../dashboardAdmin.php');
+						}
 					} else{
 						$_SESSION['error'] = "Wrong Password !";
+						var_dump("nice");
 						$_SESSION['error1'] = " The username and password dont match.";
-						header('location: ../login.php');	
+						header('location: ../login.php');
 					}
 				}
 

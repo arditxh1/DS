@@ -4,7 +4,7 @@
 <head>
     <?php include 'components/head.php'; ?>
 
-    <title>Code</title>
+    <title>Rate</title>
 
     <link rel="stylesheet" type="text/css" href="css/admin.css">
     <script src="vendor/jquery-3.2.1.min.js"></script>
@@ -12,62 +12,16 @@
 </head>
 
 <?php  
-    include 'php/dbh.php';
-
-    if (empty($_SESSION["username"])) {
-        header('location: login.php');
-    }
-    $userReg = $_SESSION["username"];
-    $sql = "SELECT id FROM users WHERE username= :username";
-    $insertSql = $con->prepare($sql);
-    $insertSql->bindParam(':username', $userReg);
-    $insertSql->execute();
-    $data = $insertSql->fetch();
-    $_SESSION["id"] = $data["id"];
-    $_SESSION["PrType"] = "code_projekte";
+    require_once('components/userBlock.php');
 ?>
-<?php var_dump($_SESSION["id"]) ?>
 
 <body class="animsition">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                         <li class="active has-sub">
-                            <a href="chart.html">
-                                <i class="fas fa-mobile" ></i>Aplikacion</a>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-laptop"></i>Webfaqe</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- END HEADER MOBILE-->
 
-        <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                    <img src="images/icon/logo.png" alt="Shkolla DIgjitale" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -78,75 +32,8 @@
                 </nav>
             </div>
         </aside>
-        <!-- END MENU SIDEBAR-->
-
-        <!-- PAGE CONTAINER-->
         <div class="page-container">
-            <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="header-wrap" style="float: right;">
-                            <div class="header-button">
-                                <div class="noti-wrap">
-                                    <div class="noti__item js-item-menu">
-                                        <i class="zmdi zmdi-notifications"></i>
-                                        <span class="quantity">10</span>
-                                        <div class="notifi-dropdown js-dropdown">
-                                            <div class="notifi__title">
-                                                <p>You have 3 Notifications</p>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c1 img-cir img-40">
-                                                    <i class="zmdi zmdi-email-open"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a email notification</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c2 img-cir img-40">
-                                                    <i class="zmdi zmdi-account-box"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>Your account has been blocked</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c3 img-cir img-40">
-                                                    <i class="zmdi zmdi-file-text"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a new file</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__footer">
-                                                <a href="#">All notifications</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="account-wrap">
-                                    <div class="account-item clearfix js-item-menu">
-                                        <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                        </div>
-                                        <div class="content">
-                                            <a class="js-acc-btn" href="php/logout.php"><?php echo $_SESSION['username']; ?></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-                </div>
-            </header>
-            <!-- HEADER DESKTOP-->
-
-            <!-- MAIN CONTENT-->
+        <?php  require_once("components/header.php")?>
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
@@ -157,7 +44,12 @@
                                     <div class="row" id="mainD" style="display: flex; flex-direction: row; flex-wrap: wrap;">
                                     <div class='card cardS' style='width: 18rem;' id="CardC">
                                          <img src="images/codeCover.png" class='card-img-top imgC' alt='...'>
-                                         <div class='card-body'>
+                                         <div class="badgesCon">
+                                            <img class="badges designBadge" src="images/badge.png" id="designB">
+                                            <img class="badges designBadge" src="images/codeB.png" id="codeB">
+                                            <img class="badges designBadge" src="images/ideaB.png" id="ideaB">
+                                        </div>
+                                        <div class='card-body'>
                                              <h5 class='card-title'>Title</h5>
                                              <p class='card-text'>Descriptions</p>
                                          </div>
@@ -188,7 +80,8 @@
                                                     "link": "<?php echo $obj["Link"];?>",
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
@@ -209,7 +102,8 @@
                                                     "link": "<?php echo $obj["Link"];?>",
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
@@ -231,7 +125,8 @@
                                                     "link": "<?php echo $obj["Link"];?>",
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
@@ -253,7 +148,8 @@
                                                     "SCR": "<?php echo $obj["SCR"];?>",
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
@@ -279,7 +175,8 @@
                                                     "user_id": "<?php echo $obj["user_id"];?>",
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "Review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
@@ -303,7 +200,8 @@
                                                     "user_id": "<?php echo $obj["user_id"];?>",
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "SCR": "<?php echo $obj["screenshot"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 

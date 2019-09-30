@@ -1,23 +1,57 @@
 $('document').ready(function(){
+
+  sortTable(4);
 	var count = $("#TB tr").length;
+  $("#username1").css("opacity",0);
+  $("#username2").css("opacity",0);
+  $("#username3").css("opacity",0);
 
-	$("#place1").css( "font-weight", "bold" );
-	$("#place2").css( "font-weight", "bold" );
-	$("#place3").css( "font-weight", "bold" );
+  function firstPlace() {
+      $("td:nth-child(2)").eq(0).first().addClass("animated rotateInDownLeft showO");
+  }
+  
+  function secondPlace() {
+      $("td:nth-child(2)").eq(1).first().addClass("animated rotateInDownLeft showO");
+  }
 
-	$("#place1").css( "font-size", "22px" );
-	$("#place2").css( "font-size", "22px" );
-	$("#place3").css( "font-size", "22px" );
+  function thirdPlace() {
+      $("td:nth-child(2)").eq(2).addClass("animated rotateInDownLeft showO");
+  }
 
-	$("#Tr1").children().css("color", "#e6c900");
-	$("#Tr2").children().css("color", "#c0c0c0");
-	$("#Tr3").children().css("color", "#cd7f32");
+  var rowCount = $('#leaderboardT tr').length;
+    for (var i = rowCount - 1; i >= 0; i--) {
+      $("td:nth-child(1)").eq(i).text(i+1);
+    }
 
-	$("#Tr1").children().css( "font-size", "18px" );
-	$("#Tr2").children().css( "font-size", "18px" );
-	$("#Tr3").children().css( "font-size", "18px" );
+  function showAll(){
+    for (var i = rowCount - 1; i >= 0; i--) {
+      if (i >= 3) {
+        $("#username" + i).addClass("animated fadeIn")
+      }
+    }
+  }
 
-	sortTable(4);
+  setTimeout(function() { firstPlace(); }, 200);
+  setTimeout(function() { secondPlace(); }, 800);
+  setTimeout(function() { thirdPlace(); }, 1400);
+  setTimeout(function() { showAll(); }, 2000);
+
+	$("td:nth-child(1)").eq(0).css( "font-weight", "bold" );
+	$("td:nth-child(1)").eq(1).css( "font-weight", "bold" );
+	$("td:nth-child(1)").eq(2).css( "font-weight", "bold" );
+
+	$("tr").eq(1).children().css("color", "#e6c900");
+	$("tr").eq(2).children().css("color", "#c0c0c0");
+	$("tr").eq(3).children().css("color", "#cd7f32");
+
+	$("tr").eq(1).children().css( "font-size", "19px" );
+	$("tr").eq(2).children().css( "font-size", "18px" );
+	$("tr").eq(3).children().css( "font-size", "18px" );
+
+  $("td:nth-child(1)").eq(0).css( "font-size", "22px" );
+  $("td:nth-child(1)").eq(1).css( "font-size", "21px" );
+  $("td:nth-child(1)").eq(2).css( "font-size", "20px" );
+
 });
 
 function sortTable(n) {

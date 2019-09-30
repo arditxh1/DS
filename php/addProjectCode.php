@@ -8,6 +8,8 @@
   $user_id = $_SESSION["id"];
   $tableN = $_SESSION["PrType"];
 
+  echo $tableN;
+
 
   $sqlQuery = "INSERT INTO  $tableN(Emri, Short, Link, username, user_id) VALUES(:Name, :Short, :Link, :username, :user_id)";
   $sqlInsert = $con->prepare($sqlQuery);
@@ -18,27 +20,9 @@
   $sqlInsert->bindParam(':username', $username);
   $sqlInsert->bindParam(':user_id', $user_id);
 
-    $sqlInsert->execute();
+  $sqlInsert->execute();
 
-    echo $sqlQuery;
-
-    $id = $_SESSION["id"];
-
-    $query = $con->prepare("SELECT * FROM users WHERE id = $id");
-
-    $query->execute();
-
-    $tempNR = $query->fetchAll();
-
-    $NrOfPr = $tempNR[0]["NrOfPr"] + 1;
-
-    $sqlQuery = "UPDATE users set NrOfPr = $NrOfPr where id = $id";
-  
-    $sqlInsertT = $con->prepare($sqlQuery);
-
-    $sqlInsertT->execute();
-
-    $tableN = str_replace("_projekte","",$tableN);
+  $tableN = str_replace("_projekte","",$tableN);
 
     header('location: ../'. $tableN . '.php');
 

@@ -28,10 +28,9 @@
 
     <link rel="stylesheet" type="text/css" href="css/intro.css">
 
-</head> 
-
+</head>
 <?php  
-    include 'php/dbh.php';
+    require_once('components/userBlock.php');
 ?>
 <body class="animsition">
     <div class="page-wrapper">

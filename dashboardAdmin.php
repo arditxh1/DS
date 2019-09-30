@@ -22,15 +22,7 @@
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-    <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
-    <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="images/logoIcon.png">
     <link href="css/theme.css" rel="stylesheet" media="all">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
@@ -39,12 +31,8 @@
 
 </head>
     <script src="vendor/jquery-3.2.1.min.js"></script>
- <?php  
-    include 'php/dbh.php';
-
-    if (empty($_SESSION["username"])) {
-        header('location: login.php');
-    }
+<?php  
+    require_once('components/adminBlock.php');
 ?>
 <script src="vendor/jquery-3.2.1.min.js"></script>
 <body class="animsition">
@@ -93,12 +81,20 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a href="chart.html">
-                                <i class="fas fa-mobile" ></i>Dashboard</a>
+                            <a href="dashboardAdmin.php">
+                                <i class="fas fa-mobile" ></i>Projects</a>
+                        </li>
+                        <li>
+                            <a href="dashboardAdminPending.php">
+                                <i class="fas fa-users"></i>Pending Projects</a>
                         </li>
                         <li>
                             <a href="dashboard2.php">
                                 <i class="fas fa-users"></i>Users</a>
+                        </li>
+                        <li>
+                            <a href="addUser.php">
+                                <i class="fas fa-user-plus"></i>Add user</a>
                         </li>
                         <li>
                             <a href="chart.html">
@@ -113,7 +109,7 @@
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
-            <?php  require_once("components/header.php")?>
+            <?php  include("components/header.php")?>
             <!-- HEADER DESKTOP-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -151,7 +147,7 @@
                                         <?php
                                             $usernameQ = $_SESSION["id"];
                                             $codeN=-1;
-                                            $query = $con->prepare("SELECT * FROM code_projekte");
+                                            $query = $con->prepare("SELECT * FROM code_projekte WHERE approved = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -165,7 +161,8 @@
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "user_id": "<?php echo $obj["user_id"];?>",
                                                     "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
@@ -173,7 +170,7 @@
                                         var scratch_Obj = {};
                                         <?php
                                             $scratchN=-1;
-                                            $query = $con->prepare("SELECT * FROM scratch_projekte");
+                                            $query = $con->prepare("SELECT * FROM scratch_projekte  WHERE approved = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -187,7 +184,8 @@
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "user_id": "<?php echo $obj["user_id"];?>",
                                                     "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
@@ -195,7 +193,7 @@
                                         var kodu_Obj = {};
                                         <?php
                                             $koduN=-1;
-                                            $query = $con->prepare("SELECT * FROM kodu_projekte");
+                                            $query = $con->prepare("SELECT * FROM kodu_projekte WHERE approved = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -210,7 +208,8 @@
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "user_id": "<?php echo $obj["user_id"];?>",
                                                     "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
@@ -218,7 +217,7 @@
                                         var stencyl_Obj = {};
                                         <?php
                                             $stenN=-1;
-                                            $query = $con->prepare("SELECT * FROM stencyl_projekte");
+                                            $query = $con->prepare("SELECT * FROM stencyl_projekte WHERE approved = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -233,7 +232,8 @@
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "user_id": "<?php echo $obj["user_id"];?>",
                                                     "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
@@ -241,7 +241,7 @@
                                         var app_Obj = {};
                                         <?php
                                             $appN=-1;
-                                            $query = $con->prepare("SELECT * FROM projekete_app");
+                                            $query = $con->prepare("SELECT * FROM projekete_app WHERE approved = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -259,14 +259,15 @@
                                                     "user_id": "<?php echo $obj["user_id"];?>",
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
 
                                         var html_Obj = {};
                                         <?php
-                                            $query = $con->prepare("SELECT * FROM web_projekte");
+                                            $query = $con->prepare("SELECT * FROM web_projekte WHERE approved = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -284,7 +285,8 @@
                                                     "username": "<?php echo $obj["username"];?>",
                                                     "SCR": "<?php echo $obj["screenshot"];?>",
                                                     "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>"
+                                                    "type": "<?php echo $obj["type"];?>",
+                                                    "badges": "<?php echo $obj["badges"];?>"
                                             }
                                         <?php } ?>
 
@@ -293,6 +295,11 @@
                                      </script>
                                      <div class='card cardS' style='width: 18rem;' id="CardC">
                                          <img src="images/codeCover.png" class='card-img-top imgC' alt='...'>
+                                         <div class="badgesCon">
+                                            <img class="badges designBadge" src="images/badge.png" id="designB">
+                                            <img class="badges designBadge" src="images/codeB.png" id="codeB">
+                                            <img class="badges designBadge" src="images/ideaB.png" id="ideaB">
+                                        </div>
                                          <div class='card-body'>
                                              <h5 class='card-title'>Title</h5>
                                              <p class='card-text'>Descriptions</p>
@@ -359,8 +366,7 @@
                             </div>
                         </div>
                         </div>
-                        <div class="col-8" style="display: flex; flex-direction: column;">
-                          <div data-target="#list-example" data-offset="0" id="modal-body-b">
+                        <div class="col-8" style="display: flex; flex-direction: column; height: 600px; overflow: scroll;"  id="modal-body-b">
                                 <h4 id="list-item-1">Emri I Aplikacionit</h4>
                                     <p id="nameM"></p>
                                 <h4 id="list-item-2">Emri I Dorezimit</h4>
@@ -382,6 +388,23 @@
                                 <a id="apkM" class="linkMS" download>APK</a>
                                 <a id="fileM" class="linkMS" download>File</a>
                                 <img src="" id="typeM">
+                                <h4 id="badges" style="margin-top: auto; margin-bottom: 0 !important;">Badges</h4>
+                                <div class="btn-group" style="display: flex; align-items: center;">
+                                  <button type="button" class="btn btn-primary" style="max-height: 40px;" id="addBadge">Add</button>
+                                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="max-height: 40px;">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                  </button>
+                                  <div class="dropdown-menu">
+                                    <a class="dropdown-item" id="bDesign">Best Design</a>
+                                    <a class="dropdown-item" id="bCode">Best Code</a>
+                                    <a class="dropdown-item" id="bIdea">Best Idea</a>
+                                </div>
+
+                                <div id="modalBadges">
+                                    <img class="badges designBadge" src="images/badge.png" id="designBM">
+                                    <img class="badges designBadge" src="images/codeB.png" id="codeBM">
+                                    <img class="badges designBadge" src="images/ideaB.png" id="ideaBM">
+                                </div>
                             <link rel="stylesheet" type="text/css" href="css/stars.css">
                             <!--Stars -->
 
@@ -412,6 +435,9 @@
                                      <input class="rating__input" name="rating2" id="rating10" value="5" type="radio">
                                   </div>
                                </div>
+                            </div>
+
+
                                <script type="text/javascript">
                                   $("input[type=radio]").click(function() {
                                         $("#starN").text($(this).val() * 2);
@@ -420,7 +446,6 @@
 
                                   $("input[type=radio]").val()
                                </script>
-                          </div>
                         </div>
                       </div>
                 </div>
@@ -449,6 +474,39 @@
     <script src="vendor/select2/select2.min.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
+    var badgePush;
+    $("#bDesign").click(function(){
+        badgePush = "design";
+    });
+
+    $("#bCode").click(function(){
+        badgePush = "code";
+    });
+
+    $("#bIdea").click(function(){
+        badgePush = "idea";
+    });
+
+    $("#addBadge").click(function(){
+        var str = $("#idM").text();
+        var idOfPr = str.replace("Id. ", "");
+        $.post( "php/addBadge.php", 
+            { 
+                idOfPr: idOfPr,
+                Badge: badgePush,
+                RevType: RevType,
+            },
+        function(data,status){
+            console.log(data);
+            if (data == "Used") {
+                alert("Project already has that badge.");
+            }else{
+                alert("Badge added");
+                addBadge();
+            }
+        });
+    });
+
     $("#addRev").click(function(){
         var rev = $("#starN").text();
         url = "php/review.php";
@@ -511,6 +569,9 @@ $("#closeM").click(function(){
 
 $('#myModal').on('hidden.bs.modal', function (e) {
     $("#rating" + latestRev).removeAttr("checked");
+    $("#ideaBM").hide();
+    $("#codeBM").hide();
+    $("#designBM").hide();
 });
 
 

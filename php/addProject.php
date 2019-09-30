@@ -31,19 +31,20 @@
               $_SESSION["q_error"] = "Please input a image that suits a cover (it needs to be horizontal).";
               header('location: ../dashboard.php');
             }
+          }else{
+              $fileNameNew = uniqid('', true). "." . $fileActualExt;
+              $fileDestination = '../uploads/' . $fileNameNew;
+              move_uploaded_file($fileTmpName, $fileDestination);
+              $fileDB = 'uploads/' . $fileNameNew;
           }
           if ($fileQ == 'SCR') {
             $SCRDB = "$fileDB";
-            echo $SCRDB;
           }else if ($fileQ == 'Icon') {
             $IconDB = "$fileDB";
-            echo $IconDB;
           }else if ($fileQ == 'Cover') {
             $CoverDB = "$fileDB";
-            echo $CoverDB;
           }else if ($fileQ == 'APK') {
             $APKDB = "$fileDB";
-            echo $fileDestination;
           }
           echo "<br>";
           echo "File uploaded";
