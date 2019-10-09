@@ -233,11 +233,19 @@ $("a").on("click", function(){
 		//Id
 		$("#idM").text("Id. " + current_pr["id"]);
 
-		//Link
-		$("#linkM").text(current_pr["link"]);
+		if (current_pr["link"] != "") {
+			//Link
+			$("#linkM").text(current_pr["link"]);
 
-		//Link url
-		$("#linkF").attr("href",current_pr["link"]);
+			//Link url
+			$("#linkF").attr("href",current_pr["link"]);
+		}
+			else
+		{
+			$("#linkF").hide();
+			
+			$("#linkM").hide();
+		}
 
 		//Icon
 		$("#iconMS").attr("src",current_pr["Icon"]);
@@ -262,6 +270,27 @@ $("a").on("click", function(){
 
 		//Apk url
 		$("#fileM").attr("href", current_pr["file"]);
+
+		//Check if the proejct is reviewed
+		if (current_pr["review"] == 11) {
+			admReview = "Not reviewed";
+		}else{
+			admReview = current_pr["review"];
+		}
+		//Admin review
+		$("#admRevP").text(admReview+"/10");
+		var APR;
+
+		//Get average public review
+		$.post("php/APR.php",
+		  {
+		    idOfPr: current_pr["id"], typeOfPr: current_pr["type"], user_id: current_pr["user_id"]
+		  },
+		  function(data){
+		  	console.log(data);
+		  	//Public review
+		  	$("#pubRevP").text(data +"/10");
+		  });
 
 		//Reciver Id
 		receiver_id = current_pr["user_id"];
@@ -318,7 +347,6 @@ function cleanUp(project){
 		$("#scrM").hide();
 		$("#cdM").hide();
 		$("#apkM").hide();
-		$("br").hide();
 	}else if (project["type"] == "stencyl"){
 		$("#fullDesc").hide();
 		$("#longM").hide();
@@ -328,16 +356,14 @@ function cleanUp(project){
 		$("#linkF").hide();
 		$("#LinkT").hide();
 		$("#linkM").hide();
-		$("#br1").hide();
 	}else if (project["type"] == "app") {
 		$("#fileM").hide();
 		$("#linkF").hide();
 		$("#LinkT").hide();
 		$("#linkM").hide();
 	}else{
-		$("br").hide();
 		$("#iconM").hide();
-		$("#scrM").hide();
+		//$("#scrM").hide();
 		$("#cdM").hide();
 		$("#apkM").hide();
 	}

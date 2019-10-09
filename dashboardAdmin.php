@@ -26,9 +26,7 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
-
-
-
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
 </head>
     <script src="vendor/jquery-3.2.1.min.js"></script>
 <?php  
@@ -37,39 +35,6 @@
 <script src="vendor/jquery-3.2.1.min.js"></script>
 <body class="animsition">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>f
-                    </div>
-                </div>
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                         <li class="active has-sub">
-                            <a href="chart.html">
-                                <i class="fas fa-laptop" ></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-cog"></i>Settings</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- END HEADER MOBILE-->
-
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -96,10 +61,6 @@
                             <a href="addUser.php">
                                 <i class="fas fa-user-plus"></i>Add user</a>
                         </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-cog"></i>Settings</a>
-                        </li>
                     </ul>
                 </nav>
             </div>
@@ -109,7 +70,7 @@
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
-            <?php  include("components/header.php")?>
+                <?php  include("components/header.php")?>
             <!-- HEADER DESKTOP-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -154,15 +115,15 @@
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $codeN++ ?> 
                                             code_Obj["<?php echo "$codeN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "link": "<?php echo $obj["Link"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "link": `<?php echo $obj["Link"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "review": `<?php echo $obj["Review"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`
                                             }
                                         <?php } ?>
 
@@ -177,15 +138,15 @@
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $scratchN++ ?> 
                                             scratch_Obj["<?php echo "$scratchN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "link": "<?php echo $obj["Link"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "link": `<?php echo $obj["Link"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "review": `<?php echo $obj["Review"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`
                                             }
                                         <?php } ?>
 
@@ -200,16 +161,16 @@
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $koduN++ ?> 
                                             kodu_Obj["<?php echo "$koduN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "file": "<?php echo $obj["File"];?>",
-                                                    "link": "<?php echo $obj["Link"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "file": `<?php echo $obj["File"];?>`,
+                                                    "link": `<?php echo $obj["Link"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "review": `<?php echo $obj["Review"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`
                                             }
                                         <?php } ?>
 
@@ -224,16 +185,16 @@
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $stenN++ ?> 
                                             stencyl_Obj["<?php echo "$stenN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "file": "<?php echo $obj["File"];?>",
-                                                    "SCR": "<?php echo $obj["SCR"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "file": `<?php echo $obj["File"];?>`,
+                                                    "SCR": `<?php echo $obj["SCR"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "review": `<?php echo $obj["Review"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`
                                             }
                                         <?php } ?>
 
@@ -248,19 +209,19 @@
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $appN++ ?> 
                                             app_Obj["<?php echo "$appN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "full": "<?php echo $obj["Full"];?>",
-                                                    "SCR": "<?php echo $obj["SCR"];?>",
-                                                    "Icon": "<?php echo $obj["Icon"];?>",
-                                                    "CD": "<?php echo $obj["CD"];?>",
-                                                    "APK": "<?php echo $obj["APK"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "full": `<?php echo $obj["Full"];?>`,
+                                                    "SCR": `<?php echo $obj["SCR"];?>`,
+                                                    "Icon": `<?php echo $obj["Icon"];?>`,
+                                                    "CD": `<?php echo $obj["CD"];?>`,
+                                                    "APK": `<?php echo $obj["APK"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "review": `<?php echo $obj["Review"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`
                                             }
                                         <?php } ?>
 
@@ -275,18 +236,18 @@
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $html++ ?> 
                                             html_Obj["<?php echo "$html";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "full": "<?php echo $obj["Full"];?>",
-                                                    "file": "<?php echo $obj["File"];?>",
-                                                    "link": "<?php echo $obj["Link"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "SCR": "<?php echo $obj["screenshot"];?>",
-                                                    "review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "full": `<?php echo $obj["Full"];?>`,
+                                                    "file": `<?php echo $obj["File"];?>`,
+                                                    "link": `<?php echo $obj["Link"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "SCR": `<?php echo $obj["screenshot"];?>`,
+                                                    "review": `<?php echo $obj["Review"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`
                                             }
                                         <?php } ?>
 
@@ -367,6 +328,7 @@
                         </div>
                         </div>
                         <div class="col-8" style="display: flex; flex-direction: column; height: 600px; overflow: scroll;"  id="modal-body-b">
+                            <div data-target="#list-example" data-offset="0" id="modal-body-b">
                                 <h4 id="list-item-1">Emri I Aplikacionit</h4>
                                     <p id="nameM"></p>
                                 <h4 id="list-item-2">Emri I Dorezimit</h4>
@@ -375,16 +337,20 @@
                                     <p id="shortM"></p>
                                 <h4 id="fullDesc">Full Description</h4>
                                     <p id="longM"></p>
+                                <h4 id="pubRev">Public review</h4>
+                                    <p id="pubRevP"></p>
+                                <h4 id="admRev">Admin review</h4>
+                                    <p id="admRevP"></p>  
                                 <h4 style="display: none;">Id</h4>
                                     <p id="idM"></p>
                                 <h4 id="LinkT"><a href="" id="linkF" target="_blank">Link</a></h4>
                                     <p id="linkM"></p>
                                 <a id="iconM" class="linkMS" download>Icon</a>
-                                    <div class="imgPrev" id="iconP"><img src="" id="iconMS"></div><br id="br1">
+                                    <div class="imgPrev" id="iconP"><img src="" id="iconMS"></div>
                                 <a id="scrM" class="linkMS" download>Screenshot</a>
-                                    <div class="imgPrev" id="scrP"><img src="" id="srcMS"></div><br>
+                                    <div class="imgPrev" id="scrP"><img src="" id="srcMS"></div>
                                 <a id="cdM" class="linkMS" download>Cover Design</a>
-                                    <div class="imgPrev" id="cdP"><img src="" id="cdMS"></div><br>
+                                    <div class="imgPrev" id="cdP"><img src="" id="cdMS"></div>
                                 <a id="apkM" class="linkMS" download>APK</a>
                                 <a id="fileM" class="linkMS" download>File</a>
                                 <img src="" id="typeM">
@@ -405,49 +371,19 @@
                                     <img class="badges designBadge" src="images/codeB.png" id="codeBM">
                                     <img class="badges designBadge" src="images/ideaB.png" id="ideaBM">
                                 </div>
-                            <link rel="stylesheet" type="text/css" href="css/stars.css">
                             <!--Stars -->
-
-                               <div id="half-stars-example" style="margin-left: auto; display: flex; justify-content: center; align-items: flex-end; flex-direction: column;">
-                                    <h3 id="starN" style="    padding-right: 10px;">0</h3>
-                                  <div class="rating-group">
-                                     <input class="rating__input rating__input--none" checked="" name="rating2" id="rating0" value="0" type="radio">
-                                     <label aria-label="0 stars" class="rating__label" for="rating0">&nbsp;</label>
-                                     <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating1"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                     <input class="rating__input" name="rating2" id="rating1" value="0.5" type="radio">
-                                     <label aria-label="1 star" class="rating__label" for="rating2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                     <input class="rating__input" name="rating2" id="rating2" value="1" type="radio">
-                                     <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating3"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                     <input class="rating__input" name="rating2" id="rating3" value="1.5" type="radio">
-                                     <label aria-label="2 stars" class="rating__label" for="rating4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                     <input class="rating__input" name="rating2" id="rating4" value="2" type="radio">
-                                     <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating5"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                     <input class="rating__input" name="rating2" id="rating5" value="2.5" type="radio">
-                                     <label aria-label="3 stars" class="rating__label" for="rating6"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                     <input class="rating__input" name="rating2" id="rating6" value="3" type="radio">
-                                     <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating7"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                     <input class="rating__input" name="rating2" id="rating7" value="3.5" type="radio">
-                                     <label aria-label="4 stars" class="rating__label" for="rating8"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                     <input class="rating__input" name="rating2" id="rating8" value="4" type="radio">
-                                     <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating9"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                     <input class="rating__input" name="rating2" id="rating9" value="4.5" type="radio">
-                                     <label aria-label="5 stars" class="rating__label" for="rating10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                     <input class="rating__input" name="rating2" id="rating10" value="5" type="radio">
-                                  </div>
-                               </div>
+                                <?php require_once("test.php") ?>
                             </div>
-
-
                                <script type="text/javascript">
                                   $("input[type=radio]").click(function() {
                                         $("#starN").text($(this).val() * 2);
                                         rev = $(this).val() * 2;
                                      });
-
                                   $("input[type=radio]").val()
                                </script>
                         </div>
                       </div>
+                    </div>
                 </div>
              </form>
              <div class="modal-footer">
@@ -466,12 +402,6 @@
     <script src="vendor/slick/slick.min.js"></script>
     <script src="vendor/wow/wow.min.js"></script>
     <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js"></script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/select2/select2.min.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
     var badgePush;

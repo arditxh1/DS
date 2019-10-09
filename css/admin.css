@@ -140,10 +140,6 @@
 	margin-bottom: 10px;
 }
 
-.linkMS{
-	margin-bottom: 0px !important;
-}
-
 .fa-comments:before {
     content: "\f086";
     font-size: 30px;

@@ -1,8 +1,8 @@
 <?php 
   require_once('dbh.php');
   $fileDB = "";
+
   if (isset($_POST["submit"]) && $_FILES["ZIP"]["name"] != "") {
-    echo "nice";
     $file =  $_FILES["ZIP"];
 
     $fileName = $file['name'];
@@ -37,7 +37,7 @@
     }
   }
 
-    if (isset($_POST["submit"]) && $_FILES["SCR"]["name"] != "") {
+  if (isset($_POST["submit"]) && $_FILES["SCR"]["name"] != "") {
     $file =  $_FILES["SCR"];
 
     $fileName = $file['name'];
@@ -86,10 +86,6 @@
   $username = $_SESSION["username"];
   $user_id = $_SESSION["id"];
 
-  var_dump($fileDBZIP);
-  var_dump($fileDBSCR);
-
-
   $sqlQuery = "INSERT INTO  web_projekte(Emri, Short, Full, File, Link, user_id, username, screenshot) VALUES(:Name, :Short, :Full, :File, :Link, :user_id, :username, :screenshot)";
   $sqlInsert = $con->prepare($sqlQuery);
 
@@ -97,30 +93,12 @@
   $sqlInsert->bindParam(':Short', $Short);
   $sqlInsert->bindParam(':Full', $Full);
   $sqlInsert->bindParam(':Link', $Link);
-  $sqlInsert->bindParam(':File', $fileDBZIP);
+  $sqlInsert->bindParam(':File', $fileDBSCR);
   $sqlInsert->bindParam(':username', $username);
   $sqlInsert->bindParam(':user_id', $user_id);
-  $sqlInsert->bindParam(':screenshot', $fileDBSCR);
+  $sqlInsert->bindParam(':screenshot', $fileDBZIP);
 
     $sqlInsert->execute();
-
-    echo $sqlQuery;
-
-    $id = $_SESSION["id"];
-
-    $query = $con->prepare("SELECT * FROM users WHERE id = $id");
-
-    $query->execute();
-
-    $tempNR = $query->fetchAll();
-
-    $NrOfPr = $tempNR[0]["NrOfPr"] + 1;
-
-    $sqlQuery = "UPDATE users set NrOfPr = $NrOfPr where id = $id";
-  
-    $sqlInsertT = $con->prepare($sqlQuery);
-
-    $sqlInsertT->execute();
     
     header('location: ../web.php');
 

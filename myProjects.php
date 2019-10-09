@@ -102,50 +102,51 @@
                                          </div>
                                      </div>
                                      <script type="text/javascript">
-                                        
+
                                         var code_Obj = {};
                                         <?php
-                                            $usernameQ = $_SESSION["id"];
+                                        $usernameQ = $_SESSION["id"];
                                             $codeN=-1;
-                                            $query = $con->prepare("SELECT * FROM code_projekte");
+                                            $query = $con->prepare("SELECT * FROM code_projekte WHERE user_id = $usernameQ");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $codeN++ ?> 
                                             code_Obj["<?php echo "$codeN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "link": "<?php echo $obj["Link"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>",
-                                                    "approved": "<?php echo $obj["approved"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "link": `<?php echo $obj["Link"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "approved": `<?php echo $obj["approved"];?>`,
+                                                    "review": `<?php echo $obj["Review"]; ?>`
                                             }
                                         <?php } ?>
-
-
+                                        var testQ = "<?php echo "SELECT * FROM code_projekte WHERE user_id = $usernameQ";  ?>"
                                         var scratch_Obj = {};
                                         <?php
                                             $scratchN=-1;
-                                            $query = $con->prepare("SELECT * FROM scratch_projekte");
+                                            $query = $con->prepare("SELECT * FROM scratch_projekte WHERE user_id = $usernameQ");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $scratchN++ ?> 
                                             scratch_Obj["<?php echo "$scratchN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "link": "<?php echo $obj["Link"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>",
-                                                    "approved": "<?php echo $obj["approved"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "link": `<?php echo $obj["Link"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "approved": `<?php echo $obj["approved"];?>`,
+                                                    "review": `<?php echo $obj["Review"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -153,23 +154,24 @@
                                         var kodu_Obj = {};
                                         <?php
                                             $koduN=-1;
-                                            $query = $con->prepare("SELECT * FROM kodu_projekte");
+                                            $query = $con->prepare("SELECT * FROM kodu_projekte WHERE user_id = $usernameQ");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $koduN++ ?> 
                                             kodu_Obj["<?php echo "$koduN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "file": "<?php echo $obj["File"];?>",
-                                                    "link": "<?php echo $obj["Link"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>",
-                                                    "approved": "<?php echo $obj["approved"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "file": `<?php echo $obj["File"];?>`,
+                                                    "link": `<?php echo $obj["Link"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "approved": `<?php echo $obj["approved"];?>`,
+                                                    "review": `<?php echo $obj["Review"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -177,23 +179,24 @@
                                         var stencyl_Obj = {};
                                         <?php
                                             $stenN=-1;
-                                            $query = $con->prepare("SELECT * FROM stencyl_projekte");
+                                            $query = $con->prepare("SELECT * FROM stencyl_projekte WHERE user_id = $usernameQ");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $stenN++ ?> 
                                             stencyl_Obj["<?php echo "$stenN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "file": "<?php echo $obj["File"];?>",
-                                                    "SCR": "<?php echo $obj["SCR"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>",
-                                                    "approved": "<?php echo $obj["approved"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "file": `<?php echo $obj["File"];?>`,
+                                                    "SCR": `<?php echo $obj["SCR"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "approved": `<?php echo $obj["approved"];?>`,
+                                                    "review": `<?php echo $obj["Review"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -201,27 +204,29 @@
                                         var app_Obj = {};
                                         <?php
                                             $appN=-1;
-                                            $query = $con->prepare("SELECT * FROM projekete_app");
+                                            $query = $con->prepare("SELECT * FROM projekete_app WHERE user_id = $usernameQ");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $appN++ ?> 
                                             app_Obj["<?php echo "$appN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "full": "<?php echo $obj["Full"];?>",
-                                                    "SCR": "<?php echo $obj["SCR"];?>",
-                                                    "Icon": "<?php echo $obj["Icon"];?>",
-                                                    "CD": "<?php echo $obj["CD"];?>",
-                                                    "APK": "<?php echo $obj["APK"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "Review": "<?php echo $obj["Review"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>",
-                                                    "approved": "<?php echo $obj["approved"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "full": `<?php echo $obj["Full"];?>`,
+                                                    "SCR": `<?php echo $obj["SCR"];?>`,
+                                                    "Icon": `<?php echo $obj["Icon"];?>`,
+                                                    "CD": `<?php echo $obj["CD"];?>`,
+                                                    "APK": `<?php echo $obj["APK"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "Review": `<?php echo $obj["Review"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "approved": `<?php echo $obj["approved"];?>`,
+                                                    "review": `<?php echo $obj["Review"]; ?>`
+
                                             }
                                         <?php } ?>
 
@@ -229,25 +234,26 @@
                                          var html_Obj = {};
                                         <?php
                                             $webN=-1;
-                                            $query = $con->prepare("SELECT * FROM web_projekte");
+                                            $query = $con->prepare("SELECT * FROM web_projekte WHERE user_id = $usernameQ");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
                                         <?php foreach ($projekte as $obj) {?>
                                             <?php $webN++ ?> 
                                             html_Obj["<?php echo "$webN";?>"] = {
-                                                    "id": "<?php echo $obj["id"];?>",
-                                                    "name": "<?php echo $obj["Emri"];?>",
-                                                    "short": "<?php echo $obj["Short"];?>",
-                                                    "full": "<?php echo $obj["Full"];?>",
-                                                    "file": "<?php echo $obj["File"];?>",
-                                                    "link": "<?php echo $obj["Link"];?>",
-                                                    "user_id": "<?php echo $obj["user_id"];?>",
-                                                    "username": "<?php echo $obj["username"];?>",
-                                                    "SCR": "<?php echo $obj["screenshot"];?>",
-                                                    "type": "<?php echo $obj["type"];?>",
-                                                    "badges": "<?php echo $obj["badges"];?>",
-                                                    "approved": "<?php echo $obj["approved"];?>"
+                                                    "id": `<?php echo $obj["id"];?>`,
+                                                    "name": `<?php echo $obj["Emri"];?>`,
+                                                    "short": `<?php echo $obj["Short"];?>`,
+                                                    "full": `<?php echo $obj["Full"];?>`,
+                                                    "file": `<?php echo $obj["File"];?>`,
+                                                    "link": `<?php echo $obj["Link"];?>`,
+                                                    "user_id": `<?php echo $obj["user_id"];?>`,
+                                                    "username": `<?php echo $obj["username"];?>`,
+                                                    "SCR": `<?php echo $obj["screenshot"];?>`,
+                                                    "type": `<?php echo $obj["type"];?>`,
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "approved": `<?php echo $obj["approved"];?>`,
+                                                    "review": `<?php echo $obj["Review"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -324,29 +330,23 @@
                                     <p id="shortM"></p>
                                 <h4 id="fullDesc">Full Description</h4>
                                     <p id="longM"></p>
+                                <h4 id="pubRev">Public review</h4>
+                                    <p id="pubRevP"></p>
+                                <h4 id="admRev">Admin review</h4>
+                                    <p id="admRevP"></p>                       
                                 <h4 style="display: none;">Id</h4>
                                     <p id="idM"></p>
                                 <h4 id="LinkT"><a href="" id="linkF" target="_blank">Link</a></h4>
                                     <p id="linkM"></p>
                                 <a id="iconM" class="linkMS" download>Icon</a>
-                                    <div class="imgPrev" id="iconP"><img src="" id="iconMS"></div><br id="br1">
+                                    <div class="imgPrev" id="iconP"><img src="" id="iconMS"></div>
                                 <a id="scrM" class="linkMS" download>Screenshot</a>
-                                    <div class="imgPrev" id="scrP"><img src="" id="srcMS"></div><br>
+                                    <div class="imgPrev" id="scrP"><img src="" id="srcMS"></div>
                                 <a id="cdM" class="linkMS" download>Cover Design</a>
-                                    <div class="imgPrev" id="cdP"><img src="" id="cdMS"></div><br>
+                                    <div class="imgPrev" id="cdP"><img src="" id="cdMS"></div>
                                 <a id="apkM" class="linkMS" download>APK</a>
                                 <a id="fileM" class="linkMS" download>File</a>
                                 <img src="" id="typeM">
-
-                            <!--Stars -->
-                               <script type="text/javascript">
-                                  $("input[type=radio]").click(function() {
-                                        $("#starN").text($(this).val() * 2);
-                                        rev = $(this).val() * 2;
-                                     });
-
-                                  $("input[type=radio]").val()
-                               </script>
                           </div>
                         </div>
                       </div>
@@ -369,6 +369,7 @@
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
     <script type="text/javascript">$("li:nth-child(10)").attr("class","active has-sub")
+    
     $("#commentI").focus(function(){
         $("#btnCS").css({"width": "80px" ,"opacity": "1"})
     })
