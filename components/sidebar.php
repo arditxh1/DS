@@ -35,12 +35,6 @@
     </a>
 </li>
 <li>
-    <a href="wp.php">
-        <img src="images/wp.png" class="icons">
-        WordPress
-    </a>
-</li>
-<li>
     <a href="leaderboard.php">
         <i class="fas fa-trophy"></i>Leaderboard</a>
 </li>

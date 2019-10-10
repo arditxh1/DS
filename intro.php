@@ -103,9 +103,6 @@
                                         <a href="web.php" class="introD">
                                             <img src="images/web.png" draggable="false">
                                         </a>
-                                        <a href="wp.php" class="introD">
-                                            <img src="images/wp.png" draggable="false">
-                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -176,6 +176,6 @@
     <script src="js/leaderboard.js"></script>
     <script src="js/logic.js"></script>
     <script src="js/main.js"></script>
-    <script type="text/javascript">$("li:nth-child(8)").attr("class","active has-sub")</script>
+    <script type="text/javascript">$("li:nth-child(7)").attr("class","active has-sub")</script>
 </body>
 </html>

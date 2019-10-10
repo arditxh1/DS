@@ -332,7 +332,7 @@
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
     <script src="js/user.js"></script>
-    <script type="text/javascript">$("li:nth-child(9)").attr("class","active has-sub")
+    <script type="text/javascript">$("li:nth-child(8)").attr("class","active has-sub")
     $("#commentI").focus(function(){
         $("#btnCS").css({"width": "80px" ,"opacity": "1"})
     })
