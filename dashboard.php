@@ -17,39 +17,6 @@
 ?>
 <body class="animsition">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>f
-                    </div>
-                </div>
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                         <li class="active has-sub">
-                            <a href="chart.html">
-                                <i class="fas fa-mobile" ></i>Aplikacion</a>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-laptop"></i>Webfaqe</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- END HEADER MOBILE-->
-
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -80,13 +47,13 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-12 ">
                                 <div class="au-card d-flex justify-content-center flex-column">
-                                    <p class="h3 mb-4 text-center">Dorëzo Aplikacionin</p>
+                                    <p class="h3 mb-4 text-center">Turn in Aplikacionin</p>
                                     <form action="php/addProject.php" method="POST" enctype="multipart/form-data">
                                     <div class="row " >
                                         <!-- Default form contact -->
                                         <div class="border border-light p-5 col-6">
 
-                                            <label for="textInput">Emri i aplikacionit</label>
+                                            <label for="textInput">Name of the project</label>
                                             <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Name" required>
 
                                             <label for="textarea">Short description</label>

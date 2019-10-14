@@ -295,8 +295,8 @@
                     <div class="row">
                         <div class="col-4" style="height: 600px; overflow:scroll; overflow-x: hidden;" id="modalLeft">
                           <div id="list-example" class="list-group">
-                            <a class="list-group-item list-group-item-action active" href="#list-item-1">Emri I Aplikacionit</a>
-                            <a class="list-group-item list-group-item-action" href="#list-item-2">Emri I Dorezimit</a>
+                            <a class="list-group-item list-group-item-action active" href="#list-item-1">Name of the project</a>
+                            <a class="list-group-item list-group-item-action" href="#list-item-2">Made by</a>
                             <a class="list-group-item list-group-item-action" href="#list-item-3">Short Description</a>
                             <a class="list-group-item list-group-item-action" href="#fullDesc">Full Description</a>
                           </div>
@@ -329,9 +329,9 @@
                         </div>
                         <div class="col-8" style="display: flex; flex-direction: column; height: 600px; overflow: scroll;"  id="modal-body-b">
                             <div data-target="#list-example" data-offset="0" id="modal-body-b">
-                                <h4 id="list-item-1">Emri I Aplikacionit</h4>
+                                <h4 id="list-item-1">Name of the project</h4>
                                     <p id="nameM"></p>
-                                <h4 id="list-item-2">Emri I Dorezimit</h4>
+                                <h4 id="list-item-2">Made by</h4>
                                     <p id="usernameM"></p>
                                 <h4 id="list-item-3">Short Description</h4>
                                     <p id="shortM"></p>
@@ -345,12 +345,14 @@
                                     <p id="idM"></p>
                                 <h4 id="LinkT"><a href="" id="linkF" target="_blank">Link</a></h4>
                                     <p id="linkM"></p>
+                                <div class="previews" style="display: flex; flex-direction: column;">
                                 <a id="iconM" class="linkMS" download>Icon</a>
                                     <div class="imgPrev" id="iconP"><img src="" id="iconMS"></div>
                                 <a id="scrM" class="linkMS" download>Screenshot</a>
                                     <div class="imgPrev" id="scrP"><img src="" id="srcMS"></div>
                                 <a id="cdM" class="linkMS" download>Cover Design</a>
                                     <div class="imgPrev" id="cdP"><img src="" id="cdMS"></div>
+                                </div>
                                 <a id="apkM" class="linkMS" download>APK</a>
                                 <a id="fileM" class="linkMS" download>File</a>
                                 <img src="" id="typeM">
@@ -372,7 +374,89 @@
                                     <img class="badges designBadge" src="images/ideaB.png" id="ideaBM">
                                 </div>
                             <!--Stars -->
-                                <?php require_once("test.php") ?>
+                            <style type="text/css">
+                            #half-stars-example .rating-group {
+                              display: flex;
+                              justify-content: center;
+                              align-items: center;
+                            }
+                            #half-stars-example .rating__icon {
+                              pointer-events: none;
+                            }
+                            #half-stars-example .rating__input {
+                              position: absolute !important;
+                              left: -9999px !important;
+                            }
+                            #half-stars-example .rating__label {
+                                cursor: pointer;
+                                margin: 0;
+                                padding: 0 0.1em;
+                                font-size: 3rem;
+                                line-height: 0;
+                            }
+                            #half-stars-example .rating__label--half {
+                                padding: 0;
+                                margin: 0;
+                                line-height: 0;
+                                margin-right: -0.4em;
+                                z-index: 3;
+                                max-width: 16px !important;
+                                line-height: 0;
+                            }
+                            #half-stars-example .rating__icon--star {
+                              color: #007bff;
+                            }
+                            #half-stars-example .rating__icon--none {
+                              color: #eee;
+                            }
+                            #half-stars-example .rating__input--none:checked + .rating__label .rating__icon--none {
+                              color: red;
+                            }
+                            #half-stars-example .rating__input:checked ~ .rating__label .rating__icon--star {
+                              color: #ddd;
+                            }
+                            #half-stars-example .rating-group:hover .rating__label .rating__icon--star,
+                            #half-stars-example .rating-group:hover .rating__label--half .rating__icon--star {
+                              color:  #007bff;
+                            }
+                            #half-stars-example .rating__input:hover ~ .rating__label .rating__icon--star,
+                            #half-stars-example .rating__input:hover ~ .rating__label--half .rating__icon--star {
+                              color: #ddd;
+                            }
+                            #half-stars-example .rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+                              color: #eee;
+                            }
+                            #half-stars-example .rating__input--none:hover + .rating__label .rating__icon--none {
+                              color: red;
+                            }
+                            </style>
+                            <div id="half-stars-example" style="margin-left: auto; display: flex; justify-content: center; align-items: flex-end; flex-direction: column;">
+                                <h3 id="starN" style="padding-right: 10px;">0</h3>
+                              <div class="rating-group">
+                                 <input class="rating__input rating__input--none" checked="" name="rating2" id="rating0" value="0" type="radio">
+                                 <label aria-label="0 stars" class="rating__label" for="rating0">&nbsp;</label>
+                                 <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating1"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                 <input class="rating__input" name="rating2" id="rating1" value="0.5" type="radio">
+                                 <label aria-label="1 star" class="rating__label" for="rating2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                 <input class="rating__input" name="rating2" id="rating2" value="1" type="radio">
+                                 <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating3"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                 <input class="rating__input" name="rating2" id="rating3" value="1.5" type="radio">
+                                 <label aria-label="2 stars" class="rating__label" for="rating4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                 <input class="rating__input" name="rating2" id="rating4" value="2" type="radio">
+                                 <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating5"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                 <input class="rating__input" name="rating2" id="rating5" value="2.5" type="radio">
+                                 <label aria-label="3 stars" class="rating__label" for="rating6"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                 <input class="rating__input" name="rating2" id="rating6" value="3" type="radio">
+                                 <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating7"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                 <input class="rating__input" name="rating2" id="rating7" value="3.5" type="radio">
+                                 <label aria-label="4 stars" class="rating__label" for="rating8"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                 <input class="rating__input" name="rating2" id="rating8" value="4" type="radio">
+                                 <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating9"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                                 <input class="rating__input" name="rating2" id="rating9" value="4.5" type="radio">
+                                 <label aria-label="5 stars" class="rating__label" for="rating10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                 <input class="rating__input" name="rating2" id="rating10" value="5" type="radio">
+                              </div>
+                            </div>
                             </div>
                                <script type="text/javascript">
                                   $("input[type=radio]").click(function() {

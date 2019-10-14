@@ -26,12 +26,8 @@ $(document).ready(function(){
 			$("#" + type + "_" + x).children().children(".card-title").text(card["name"]);
 
 			//Description
-			if (card["full"] != null) {
-				$("#" + type + "_" + x).children().children(".card-text").text(card["full"]);
-			}else{
-				$("#" + type + "_" + x).children().children(".card-text").text(card["short"]);
-			}
-
+			$("#" + type + "_" + x).children().children(".card-text").text(card["short"]);
+			
 			//MadeBy
 			$("#" + type + "_" + x).children().children(".ownerPR").text("Made by: " + card["username"]);
 

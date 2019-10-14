@@ -242,8 +242,8 @@
                     <div class="row">
                         <div class="col-4" style="height: 600px; overflow:scroll; overflow-x: hidden;" id="modalLeft">
                           <div id="list-example" class="list-group">
-                            <a class="list-group-item list-group-item-action active" href="#list-item-1">Emri I Aplikacionit</a>
-                            <a class="list-group-item list-group-item-action" href="#list-item-2">Emri I Dorezimit</a>
+                            <a class="list-group-item list-group-item-action active" href="#list-item-1">Name of the project</a>
+                            <a class="list-group-item list-group-item-action" href="#list-item-2">Made by</a>
                             <a class="list-group-item list-group-item-action" href="#list-item-3">Short Description</a>
                             <a class="list-group-item list-group-item-action" href="#fullDesc">Full Description</a>
                           </div>
@@ -275,9 +275,9 @@
                         </div>
                         </div>
                         <div class="col-8" style="display: flex; flex-direction: column; height: 600px; overflow: scroll;"  id="modal-body-b">
-                                <h4 id="list-item-1">Emri I Aplikacionit</h4>
+                                <h4 id="list-item-1">Name of the project</h4>
                                     <p id="nameM"></p>
-                                <h4 id="list-item-2">Emri I Dorezimit</h4>
+                                <h4 id="list-item-2">Made by</h4>
                                     <p id="usernameM"></p>
                                 <h4 id="list-item-3">Short Description</h4>
                                     <p id="shortM"></p>
@@ -291,17 +291,19 @@
                                     <p id="idM"></p>
                                 <h4 id="LinkT"><a href="" id="linkF" target="_blank">Link</a></h4>
                                     <p id="linkM"></p>
+                                <div class="previews" style="display: flex; flex-direction: column;">
                                 <a id="iconM" class="linkMS" download>Icon</a>
                                     <div class="imgPrev" id="iconP"><img src="" id="iconMS"></div>
                                 <a id="scrM" class="linkMS" download>Screenshot</a>
                                     <div class="imgPrev" id="scrP"><img src="" id="srcMS"></div>
                                 <a id="cdM" class="linkMS" download>Cover Design</a>
                                     <div class="imgPrev" id="cdP"><img src="" id="cdMS"></div>
+                                </div>
                                 <a id="apkM" class="linkMS" download>APK</a>
                                 <a id="fileM" class="linkMS" download>File</a>
                                 <img src="" id="typeM">
                                 <div class="btn-group" style="display: flex; align-items: center;">
-                                <?php require_once("test.php") ?>
+                                <?php require_once("components/stars.php") ?>
                             </div>
                                <script type="text/javascript">
                                   $("input[type=radio]").click(function() {
