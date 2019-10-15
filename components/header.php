@@ -37,6 +37,10 @@
         $tempNumC = -1;
         foreach ($reviews as $review) {
             $tempRevType = $review["RevType"];
+            //CHANGE THE FUCKING NAME
+            if ($tempRevType == "app_projekte") {
+                $tempRevType = "projekete_app";
+            }
             $tempPrId = (int)$review["PrId"];
             $query = $con->prepare("SELECT Emri FROM $tempRevType WHERE id = $tempPrId");
             $query->execute();
@@ -52,7 +56,8 @@
                     "ProjectName" : "<?php echo $PrName[0][0];  ?>",
                     "review" : <?php echo $review["Review"];  ?>,
                     "checked" : <?php echo $review["checked"];  ?>,
-                    "senderUsername" : "<?php echo $review["username"];  ?>"
+                    "senderUsername" : "<?php echo $review["username"];  ?>",
+                    "time" : "<?php echo $review["time"];  ?>"
                 }
             <?php 
         }
@@ -72,16 +77,22 @@
                     <div id="commentsContainer">
                         <div class="notifationsS" id="cloneNotifi">
                             <div class="notfica" style="padding: 10px;">
-                                <img src="images/email.png" width="32px" height="32px">
+                                <i class="fa fa-envelope" width="32px" height="32px" style="font-size: 1.5em"></i>
                             </div>
                             <div id="text" style="padding: 5px;">
                                 <p style="font-size: 18px;" id="message">Test ndreq bugin test</p>
                                 <span id="date">April 12, 2018 06:50 by</span> <span id="name" style="font-weight: bold;">Kujtim Neziraj</span> 
                             </div>
                         </div>
-                        <div class="notifationsS" id="cloneNotifiStar">
+                    <div class="emptyNotifi" id="emptyNoti">
                             <div class="notfica" style="padding: 10px;">
                                 <i class="fa fa-star" width="32px" height="32px"></i>
+                            </div>
+                                <p style="font-size: 22px;">No notifications</p>
+                        </div>
+                        <div class="notifationsS" id="cloneNotifiStar">
+                            <div class="notfica" style="padding: 10px;">
+                                <i class="fa fa-bell" width="32px" height="32px" style="font-size: 1.5em"></i>
                             </div>
                             <div id="text" style="padding: 5px;">
                                 <p style="font-size: 18px;" id="message">U got an 8 for "Testi i arritshmerris".</p>
@@ -138,8 +149,7 @@
     for (var i = Object.keys(reviews).length - 1; i >= 0; i--) {
         $("#cloneNotifiStar").clone(true).appendTo("#commentsContainer").attr("id", "reviews_" + i).addClass("");
         $("#" + "reviews_" + i).find("#message").text("U got a new review: " + reviews[i]["review"] + " for " + '"' +reviews[i]["ProjectName"]+ '"' );
-        var nameTemp = comments[i]["sender_id"];
-        $("#" + "reviews_" + i).find("#date").text(comments[i]["time"] + " by ");
+        $("#" + "reviews_" + i).find("#date").text(reviews[i]["time"] + " by ");
         $("#" + "reviews_" + i).find("#name").text(reviews[i]["senderUsername"]);
         console.log(i);
     }
@@ -208,6 +218,13 @@ yourFunction();
     border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
+.emptyNotifi{
+    flex-direction: row;
+    align-items: center;
+    padding: 7px 0px 7px 0px;
+    display: none;
+}
+
 .notifationsS::last-child{
     border: none;
 }
@@ -267,6 +284,7 @@ yourFunction();
     position: absolute;
 }
 
+
 </style>
 
 <script type="text/javascript">
@@ -288,4 +306,7 @@ yourFunction();
             $("#commentsContainer").css({"transition":".3 ease","opacity":"0","height":"0","max-height":"0px"});
         }
     })
+    if ($("#commentsContainer > div").length <= 3) {
+        $("#emptyNoti").css("display", "flex");
+    }
 </script>   

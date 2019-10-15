@@ -17,39 +17,6 @@
 
 <body class="animsition">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                         <li class="active has-sub">
-                            <a href="chart.html">
-                                <i class="fas fa-mobile" ></i>Aplikacion</a>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-laptop"></i>Webfaqe</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- END HEADER MOBILE-->
-
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -80,7 +47,7 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-12 ">
                                 <div class="au-card d-flex justify-content-center flex-column">
-                                    <p class="h3 mb-4 text-center">My Projects</p>
+                                    <p class="h3 mb-4 text-center" id="titleP"></p>
                                     <div class="row" id="mainD" style="display: flex; flex-direction: row; flex-wrap: wrap;">
                                     <div class='card cardS' style='width: 18rem;' id="CardC">
                                          <img src="images/codeCover.png" class='card-img-top imgC' alt='...'>
@@ -407,6 +374,14 @@
         $("#btnCS").css({"width": "0px" ,"opacity": "0"});
 
     }, 150);
+    })
+
+    $(document).ready(function(){
+        if ($("#mainD > div").length <= 1) {
+            $("#titleP").text("U dont have any projects currently");
+        }else{
+            $("#titleP").text("My Projects");
+        }
     })
 
 </script>

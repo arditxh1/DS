@@ -213,6 +213,9 @@ $("a").on("click", function(){
 		//Save id for reivew
 		dbType = current_pr["type"];
 
+		//Set title of modal
+		$("#exampleModalLabel").text("Project of " + current_pr["username"]);
+
 		//Name
 		$("#nameM").text(current_pr["name"]);
 

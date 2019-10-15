@@ -77,7 +77,7 @@
                                         </thead>
                                         <tbody id="TB">
                                             <?php  
-                                             $query = $con->prepare("SELECT * FROM users");
+                                             $query = $con->prepare("SELECT * FROM users WHERE type = 'user'");
     
                                              $query->execute();
 

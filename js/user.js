@@ -6,9 +6,11 @@ $("#addRev").click(function(){
 	rev = $("#starN").text();
 	PrId = $("#idM").text();
 	PrId = PrId.replace("Id.", "");
+	const d = new Date();
+    dateN = monthNames[d.getMonth()] + " " + d.getDate() + " at " + d.getHours() + ":" + d.getMinutes();
 	  $.post(url,
     {
-		rev: rev, PrId: PrId, revOwnerId: revOwnerId, RevType:RevType
+		rev: rev, PrId: PrId, revOwnerId: revOwnerId, RevType:RevType, dateN: dateN
     },
     function(data,status){
     	console.log(data);
