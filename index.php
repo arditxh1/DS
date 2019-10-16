@@ -61,7 +61,7 @@
                         <div class="register-link">
                                 <p>
                                     Not a member yet?
-                                    <a href="register.php" type="submit">Sign Up</a>
+                                    <a href="register.php" type="submit" style="-webkit-appearance: none;">Sign Up</a>
                                 </p>
                             </div>
                         </div>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2019 at 04:19 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.7
+-- Generation Time: Oct 16, 2019 at 05:18 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -115,7 +115,8 @@ CREATE TABLE `reviews` (
   `UserId` int(11) NOT NULL,
   `OwnerId` int(11) NOT NULL,
   `RevType` varchar(50) NOT NULL,
-  `checked` int(5) NOT NULL DEFAULT 0
+  `checked` int(5) NOT NULL DEFAULT 0,
+  `time` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

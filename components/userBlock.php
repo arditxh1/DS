@@ -2,7 +2,7 @@
     include 'php/dbh.php';
 
     if (empty($_SESSION["username"])) {
-        header('location: login.php');
+        header('location: index.php');
     }
     $userReg = $_SESSION["username"];
     $sql = "SELECT id FROM users WHERE username= :username";
