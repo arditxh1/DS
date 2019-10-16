@@ -7,7 +7,7 @@
 
 		if(empty($username) || empty($password)) {
 			$_SESSION['error'] = "Fill All";
-			header('Location: ../login.php');
+			header('Location: ../index.php');
 
 
 		}else{
@@ -23,7 +23,7 @@
 				if ($data == null) {
 					$_SESSION['error'] = "Wrong Username !";
 					$_SESSION['error1'] = " The username was not found in the server.";
-					header('location: ../login.php');	
+					header('location: ../index.php');	
 				}else{
 					$passwordT = password_hash($password, PASSWORD_DEFAULT);
 					if (password_verify($password, $data['password'])) {
@@ -42,7 +42,7 @@
 						$_SESSION['error'] = "Wrong Password !";
 						var_dump("nice");
 						$_SESSION['error1'] = " The username and password dont match.";
-						header('location: ../login.php');
+						header('location: ../index.php');
 					}
 				}
 
