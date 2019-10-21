@@ -13,7 +13,7 @@ $("#addRev").click(function(){
 		rev: rev, PrId: PrId, revOwnerId: revOwnerId, RevType:RevType, dateN: dateN
     },
     function(data,status){
-    	console.log(data);
+    	//console.log(data);
     });
 
 	//location.reload();

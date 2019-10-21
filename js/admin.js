@@ -158,7 +158,7 @@ function show(){
 	$("#fileM").show();
 }
 var curentPrRev;
-var typeCo;
+var $typeCo;
 var test;
 var latestRev;
 $("a").on("click", function(){
