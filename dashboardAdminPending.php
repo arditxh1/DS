@@ -379,6 +379,17 @@
         {
             id: id, RevType: RevType, ppType: ppType
         });
+        url = "php/addYearlyData.php"
+        var d = new Date();
+        var n = d.getMonth();
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November','December'];
+        var month = months[n];
+        $.post(url,
+        {
+            month: month, RevType: RevType
+        }, function(data){
+            console.log(data);
+        });
     });
     $("#decline").click(function(){
         url = "php/approveProject.php";

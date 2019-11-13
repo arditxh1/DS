@@ -350,7 +350,6 @@
         numC++
         var str = $("#idM").text();
         var Message = $("#commentI").val();
-        var idOfPr = str.replace("Id. ", "");
         $("#commentI").val("");
         $("#clone-comment").clone(true).appendTo("#modalLeft").attr("id","comment" + numC);
         $("#comment" + numC).find(".messageS").text(Message);
@@ -377,6 +376,23 @@
         }else{
             $("#titleP").text("Rate Projects");
         }
+    })
+
+    $('#myModal').on('show.bs.modal', function (event) {
+    var str = $("#idM").text();
+    var idOfPr = str.replace("Id. ", "");
+    $.post( "php/getReview.php", 
+        { 
+            idOfPr: idOfPr,
+            TypeOfPr: $typeCo,
+            UserId: <?php echo $_SESSION["id"] ?>
+        },function(data){
+            if (data.length > 2) {
+                var currentRData = JSON.parse(data);
+                $("#rating" + currentRData[0]["Review"]).attr("checked","checked");
+                $("#starN").text(currentRData[0]["Review"])
+            }
+        });
     })
 </script>
 </body>

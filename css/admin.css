@@ -238,3 +238,9 @@
 .dec{
 	color: red;
 }
+
+.chart-note{
+	cursor: pointer;
+	user-select: none;
+	text-decoration: none;
+}

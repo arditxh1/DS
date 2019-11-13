@@ -1,6 +1,65 @@
-var count = 0;	
+var count = 0;
+var currentCharColors = ["#00B2C0","#FBA51E","#22AB9C","#E54D26","#A4CE48","#9D2B20"]
 var found = 0;
-var project_types = ["","","","","","",""]
+var project_types = ["","","","","","",""];
+var yearlyData = {};
+var maxYChar = 0;
+var ParsedResult;
+var categoryVal = {Code: 0, Scratch: 0, Kodu: 0, Web:0, App: 0, Stencyl:0};
+var codeLineChart = {
+              label: 'Code',
+              backgroundColor: 'transparent',
+              borderColor: currentCharColors[0],
+              pointHoverBackgroundColor: '#fff',
+              borderWidth: 0,
+              data: []
+            };
+
+var ScratchLineChart = {
+              label: 'Scratch',
+              backgroundColor: 'transparent',
+              borderColor: currentCharColors[1],
+              pointHoverBackgroundColor: '#fff',
+              borderWidth: 0,
+              data: []
+            };
+
+var KoduLineChart = {
+              label: 'Kodu',
+              backgroundColor: 'transparent',
+              borderColor: currentCharColors[2],
+              pointHoverBackgroundColor: '#fff',
+              borderWidth: 0,
+              data: []
+            };
+
+var StencylLineChart = {
+              label: 'Stencyl',
+              backgroundColor: 'transparent',
+              borderColor: currentCharColors[5],
+              pointHoverBackgroundColor: '#fff',
+              borderWidth: 0,
+              data: []
+            }
+
+var AppLineChart = {
+              label: 'App',
+              backgroundColor: 'transparent',
+              borderColor: currentCharColors[4],
+              pointHoverBackgroundColor: '#fff',
+              borderWidth: 0,
+              data: []
+            }
+
+var WebLineChart = {
+              label: 'Web',
+              backgroundColor: 'transparent',
+              borderColor: currentCharColors[3],
+              pointHoverBackgroundColor: '#fff',
+              borderWidth: 0,
+              data: []
+            };
+var lineChartProjects = [codeLineChart, ScratchLineChart, KoduLineChart, StencylLineChart, AppLineChart, WebLineChart];
 $(document).ready(function(){
 	for (var i = Object.keys(all_projects).length - 1; i >= 0; i--) {
 		for (var x = Object.keys(all_projects[Object.keys(all_projects)[i]]).length - 1; x >= 0; x--) {
@@ -8,6 +67,9 @@ $(document).ready(function(){
 			var card = all_projects[Object.keys(all_projects)[i]][x];
 			var str = Object.keys(all_projects)[i];
 			var type = str.replace("_Obj", "");
+
+			var pushChartPieType = card["type"].charAt(0);
+			categoryVal[pushChartPieType.toUpperCase() + card["type"].slice(1)] += 1;
 			//Clone
 			$("#CardC").clone(true).appendTo("#mainD").attr("id", type + "_" + x).addClass("Card" + count )
 
@@ -85,6 +147,34 @@ $(document).ready(function(){
       }
     });
   });
+  $.post("php/getYearlyData.php", function(result){
+    if ($.trim(result)) {
+    	ParsedResult = JSON.parse(result);
+    	console.log(ParsedResult);
+    	for (var i = ParsedResult.length - 1; i >= 0; i--) {
+    		for (var x = 0; x <= 11; x++) {
+    			if (maxYChar < parseInt(ParsedResult[i][x])) {
+    				maxYChar = parseInt(ParsedResult[i][x]);
+    			}
+    			if (i == 0) {
+					AppLineChart.data.push(parseInt(ParsedResult[i][x]));
+    			} else if (i == 1){
+    				codeLineChart.data.push(parseInt(ParsedResult[i][x]));
+    			} else if (i == 2){
+    				KoduLineChart.data.push(parseInt(ParsedResult[i][x]));
+    			} else if (i == 3){
+    				ScratchLineChart.data.push(parseInt(ParsedResult[i][x]));
+    			} else if (i == 4){
+    				StencylLineChart.data.push(parseInt(ParsedResult[i][x]));
+    			} else if (i == 5){
+    				WebLineChart.data.push(parseInt(ParsedResult[i][x]));
+    			}
+    		}
+    	}
+    	lineChart();
+    }
+});
+  loadCharts();
 });
 
 
@@ -158,7 +248,7 @@ function show(){
 	$("#fileM").show();
 }
 var curentPrRev;
-var typeCo;
+var $typeCo;
 var test;
 var latestRev;
 $("a").on("click", function(){
@@ -327,7 +417,7 @@ $("a").on("click", function(){
 		//Show modal
 		$("#myModal").modal();
 	}
-
+	loadChart();
 });
 
 function cleanUp(project){
@@ -387,3 +477,125 @@ function resetComments(){
 	$(".commentR").remove();
 }
 
+/*$(document).on("click", ".chart-note", function(){
+	if($(this).css("text-decoration").includes("line-through")){
+		$(this).css("text-decoration", "none");
+		if ($(this).find("#chartTextLine").text() == "Code") {
+			lineChartProjects.splice(1, 1);
+		}
+	}else{
+		$(this).css("text-decoration", "line-through");
+		if ($(this).find("#chartTextLine").text() == "Code") {
+			lineChartProjects.push(codeLineChart);
+		}
+	}
+		lineChart();
+})
+*/
+function loadCharts(){
+	var ctx = document.getElementById("percent-chart");
+    if (ctx) {
+      ctx.height = 280;
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          datasets: [
+            {
+              label: "My First dataset",
+              data: Object.values(categoryVal),
+              backgroundColor: currentCharColors,
+              hoverBackgroundColor: [
+              ],
+              borderWidth: [
+                0, 0
+              ],
+              hoverBorderColor: [
+                'transparent',
+                'transparent'
+              ]
+            }
+          ],
+          labels: Object.keys(categoryVal)
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          cutoutPercentage: 55,
+          animation: {
+            animateScale: true,
+            animateRotate: true
+          },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            titleFontFamily: "Poppins",
+            xPadding: 15,
+            yPadding: 10,
+            caretPadding: 0,
+            bodyFontSize: 16
+          }
+        }
+      });
+    }
+
+
+}
+
+function lineChart(){
+    var elements = 12;
+
+    var ctx = document.getElementById("recent-rep-chart");
+    if (ctx) {
+      ctx.height = 250;
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November','December'],
+          datasets: lineChartProjects
+        },
+        options: {
+          maintainAspectRatio: true,
+          legend: {
+            display: false
+          },
+          responsive: true,
+          scales: {
+            xAxes: [{
+              gridLines: {
+                drawOnChartArea: true,
+                color: '#f2f2f2'
+              },
+              ticks: {
+                fontFamily: "Poppins",
+                fontSize: 12
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                maxTicksLimit: 5,
+                stepSize: maxYChar/5,
+                max: maxYChar+(maxYChar/5),
+                fontFamily: "Poppins",
+                fontSize: 12
+              },
+              gridLines: {
+                display: true,
+                color: '#f2f2f2'
+
+              }
+            }]
+          },
+          elements: {
+            point: {
+              radius: 0,
+              hitRadius: 10,
+              hoverRadius: 4,
+              hoverBorderWidth: 3
+            }
+          }
+        }
+      });
+    }
+}

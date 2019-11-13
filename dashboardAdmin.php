@@ -27,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
     <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
 </head>
     <script src="vendor/jquery-3.2.1.min.js"></script>
 <?php  
@@ -273,7 +275,90 @@
                                              <img src='images/web.png' class='icons'>
                                          </div>
                                      </div>
+                                <script src="js/chartS.js"></script>
                                 <script src="js/admin.js"></script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2">recent reports</h3>
+                                        <div class="chart-info">
+                                            <div class="chart-info__left" style="margin-top: 10px;">
+                                                <div class="chart-note">
+                                                    <span class="dot dot--blue mr-0"></span>
+                                                    <span id="chartTextLine">Code</span>
+                                                </div>
+                                                <div class="chart-note">
+                                                    <span class="dot mr-0" style="background-color: #FBA51E;"></span>
+                                                    <span id="chartTextLine">Scratch</span>
+                                                </div>
+                                                <div class="chart-note">
+                                                    <span class="dot mr-0" style="background-color: #22AB9C;"></span>
+                                                    <span id="chartTextLine">Kodu</span>
+                                                </div>
+                                                <div class="chart-note">
+                                                    <span class="dot mr-0" style="background-color: #9D2B20;"></span>
+                                                    <span id="chartTextLine">Stencyl</span>
+                                                </div>
+                                                <div class="chart-note">
+                                                    <span class="dot mr-0" style="background-color: #A4CE48;"></span>
+                                                    <span id="chartTextLine">App</span>
+                                                </div>
+                                                <div class="chart-note">
+                                                    <span class="dot mr-0" style="background-color: #E54D26;"></span>
+                                                    <span id="chartTextLine">Web</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="recent-report__chart">
+                                            <canvas id="recent-rep-chart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="au-card chart-percent-card">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2 tm-b-5">Project Types</h3>
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-6">
+                                                <div class="chart-note-wrap" id="charAppendD">
+                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint0">
+                                                        <span class="dot" style="background-color: #00B2C0;"></span>
+                                                        <span id="charChangeD">Code</span>
+                                                    </div>
+                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint1">
+                                                        <span class="dot" style="background-color: #FBA51E;"></span>
+                                                        <span id="charChangeD">Scratch</span>
+                                                    </div>
+                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint2">
+                                                        <span class="dot" style="background-color: #22AB9C;"></span>
+                                                        <span id="charChangeD">Kodu</span>
+                                                    </div>
+                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint3">
+                                                        <span class="dot" style="background-color: #9D2B20;"></span>
+                                                        <span id="charChangeD">Stencyl</span>
+                                                    </div>
+                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint4">
+                                                        <span class="dot" style="background-color: #A4CE48;"></span>
+                                                        <span id="charChangeD">App</span>
+                                                    </div>
+                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint5">
+                                                        <span class="dot" style="background-color: #E54D26;"></span>
+                                                        <span id="charChangeD">Web</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="percent-chart">
+                                                    <canvas id="percent-chart"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -480,11 +565,13 @@
     <!-- Jquery JS-->
 
     <!-- Bootstrap JS-->
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
     <!-- Vendor JS       -->
     <script src="vendor/slick/slick.min.js"></script>
     <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/animsition/animsition.min.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
