@@ -63,8 +63,15 @@
                                                     <label for="textarea">Short description</label>
                                                     <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80" required></textarea>
                                             </div>
-                                    </div>
-                                    <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit" id="btnS">Send</button>
+                                            <div>
+                                                <label for="textarea">Do you want to use this project for November Code Fest</label>
+                                                <select class="form-control" style="max-width: 200px;">
+                                                  <option>Yes</option>
+                                                  <option>No</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit" id="btnS">Send</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

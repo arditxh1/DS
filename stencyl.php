@@ -85,9 +85,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>
+                                            <div>
+                                                <label for="textarea">Do you want to use this project for November Code Fest</label>
+                                                <select class="form-control" style="max-width: 200px;">
+                                                  <option>Yes</option>
+                                                  <option>No</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit" id="btnS">Send</button>
+                                        </div>
                                     <div class="alert alert-danger" role="alert" id="errorD"><?php echo $_SESSION["q_error"];$_SESSION["q_error"] = "";?></div>
-                                    <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit" id="btnS">Send</button>
                                     </form>
                                 </div>
                             </div>

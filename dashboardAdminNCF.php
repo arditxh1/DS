@@ -5,9 +5,6 @@
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
     <title>Dashboard</title>
@@ -26,8 +23,6 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
-    <link rel="stylesheet" type="text/css" href="css/animate.css">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
 </head>
     <script src="vendor/jquery-3.2.1.min.js"></script>
@@ -47,7 +42,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
+                        <li>
                             <a href="dashboardAdmin.php">
                                 <i class="fas fa-mobile" ></i>Projects</a>
                         </li>
@@ -55,7 +50,7 @@
                             <a href="dashboardAdminPending.php">
                                 <i class="fas fa-users"></i>Pending Projects</a>
                         </li>
-                        <li>
+                        <li class="active has-sub">
                             <a href="dashboardAdminNCF.php">
                                 <i class="fas fa-calendar"></i>November Code Fest</a>
                         </li>
@@ -76,7 +71,7 @@
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
-                <?php  include("components/header.php")?>
+            <?php  include("components/header.php")?>
             <!-- HEADER DESKTOP-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -114,7 +109,7 @@
                                         <?php
                                             $usernameQ = $_SESSION["id"];
                                             $codeN=-1;
-                                            $query = $con->prepare("SELECT * FROM code_projekte WHERE approved = 1");
+                                            $query = $con->prepare("SELECT * FROM code_projekte WHERE ncf = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -137,7 +132,7 @@
                                         var scratch_Obj = {};
                                         <?php
                                             $scratchN=-1;
-                                            $query = $con->prepare("SELECT * FROM scratch_projekte  WHERE approved = 1");
+                                            $query = $con->prepare("SELECT * FROM scratch_projekte WHERE ncf = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -160,7 +155,7 @@
                                         var kodu_Obj = {};
                                         <?php
                                             $koduN=-1;
-                                            $query = $con->prepare("SELECT * FROM kodu_projekte WHERE approved = 1");
+                                            $query = $con->prepare("SELECT * FROM kodu_projekte WHERE ncf = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -184,7 +179,7 @@
                                         var stencyl_Obj = {};
                                         <?php
                                             $stenN=-1;
-                                            $query = $con->prepare("SELECT * FROM stencyl_projekte WHERE approved = 1");
+                                            $query = $con->prepare("SELECT * FROM stencyl_projekte WHERE ncf = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -208,7 +203,7 @@
                                         var app_Obj = {};
                                         <?php
                                             $appN=-1;
-                                            $query = $con->prepare("SELECT * FROM projekete_app WHERE approved = 1");
+                                            $query = $con->prepare("SELECT * FROM projekete_app WHERE ncf = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -234,7 +229,7 @@
 
                                         var html_Obj = {};
                                         <?php
-                                            $query = $con->prepare("SELECT * FROM web_projekte WHERE approved = 1");
+                                            $query = $con->prepare("SELECT * FROM web_projekte WHERE ncf = 1");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -279,90 +274,7 @@
                                              <img src='images/web.png' class='icons'>
                                          </div>
                                      </div>
-                                <script src="js/chartS.js"></script>
                                 <script src="js/admin.js"></script>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="au-card recent-report">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2">recent reports</h3>
-                                        <div class="chart-info">
-                                            <div class="chart-info__left" style="margin-top: 10px;">
-                                                <div class="chart-note">
-                                                    <span class="dot dot--blue mr-0"></span>
-                                                    <span id="chartTextLine">Code</span>
-                                                </div>
-                                                <div class="chart-note">
-                                                    <span class="dot mr-0" style="background-color: #FBA51E;"></span>
-                                                    <span id="chartTextLine">Scratch</span>
-                                                </div>
-                                                <div class="chart-note">
-                                                    <span class="dot mr-0" style="background-color: #22AB9C;"></span>
-                                                    <span id="chartTextLine">Kodu</span>
-                                                </div>
-                                                <div class="chart-note">
-                                                    <span class="dot mr-0" style="background-color: #9D2B20;"></span>
-                                                    <span id="chartTextLine">Stencyl</span>
-                                                </div>
-                                                <div class="chart-note">
-                                                    <span class="dot mr-0" style="background-color: #A4CE48;"></span>
-                                                    <span id="chartTextLine">App</span>
-                                                </div>
-                                                <div class="chart-note">
-                                                    <span class="dot mr-0" style="background-color: #E54D26;"></span>
-                                                    <span id="chartTextLine">Web</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="recent-report__chart">
-                                            <canvas id="recent-rep-chart"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="au-card chart-percent-card">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 tm-b-5">Project Types</h3>
-                                        <div class="row no-gutters">
-                                            <div class="col-xl-6">
-                                                <div class="chart-note-wrap" id="charAppendD">
-                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint0">
-                                                        <span class="dot" style="background-color: #00B2C0;"></span>
-                                                        <span id="charChangeD">Code</span>
-                                                    </div>
-                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint1">
-                                                        <span class="dot" style="background-color: #FBA51E;"></span>
-                                                        <span id="charChangeD">Scratch</span>
-                                                    </div>
-                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint2">
-                                                        <span class="dot" style="background-color: #22AB9C;"></span>
-                                                        <span id="charChangeD">Kodu</span>
-                                                    </div>
-                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint3">
-                                                        <span class="dot" style="background-color: #9D2B20;"></span>
-                                                        <span id="charChangeD">Stencyl</span>
-                                                    </div>
-                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint4">
-                                                        <span class="dot" style="background-color: #A4CE48;"></span>
-                                                        <span id="charChangeD">App</span>
-                                                    </div>
-                                                    <div class="chart-note mr-0 d-block" id="pieChartPoint5">
-                                                        <span class="dot" style="background-color: #E54D26;"></span>
-                                                        <span id="charChangeD">Web</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <div class="percent-chart">
-                                                    <canvas id="percent-chart"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -417,7 +329,6 @@
                         </div>
                         </div>
                         <div class="col-8" style="display: flex; flex-direction: column; height: 600px; overflow: scroll;"  id="modal-body-b">
-                            <div data-target="#list-example" data-offset="0" id="modal-body-b">
                                 <h4 id="list-item-1">Name of the project</h4>
                                     <p id="nameM"></p>
                                 <h4 id="list-item-2">Made by</h4>
@@ -426,10 +337,6 @@
                                     <p id="shortM"></p>
                                 <h4 id="fullDesc">Full Description</h4>
                                     <p id="longM"></p>
-                                <h4 id="pubRev">Public review</h4>
-                                    <p id="pubRevP"></p>
-                                <h4 id="admRev">Admin review</h4>
-                                    <p id="admRevP"></p>  
                                 <h4 style="display: none;">Id</h4>
                                     <p id="idM"></p>
                                 <h4 id="LinkT"><a href="" id="linkF" target="_blank">Link</a></h4>
@@ -445,123 +352,14 @@
                                 <a id="apkM" class="linkMS" download>APK</a>
                                 <a id="fileM" class="linkMS" download>File</a>
                                 <img src="" id="typeM">
-                                <h4 id="badges" style="margin-top: auto; margin-bottom: 0 !important;">Badges</h4>
-                                <div class="btn-group" style="display: flex; align-items: center;">
-                                  <button type="button" class="btn btn-primary" style="max-height: 40px;" id="addBadge">Add</button>
-                                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="max-height: 40px;">
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                  </button>
-                                  <div class="dropdown-menu">
-                                    <a class="dropdown-item" id="bDesign">Best Design</a>
-                                    <a class="dropdown-item" id="bCode">Best Code</a>
-                                    <a class="dropdown-item" id="bIdea">Best Idea</a>
-                                </div>
-
-                                <div id="modalBadges">
-                                    <img class="badges designBadge" src="images/badge.png" id="designBM">
-                                    <img class="badges designBadge" src="images/codeB.png" id="codeBM">
-                                    <img class="badges designBadge" src="images/ideaB.png" id="ideaBM">
-                                </div>
-                            <!--Stars -->
-                            <style type="text/css">
-                            #half-stars-example .rating-group {
-                              display: flex;
-                              justify-content: center;
-                              align-items: center;
-                            }
-                            #half-stars-example .rating__icon {
-                              pointer-events: none;
-                            }
-                            #half-stars-example .rating__input {
-                              position: absolute !important;
-                              left: -9999px !important;
-                            }
-                            #half-stars-example .rating__label {
-                                cursor: pointer;
-                                margin: 0;
-                                padding: 0 0.1em;
-                                font-size: 3rem;
-                                line-height: 0;
-                            }
-                            #half-stars-example .rating__label--half {
-                                padding: 0;
-                                margin: 0;
-                                line-height: 0;
-                                margin-right: -0.4em;
-                                z-index: 3;
-                                max-width: 16px !important;
-                                line-height: 0;
-                            }
-                            #half-stars-example .rating__icon--star {
-                              color: #007bff;
-                            }
-                            #half-stars-example .rating__icon--none {
-                              color: #eee;
-                            }
-                            #half-stars-example .rating__input--none:checked + .rating__label .rating__icon--none {
-                              color: red;
-                            }
-                            #half-stars-example .rating__input:checked ~ .rating__label .rating__icon--star {
-                              color: #ddd;
-                            }
-                            #half-stars-example .rating-group:hover .rating__label .rating__icon--star,
-                            #half-stars-example .rating-group:hover .rating__label--half .rating__icon--star {
-                              color:  #007bff;
-                            }
-                            #half-stars-example .rating__input:hover ~ .rating__label .rating__icon--star,
-                            #half-stars-example .rating__input:hover ~ .rating__label--half .rating__icon--star {
-                              color: #ddd;
-                            }
-                            #half-stars-example .rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
-                              color: #eee;
-                            }
-                            #half-stars-example .rating__input--none:hover + .rating__label .rating__icon--none {
-                              color: red;
-                            }
-                            </style>
-                            <div id="half-stars-example" style="margin-left: auto; display: flex; justify-content: center; align-items: flex-end; flex-direction: column;">
-                                <h3 id="starN" style="padding-right: 10px;">0</h3>
-                              <div class="rating-group">
-                                 <input class="rating__input rating__input--none" checked="" name="rating2" id="rating0" value="0" type="radio">
-                                 <label aria-label="0 stars" class="rating__label" for="rating0">&nbsp;</label>
-                                 <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating1"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                 <input class="rating__input" name="rating2" id="rating1" value="0.5" type="radio">
-                                 <label aria-label="1 star" class="rating__label" for="rating2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                 <input class="rating__input" name="rating2" id="rating2" value="1" type="radio">
-                                 <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating3"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                 <input class="rating__input" name="rating2" id="rating3" value="1.5" type="radio">
-                                 <label aria-label="2 stars" class="rating__label" for="rating4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                 <input class="rating__input" name="rating2" id="rating4" value="2" type="radio">
-                                 <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating5"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                 <input class="rating__input" name="rating2" id="rating5" value="2.5" type="radio">
-                                 <label aria-label="3 stars" class="rating__label" for="rating6"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                 <input class="rating__input" name="rating2" id="rating6" value="3" type="radio">
-                                 <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating7"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                 <input class="rating__input" name="rating2" id="rating7" value="3.5" type="radio">
-                                 <label aria-label="4 stars" class="rating__label" for="rating8"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                 <input class="rating__input" name="rating2" id="rating8" value="4" type="radio">
-                                 <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating9"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                                 <input class="rating__input" name="rating2" id="rating9" value="4.5" type="radio">
-                                 <label aria-label="5 stars" class="rating__label" for="rating10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                                 <input class="rating__input" name="rating2" id="rating10" value="5" type="radio">
-                              </div>
-                            </div>
-                            </div>
-                               <script type="text/javascript">
-                                  $("input[type=radio]").click(function() {
-                                        $("#starN").text($(this).val() * 2);
-                                        rev = $(this).val() * 2;
-                                     });
-                                  $("input[type=radio]").val()
-                               </script>
                         </div>
                       </div>
-                    </div>
                 </div>
              </form>
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeM">Close</button>
-                <button type="submit" name="submit" class="btn btn-primary" id="addRev" data-dismiss="modal">Review</button>
+                <button type="submit" name="submit" class="btn btn-danger" id="decline" data-dismiss="modal">Delete</button>
+                <button type="submit" name="submit" class="btn btn-primary" id="approve" data-dismiss="modal">Approve</button>
              </div>
           </div>
        </div>
@@ -569,64 +367,42 @@
     <!-- Jquery JS-->
 
     <!-- Bootstrap JS-->
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js"></script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
-    var badgePush;
-    $("#bDesign").click(function(){
-        badgePush = "design";
-    });
-
-    $("#bCode").click(function(){
-        badgePush = "code";
-    });
-
-    $("#bIdea").click(function(){
-        badgePush = "idea";
-    });
-
-    $("#addBadge").click(function(){
-        var str = $("#idM").text();
-        var idOfPr = str.replace("Id. ", "");
-        $.post( "php/addBadge.php", 
-            { 
-                idOfPr: idOfPr,
-                Badge: badgePush,
-                RevType: RevType,
-            },
-        function(data,status){
-            console.log(data);
-            if (data == "Used") {
-                alert("Project already has that badge.");
-            }else{
-                alert("Badge added");
-                addBadge();
-            }
-        });
-    });
-
-    $("#addRev").click(function(){
-        var rev = $("#starN").text();
-        url = "php/review.php";
+    $("#approve").click(function(){
+        url = "php/approveProject.php";
+        ppType = 1;
         id = dbId;
-        type = dbType;
-
-          $.post(url,
+        $("#" + lastCardP).hide();
+        $.post(url,
         {
-            rev: rev, id: id, type: type
-        },
-        function(data,status){
-
+            id: id, RevType: RevType, ppType: ppType
         });
-        curentPrRev["review"] = rev;
-        //location.reload();
+        url = "php/addYearlyData.php"
+        var d = new Date();
+        var n = d.getMonth();
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November','December'];
+        var month = months[n];
+        $.post(url,
+        {
+            month: month, RevType: RevType
+        }, function(data){
+            console.log(data);
+        });
+    });
+    $("#decline").click(function(){
+        url = "php/approveProject.php";
+        ppType = 2;
+        id = dbId;
+        $("#" + lastCardP).hide();
+        $.post(url,
+        {
+            id: id, RevType: RevType, ppType: ppType
+        },function(data){
+            console.log(data);
+        });
     });
     $("#commentI").focus(function(){
         $("#btnCS").css({"width": "80px" ,"opacity": "1"})

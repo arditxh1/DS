@@ -57,6 +57,10 @@
                             <a href="dashboardAdminPending.php">
                                 <i class="fas fa-users"></i>Pending Projects</a>
                         </li>
+                        <li>
+                            <a href="dashboardAdminNCF.php">
+                                <i class="fas fa-calendar"></i>November Code Fest</a>
+                        </li>
                         <li  class="active has-sub">
                             <a href="dashboard2.php">
                                 <i class="fas fa-users"></i>Users</a>

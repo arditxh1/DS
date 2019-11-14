@@ -106,6 +106,13 @@
                                                     <label class="custom-file-label" for="fileInput" id="N3">Img File</label>
                                                 </div>
                                             </div>
+                                            <div>
+                                                <label for="textarea">Do you want to use this project for November Code Fest</label>
+                                                <select class="form-control" style="max-width: 200px;">
+                                                  <option>Yes</option>
+                                                  <option>No</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="alert alert-danger" role="alert" id="errorD"><?php echo $_SESSION["q_error"];$_SESSION["q_error"] = "";?></div>
