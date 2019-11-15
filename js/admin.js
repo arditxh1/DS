@@ -125,6 +125,14 @@ $(document).ready(function(){
 
 			//Icons
 			$("#" + type + "_" + x).children().children(".icons").attr("src", "images/" + card['type'] + ".png");
+
+			//NCF
+			if (card["ncf"] == 1) {
+				console.log(1);
+				$("#" + type + "_" + x).children().children(".icons").clone(true).insertAfter($("#" + type + "_" + x).children().children(".card-link")).attr("id", "ncf" + x);
+				$("#ncf" + x).attr("src", "images/ncff.png");
+				$("#ncf" + x).css("margin-left", "60px");
+			}
 		}
 	}
 

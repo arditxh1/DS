@@ -90,7 +90,8 @@
                                                     "type": `<?php echo $obj["type"];?>`,
                                                     "badges": `<?php echo $obj["badges"];?>`,
                                                     "approved": `<?php echo $obj["approved"];?>`,
-                                                    "review": `<?php echo $obj["Review"]; ?>`
+                                                    "review": `<?php echo $obj["Review"]; ?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
                                         var testQ = "<?php echo "SELECT * FROM code_projekte WHERE user_id = $usernameQ";  ?>"
@@ -113,7 +114,8 @@
                                                     "type": `<?php echo $obj["type"];?>`,
                                                     "badges": `<?php echo $obj["badges"];?>`,
                                                     "approved": `<?php echo $obj["approved"];?>`,
-                                                    "review": `<?php echo $obj["Review"]; ?>`
+                                                    "review": `<?php echo $obj["Review"]; ?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -138,7 +140,8 @@
                                                     "type": `<?php echo $obj["type"];?>`,
                                                     "badges": `<?php echo $obj["badges"];?>`,
                                                     "approved": `<?php echo $obj["approved"];?>`,
-                                                    "review": `<?php echo $obj["Review"]; ?>`
+                                                    "review": `<?php echo $obj["Review"]; ?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -163,7 +166,8 @@
                                                     "type": `<?php echo $obj["type"];?>`,
                                                     "badges": `<?php echo $obj["badges"];?>`,
                                                     "approved": `<?php echo $obj["approved"];?>`,
-                                                    "review": `<?php echo $obj["Review"]; ?>`
+                                                    "review": `<?php echo $obj["Review"]; ?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -192,7 +196,8 @@
                                                     "type": `<?php echo $obj["type"];?>`,
                                                     "badges": `<?php echo $obj["badges"];?>`,
                                                     "approved": `<?php echo $obj["approved"];?>`,
-                                                    "review": `<?php echo $obj["Review"]; ?>`
+                                                    "review": `<?php echo $obj["Review"]; ?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
 
                                             }
                                         <?php } ?>
@@ -220,7 +225,8 @@
                                                     "type": `<?php echo $obj["type"];?>`,
                                                     "badges": `<?php echo $obj["badges"];?>`,
                                                     "approved": `<?php echo $obj["approved"];?>`,
-                                                    "review": `<?php echo $obj["Review"]; ?>`
+                                                    "review": `<?php echo $obj["Review"]; ?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
 

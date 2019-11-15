@@ -83,10 +83,11 @@
   $Short = $_POST["Short"];
   $Full = $_POST["Full"];
   $Link = $_POST["Link"];
+  $ncf = $_POST["ncf"];
   $username = $_SESSION["username"];
   $user_id = $_SESSION["id"];
 
-  $sqlQuery = "INSERT INTO  web_projekte(Emri, Short, Full, File, Link, user_id, username, screenshot) VALUES(:Name, :Short, :Full, :File, :Link, :user_id, :username, :screenshot)";
+  $sqlQuery = "INSERT INTO  web_projekte(Emri, Short, Full, File, Link, user_id, username, screenshot, ncf) VALUES(:Name, :Short, :Full, :File, :Link, :user_id, :username, :screenshot, :ncf)";
   $sqlInsert = $con->prepare($sqlQuery);
 
   $sqlInsert->bindParam(':Name', $Name);
@@ -97,6 +98,7 @@
   $sqlInsert->bindParam(':username', $username);
   $sqlInsert->bindParam(':user_id', $user_id);
   $sqlInsert->bindParam(':screenshot', $fileDBZIP);
+  $sqlInsert->bindParam(':ncf', $ncf);
 
     $sqlInsert->execute();
     

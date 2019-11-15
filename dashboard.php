@@ -106,11 +106,11 @@
                                                     <label class="custom-file-label" for="fileInput" id="N3">Img File</label>
                                                 </div>
                                             </div>
-                                            <div>
+                                            <div id="ncfInput" style="display: none;">
                                                 <label for="textarea">Do you want to use this project for November Code Fest</label>
-                                                <select class="form-control" style="max-width: 200px;">
-                                                  <option>Yes</option>
-                                                  <option>No</option>
+                                                <select class="form-control" style="max-width: 200px;" name="ncf">
+                                                  <option value="1">Yes</option>
+                                                  <option value="0">No</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -157,6 +157,7 @@
     <script src="js/logic.js"></script>
     <script src="js/main.js"></script>
     <script src="js/dashboard.js"></script>
+    <script src="js/checkNovember.js"></script>
     <script type="text/javascript">$("li:nth-child(5)").attr("class","active has-sub")
         if ($("#errorD").text() != "Please input a image that suits a cover (it needs to be horizontal).") {
             $("#errorD").hide();

@@ -71,11 +71,11 @@
                                                     <label class="custom-file-label" for="fileInput" id="apkLabel">Kodu File</label>
                                                 </div>
                                             </div>
-                                            <div>
+                                            <div id="ncfInput" style="display: none;">
                                                 <label for="textarea">Do you want to use this project for November Code Fest</label>
-                                                <select class="form-control" style="max-width: 200px;">
-                                                  <option>Yes</option>
-                                                  <option>No</option>
+                                                <select class="form-control" style="max-width: 200px;" name="ncf">
+                                                  <option value="1">Yes</option>
+                                                  <option value="0">No</option>
                                                 </select>
                                             </div>
                                             <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit" id="btnS">Send</button>
@@ -120,6 +120,7 @@
     <script src="js/logic.js"></script>
     <script src="js/main.js"></script>
     <script src="js/kodu.js"></script>
+    <script src="js/checkNovember.js"></script>
     <script type="text/javascript">$("li:nth-child(3)").attr("class","active has-sub")</script>
 
 

@@ -46,6 +46,12 @@
     <a href="myProjects.php">
         <i class="fa fa-list-ul"></i>My Projects</a>
 </li>
+<li>
+    <a href="ncf.php">
+        <img src="images/ncff.png" class="icons">
+        N. Code Fest
+    </a>
+</li>
 
 <style type="text/css">
 .fa-trophy:before {

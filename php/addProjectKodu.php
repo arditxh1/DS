@@ -44,9 +44,10 @@
   $Link = $_POST["Link"];
   $username = $_SESSION["username"];
   $user_id = $_SESSION["id"];
+  $ncf = $_POST["ncf"];
 
 
-  $sqlQuery = "INSERT INTO  kodu_projekte(Emri, Short, File, Link, user_id, username) VALUES(:Name, :Short, :File, :Link, :user_id, :username)";
+  $sqlQuery = "INSERT INTO  kodu_projekte(Emri, Short, File, Link, user_id, username, ncf) VALUES(:Name, :Short, :File, :Link, :user_id, :username, :ncf)";
   $sqlInsert = $con->prepare($sqlQuery);
 
   $sqlInsert->bindParam(':Name', $Name);
@@ -55,6 +56,7 @@
   $sqlInsert->bindParam(':File', $fileDB);
   $sqlInsert->bindParam(':username', $username);
   $sqlInsert->bindParam(':user_id', $user_id);
+  $sqlInsert->bindParam(':ncf', $ncf);
 
     $sqlInsert->execute();
 

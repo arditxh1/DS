@@ -67,7 +67,7 @@
                                         <?php
                                             $usernameQ = $_SESSION["id"];
                                             $codeN=-1;
-                                            $query = $con->prepare("SELECT * FROM code_projekte WHERE user_id != $usernameQ AND approved = 1");
+                                            $query = $con->prepare("SELECT * FROM code_projekte WHERE user_id != $usernameQ AND approved = 1 AND ncf = 0");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -90,7 +90,7 @@
                                         var scratch_Obj = {};
                                         <?php
                                             $scratchN=-1;
-                                            $query = $con->prepare("SELECT * FROM scratch_projekte WHERE user_id != $usernameQ AND approved = 1");
+                                            $query = $con->prepare("SELECT * FROM scratch_projekte WHERE user_id != $usernameQ AND approved = 1 AND ncf = 0");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -113,7 +113,7 @@
                                         var kodu_Obj = {};
                                         <?php
                                             $koduN=-1;
-                                            $query = $con->prepare("SELECT * FROM kodu_projekte WHERE user_id != $usernameQ AND approved = 1");
+                                            $query = $con->prepare("SELECT * FROM kodu_projekte WHERE user_id != $usernameQ AND approved = 1 AND ncf = 0");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -137,7 +137,7 @@
                                         var stencyl_Obj = {};
                                         <?php
                                             $stenN=-1;
-                                            $query = $con->prepare("SELECT * FROM stencyl_projekte WHERE user_id != $usernameQ AND approved = 1");
+                                            $query = $con->prepare("SELECT * FROM stencyl_projekte WHERE user_id != $usernameQ AND approved = 1 AND ncf = 0");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -161,7 +161,7 @@
                                         var app_Obj = {};
                                         <?php
                                             $appN=-1;
-                                            $query = $con->prepare("SELECT * FROM projekete_app WHERE user_id != $usernameQ AND approved = 1");
+                                            $query = $con->prepare("SELECT * FROM projekete_app WHERE user_id != $usernameQ AND approved = 1 AND ncf = 0");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>
@@ -189,7 +189,7 @@
                                          var html_Obj = {};
                                         <?php
                                             $webN=-1;
-                                            $query = $con->prepare("SELECT * FROM web_projekte WHERE user_id != $usernameQ AND approved = 1");
+                                            $query = $con->prepare("SELECT * FROM web_projekte WHERE user_id != $usernameQ AND approved = 1 AND ncf = 0");
                                             $query->execute();
                                             $projekte = $query->fetchAll();
                                         ?>

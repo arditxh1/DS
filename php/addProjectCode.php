@@ -7,11 +7,9 @@
   $username = $_SESSION["username"];
   $user_id = $_SESSION["id"];
   $tableN = $_SESSION["PrType"];
+  $ncf = $_POST["ncf"];
 
-  echo $tableN;
-
-
-  $sqlQuery = "INSERT INTO  $tableN(Emri, Short, Link, username, user_id) VALUES(:Name, :Short, :Link, :username, :user_id)";
+  $sqlQuery = "INSERT INTO  $tableN(Emri, Short, Link, username, user_id, ncf) VALUES(:Name, :Short, :Link, :username, :user_id, :ncf)";
   $sqlInsert = $con->prepare($sqlQuery);
 
   $sqlInsert->bindParam(':Name', $Name);
@@ -19,6 +17,7 @@
   $sqlInsert->bindParam(':Link', $Link);
   $sqlInsert->bindParam(':username', $username);
   $sqlInsert->bindParam(':user_id', $user_id);
+  $sqlInsert->bindParam(':ncf', $ncf);
 
   $sqlInsert->execute();
 

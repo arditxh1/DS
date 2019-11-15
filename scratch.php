@@ -63,7 +63,7 @@
                                                     <label for="textarea">Short description</label>
                                                     <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80" required></textarea>
                                             </div>
-                                            <div>
+                                            <div id="ncfInput" style="display: none;">
                                                 <label for="textarea">Do you want to use this project for November Code Fest</label>
                                                 <select class="form-control" style="max-width: 200px;">
                                                   <option>Yes</option>
@@ -112,6 +112,7 @@
     <script src="js/logic.js"></script>
     <script src="js/main.js"></script>
     <script src="js/dashboard.js"></script>
+    <script src="js/checkNovember.js"></script>
     <script type="text/javascript">$("li:nth-child(2)").attr("class","active has-sub")</script>
 
 

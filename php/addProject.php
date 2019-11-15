@@ -66,6 +66,7 @@
   $Name = $_POST["Name"];
   $Short = $_POST["Short"];
   $Long = $_POST["Long"];
+  $ncf = $_POST["ncf"];
   $SCR = $SCRDB;
   $Icon = $IconDB;
   $Cover = $CoverDB;
@@ -73,7 +74,7 @@
   $username = $_SESSION['username'];
   $userId = $_SESSION['id'];
 
-  $sqlQuery = "INSERT INTO projekete_app(Emri, Short, Full, SCR, Icon, CD, APK, username, user_Id) VALUES(:Name, :Short, :Long, :SCR, :Icon, :Cover, :APK, :username, :userId)";
+  $sqlQuery = "INSERT INTO projekete_app(Emri, Short, Full, SCR, Icon, CD, APK, username, user_Id, ncf) VALUES(:Name, :Short, :Long, :SCR, :Icon, :Cover, :APK, :username, :userId, :ncf)";
   $sqlInsert = $con->prepare($sqlQuery);
 
   $sqlInsert->bindParam(':Name', $Name);
@@ -85,6 +86,7 @@
   $sqlInsert->bindParam(':APK', $APK);
   $sqlInsert->bindParam(':username', $username);
   $sqlInsert->bindParam(':userId', $userId);
+  $sqlInsert->bindParam(':ncf', $ncf);
 
     $sqlInsert->execute();
 

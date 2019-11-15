@@ -129,7 +129,8 @@
                                                     "user_id": `<?php echo $obj["user_id"];?>`,
                                                     "review": `<?php echo $obj["Review"];?>`,
                                                     "type": `<?php echo $obj["type"];?>`,
-                                                    "badges": `<?php echo $obj["badges"];?>`
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -152,7 +153,8 @@
                                                     "user_id": `<?php echo $obj["user_id"];?>`,
                                                     "review": `<?php echo $obj["Review"];?>`,
                                                     "type": `<?php echo $obj["type"];?>`,
-                                                    "badges": `<?php echo $obj["badges"];?>`
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -176,7 +178,8 @@
                                                     "user_id": `<?php echo $obj["user_id"];?>`,
                                                     "review": `<?php echo $obj["Review"];?>`,
                                                     "type": `<?php echo $obj["type"];?>`,
-                                                    "badges": `<?php echo $obj["badges"];?>`
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -200,7 +203,8 @@
                                                     "user_id": `<?php echo $obj["user_id"];?>`,
                                                     "review": `<?php echo $obj["Review"];?>`,
                                                     "type": `<?php echo $obj["type"];?>`,
-                                                    "badges": `<?php echo $obj["badges"];?>`
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -227,7 +231,8 @@
                                                     "username": `<?php echo $obj["username"];?>`,
                                                     "review": `<?php echo $obj["Review"];?>`,
                                                     "type": `<?php echo $obj["type"];?>`,
-                                                    "badges": `<?php echo $obj["badges"];?>`
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
 
@@ -253,7 +258,8 @@
                                                     "SCR": `<?php echo $obj["screenshot"];?>`,
                                                     "review": `<?php echo $obj["Review"];?>`,
                                                     "type": `<?php echo $obj["type"];?>`,
-                                                    "badges": `<?php echo $obj["badges"];?>`
+                                                    "badges": `<?php echo $obj["badges"];?>`,
+                                                    "ncf": `<?php echo $obj["ncf"]; ?>`
                                             }
                                         <?php } ?>
 

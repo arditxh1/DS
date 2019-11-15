@@ -80,12 +80,13 @@
 
   $Name = $_POST["Name"];
   $Short = $_POST["Short"];
+  $ncf = $_POST["ncf"];
   $SCR = $fileDBSCR;
   $File = $fileDBZIP;
   $username = $_SESSION["username"];
   $user_id = $_SESSION["id"];
 
-  $sqlQuery = "INSERT INTO  stencyl_projekte(Emri, Short, SCR, File, username, user_id) VALUES(:Name, :Short, :SCR, :File, :username, :user_id)";
+  $sqlQuery = "INSERT INTO  stencyl_projekte(Emri, Short, SCR, File, username, user_id, ncf) VALUES(:Name, :Short, :SCR, :File, :username, :user_id, :ncf)";
   $sqlInsert = $con->prepare($sqlQuery);
 
   $sqlInsert->bindParam(':Name', $Name);
@@ -94,6 +95,7 @@
   $sqlInsert->bindParam(':File', $File);
   $sqlInsert->bindParam(':username', $username);
   $sqlInsert->bindParam(':user_id', $user_id);
+  $sqlInsert->bindParam(':ncf', $ncf);
 
     $sqlInsert->execute();
 
