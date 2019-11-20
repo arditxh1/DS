@@ -66,7 +66,11 @@
   $Name = $_POST["Name"];
   $Short = $_POST["Short"];
   $Long = $_POST["Long"];
-  $ncf = $_POST["ncf"];
+  if(!isset($_POST["ncf"])) {
+    $ncf = 0;
+  }else{
+    $ncf = $_POST["ncf"];
+  };
   $SCR = $SCRDB;
   $Icon = $IconDB;
   $Cover = $CoverDB;

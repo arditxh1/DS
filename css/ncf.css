@@ -1,0 +1,53 @@
+#codeNCF:hover{
+	transition: .3s ease;
+	color: #00B2C0;
+}
+
+#codeNCF{
+	transition: .3s ease;
+}
+
+#scratchNCF:hover{
+	transition: .3s ease;
+	color: #FBA51E;
+}
+
+#scratchNCF{
+	transition: .3s ease;
+}
+
+#koduNCF:hover{
+	transition: .3s ease;
+	color: #22AB9C;
+}
+
+#koduNCF{
+	transition: .3s ease;
+}
+
+#stencylNCF:hover{
+	transition: .3s ease;
+	color: #9D2B20;
+}
+
+#stencylNCF{
+	transition: .3s ease;
+}
+
+#appNCF:hover{
+	transition: .3s ease;
+	color: #A4CE48;
+}
+
+#appNCF{
+	transition: .3s ease;
+}
+
+#webNCF:hover{
+	transition: .3s ease;
+	color: #E54D26;
+}
+
+#webNCF{
+	transition: .3s ease;
+}

@@ -4,15 +4,15 @@
 <head>
     <?php include 'components/head.php'; ?>
 
-    <title>Scratch</title>
+    <title>November Code Fest</title>
 
     <link rel="stylesheet" type="text/css" href="css/smalForm.css">
+    <link rel="stylesheet" type="text/css" href="css/ncf.css">
 
 </head>
 
 <?php  
     require_once('components/userBlock.php');
-    $_SESSION["PrType"] = "scratch_projekte";
 ?>
 
 <body class="animsition">
@@ -37,7 +37,7 @@
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
-        <?php  require_once("components/header.php")?>  
+        <?php  require_once("components/header.php")?>
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
@@ -47,32 +47,19 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-12 ">
                                 <div class="au-card d-flex justify-content-center flex-column">
-                                    <p class="h3 mb-4 text-center">Turn in Scratch Project</p>
-                                    <form action="php/addProjectCode.php" method="POST" enctype="multipart/form-data">
-                                    <div class="row">
-                                        <!-- Default form contact -->
-                                            <div>
-                                                    <label for="textInput">Name of the project</label>
-                                                    <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="Name" required>
-                                            </div>
-                                            <div>
-                                                    <label for="textInput">Link of the project</label>
-                                                    <input type="url" id="textInput" class="form-control mb-4" placeholder="" name="Link" required>
-                                            </div>
-                                            <div>
-                                                    <label for="textarea">Short description</label>
-                                                    <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80" required></textarea>
-                                            </div>
-                                            <div id="ncfInput" style="display: none;">
-                                                <label for="textarea">Do you want to use this project for November Code Fest</label>
-                                                <select class="form-control" name="ncf" style="max-width: 200px;">
-                                                  <option value="1">Yes</option>
-                                                  <option value="0">No</option>
-                                                </select>
-                                            </div>
-                                            <button class="btn btn-info btn-block col-5 text-center" type="submit" name="submit" id="btnS">Send</button>
-                                        </div>
-                                    </form>
+                                    <p class="h1 mb-4 text-center">November Code Fest</p>
+                                    <div id="contentN" style="margin-top: 50px; display: flex;" >
+                                        <img src="images/ncfB.jpg" style="max-width: 40%; box-shadow: 1px 1px 10px 0px; margin: 0px 20px;">
+                                        <p style="font-size: 22px;">November Code Fest, garo me projekte deri me datën 30 Nëntor ne këto kategori: <br>
+                                            1.Krijo lojë në <a href="code.php"><b><span id="codeNCF">CODE</span></a></b><br>
+                                            2.Krijo lojë në <a href="scratch.php"><b><span id="scratchNCF">SCRATCH</span></a></b><br>
+                                            3.Krijo lojë në <a href="kodu.php"><b><span id="koduNCF">KODU</span></a></b><br>
+                                            4.Krijo lojë në <a href="stencyl.php"><b><span id="stencylNCF">STENCYL</span></a></b><br>
+                                            5.Krijo aplikacion në <a href="dashboard.php"><b><span id="appNCF">ANDROID</span></a></b><br>
+                                            6.Krijo <a href="web.php"><b><span id="webNCF">WEBFAQE</span></a></b><br>
+                                            Vendet e para fitojnë <b><span style="color: #E50000">3 muaj</span></b> pa pagesë.<br>Cmimi kryesor <b><span style="color: #E50000;">Spring Camp</span></b> pa pagese!
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -108,12 +95,12 @@
     <!-- Bootstrap JS-->
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <script type="js/jquery.checkImageSize.js"></script>
     <script src="js/logic.js"></script>
     <script src="js/main.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/checkNovember.js"></script>
-    <script type="text/javascript">$("li:nth-child(2)").attr("class","active has-sub")</script>
+    <script type="text/javascript">$("li:nth-child(10)").attr("class","active has-sub")</script>
+
 
 
 </body>

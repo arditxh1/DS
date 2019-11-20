@@ -80,7 +80,11 @@
 
   $Name = $_POST["Name"];
   $Short = $_POST["Short"];
-  $ncf = $_POST["ncf"];
+  if(!isset($_POST["ncf"])) {
+    $ncf = 0;
+  }else{
+    $ncf = $_POST["ncf"];
+  };
   $SCR = $fileDBSCR;
   $File = $fileDBZIP;
   $username = $_SESSION["username"];

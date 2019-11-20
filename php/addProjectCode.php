@@ -7,7 +7,11 @@
   $username = $_SESSION["username"];
   $user_id = $_SESSION["id"];
   $tableN = $_SESSION["PrType"];
-  $ncf = $_POST["ncf"];
+  if(!isset($_POST["ncf"])){
+    $ncf = 0;
+  }else{
+    $ncf = $_POST["ncf"];
+  };
 
   $sqlQuery = "INSERT INTO  $tableN(Emri, Short, Link, username, user_id, ncf) VALUES(:Name, :Short, :Link, :username, :user_id, :ncf)";
   $sqlInsert = $con->prepare($sqlQuery);

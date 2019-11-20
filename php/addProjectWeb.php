@@ -83,7 +83,11 @@
   $Short = $_POST["Short"];
   $Full = $_POST["Full"];
   $Link = $_POST["Link"];
-  $ncf = $_POST["ncf"];
+  if(!isset($_POST["ncf"])) {
+    $ncf = 0;
+  }else{
+    $ncf = $_POST["ncf"];
+  };
   $username = $_SESSION["username"];
   $user_id = $_SESSION["id"];
 

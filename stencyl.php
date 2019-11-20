@@ -68,7 +68,7 @@
                                             </div>
 
                                             <div>
-                                                    <label for="textarea">Link of the project</label>
+                                                    <label for="textarea">Short Description</label>
                                                     <textarea id="textarea" class="form-control mb-4" placeholder="" name="Short" maxlength="80" required></textarea>
                                             </div>
                                             <div style="display: flex;">

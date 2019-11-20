@@ -44,7 +44,11 @@
   $Link = $_POST["Link"];
   $username = $_SESSION["username"];
   $user_id = $_SESSION["id"];
-  $ncf = $_POST["ncf"];
+  if(!isset($_POST["ncf"])) {
+    $ncf = 0;
+  }else{
+    $ncf = $_POST["ncf"];
+  };
 
 
   $sqlQuery = "INSERT INTO  kodu_projekte(Emri, Short, File, Link, user_id, username, ncf) VALUES(:Name, :Short, :File, :Link, :user_id, :username, :ncf)";

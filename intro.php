@@ -143,7 +143,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Okay</button>
-            <button type="button" class="btn btn-info" data-dismiss="modal">Join Now</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal" id="NCFB">Join Now</button>
           </div>
         </div>
       </div>
@@ -153,10 +153,16 @@
 
     <!-- Jquery JS-->
     <script type="text/javascript">
-        $("#myModal").modal("show");
         var date = new Date();
         var day = date.getDate();
-        $("#days").text(30 - day);
+        var month = date.getMonth();
+        if (month == 10) {
+            $("#myModal").modal("show");
+        }
+        $("#days").text(31 - day);
+        $("#NCFB").click(function(){
+            window.location.replace("ncf.php")
+        })
     </script>
     <!-- Bootstrap JS-->
     <script src="js/logic.js"></script>
