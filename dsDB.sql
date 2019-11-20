@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2019 at 10:11 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.1.32
+-- Generation Time: Nov 20, 2019 at 04:58 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -38,20 +38,9 @@ CREATE TABLE `code_projekte` (
   `type` varchar(50) NOT NULL DEFAULT 'code',
   `Review` int(12) NOT NULL DEFAULT 11,
   `badges` varchar(50) NOT NULL DEFAULT 'none',
-  `approved` int(10) NOT NULL DEFAULT 0
+  `approved` int(10) NOT NULL DEFAULT 0,
+  `ncf` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `code_projekte`
---
-
-INSERT INTO `code_projekte` (`id`, `Emri`, `Short`, `Link`, `username`, `user_id`, `type`, `Review`, `badges`, `approved`) VALUES
-(8, 'Pug Wrestling', 'Wrestle ur pugs have fun but be safe!', 'https://studio.code.org/projects/gamelab/VeGRJyPN1f5PNwKyL0XK0OHS8U-EwpvM2CJWWVV9z9s', 'arditxh1', 54, 'code', 11, 'none', 1),
-(9, 'Egg Man', 'Egg man', 'https://studio.code.org/projects/gamelab/kSGLMkZvZX1mvyyVvJT5qKigdWOentqvWE5RS0CjJQk', 'arditxh3', 55, 'code', 11, 'none', 0),
-(10, 'Egg Man', 'egg man', 'https://studio.code.org/projects/gamelab/kSGLMkZvZX1mvyyVvJT5qKigdWOentqvWE5RS0CjJQk', 'arditxh3', 55, 'code', 11, 'none', 0),
-(11, 'Egg Man', 'egg man', 'https://studio.code.org/projects/gamelab/kSGLMkZvZX1mvyyVvJT5qKigdWOentqvWE5RS0CjJQk', 'arditxh3', 55, 'code', 11, 'none', 0),
-(12, 'Egg Man', 'egg man', 'https://studio.code.org/projects/gamelab/kSGLMkZvZX1mvyyVvJT5qKigdWOentqvWE5RS0CjJQk', 'arditxh3', 55, 'code', 11, 'none', 0),
-(13, 'Egg Man', 'egg man', 'https://studio.code.org/projects/gamelab/kSGLMkZvZX1mvyyVvJT5qKigdWOentqvWE5RS0CjJQk', 'arditxh3', 55, 'code', 11, 'none', 0);
 
 -- --------------------------------------------------------
 
@@ -88,15 +77,9 @@ CREATE TABLE `kodu_projekte` (
   `type` varchar(50) NOT NULL DEFAULT 'kodu',
   `Review` int(12) NOT NULL DEFAULT 11,
   `badges` varchar(50) NOT NULL DEFAULT 'none',
-  `approved` int(10) NOT NULL DEFAULT 0
+  `approved` int(10) NOT NULL DEFAULT 0,
+  `ncf` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `kodu_projekte`
---
-
-INSERT INTO `kodu_projekte` (`id`, `Emri`, `Short`, `File`, `Link`, `user_id`, `username`, `type`, `Review`, `badges`, `approved`) VALUES
-(11, 'Mini challanges', ' Ne kete loj ti duhet te kryesh disa mini challenges . Ndryshe challengs jan te ', 'uploads/5db05317d58a87.07194202.kodu', 'https://worlds.kodugamelab.com/world/EiMYp0jxa0GxzXl3sR4QhA==', 54, 'arditxh1', 'kodu', 11, 'none', 1);
 
 -- --------------------------------------------------------
 
@@ -118,15 +101,9 @@ CREATE TABLE `projekete_app` (
   `user_id` int(11) NOT NULL,
   `type` varchar(50) NOT NULL DEFAULT 'app',
   `badges` varchar(50) NOT NULL DEFAULT 'none',
-  `approved` int(10) NOT NULL DEFAULT 0
+  `approved` int(10) NOT NULL DEFAULT 0,
+  `ncf` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `projekete_app`
---
-
-INSERT INTO `projekete_app` (`id`, `Emri`, `Short`, `Full`, `SCR`, `Icon`, `CD`, `APK`, `username`, `Review`, `user_id`, `type`, `badges`, `approved`) VALUES
-(45, 'Testi i Arritshmerri', 'Ushtrime dhe Teste Per Testin e Arritshmerise', 'Ky aplikacione eshte qe te ndihmoje per testin e arritshmerise ne klasen e 9.Ka 6 lende dhe cdo lende i ka peraferisht deri ne 4 teste.Cdo test i ka deri ne 10 pytje dhe pytjet jane prej testeve te kaluara.', 'uploads/5db057f0c19a62.61347764.png', 'uploads/5db057f0c1ca58.65739589.png', 'uploads/5db057f0c1fa15.76083802.png', 'uploads/5db057f0c21f07.64834235.apk', 'arditxh3', 11, 55, 'app', 'none', 1);
 
 -- --------------------------------------------------------
 
@@ -145,15 +122,6 @@ CREATE TABLE `reviews` (
   `time` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `reviews`
---
-
-INSERT INTO `reviews` (`id`, `Review`, `PrId`, `UserId`, `OwnerId`, `RevType`, `checked`, `time`) VALUES
-(79, 10, 4, 54, 55, 'html_projekte', 1, 'October 23 at 15:42'),
-(80, 5, 45, 54, 55, 'app_projekte', 1, 'October 23 at 15:42'),
-(81, 4, 9, 55, 54, 'scratch_projekte', 0, 'October 23 at 15:42');
-
 -- --------------------------------------------------------
 
 --
@@ -170,15 +138,9 @@ CREATE TABLE `scratch_projekte` (
   `type` varchar(50) NOT NULL DEFAULT 'scratch',
   `Review` int(12) NOT NULL DEFAULT 11,
   `badges` varchar(50) NOT NULL DEFAULT 'none',
-  `approved` int(10) NOT NULL DEFAULT 0
+  `approved` int(10) NOT NULL DEFAULT 0,
+  `ncf` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `scratch_projekte`
---
-
-INSERT INTO `scratch_projekte` (`id`, `Emri`, `Short`, `Link`, `username`, `user_id`, `type`, `Review`, `badges`, `approved`) VALUES
-(9, 'Racing Game', 'You need to be pretty dumb to not realize how to play it. Have fun!', 'https://scratch.mit.edu/projects/193497406/', 'arditxh1', 54, 'scratch', 11, 'none', 1);
 
 -- --------------------------------------------------------
 
@@ -197,15 +159,9 @@ CREATE TABLE `stencyl_projekte` (
   `type` varchar(50) NOT NULL DEFAULT 'stencyl',
   `Review` int(12) NOT NULL DEFAULT 11,
   `badges` varchar(50) NOT NULL DEFAULT 'none',
-  `approved` int(10) NOT NULL DEFAULT 0
+  `approved` int(10) NOT NULL DEFAULT 0,
+  `ncf` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `stencyl_projekte`
---
-
-INSERT INTO `stencyl_projekte` (`id`, `Emri`, `Short`, `SCR`, `File`, `user_id`, `username`, `type`, `Review`, `badges`, `approved`) VALUES
-(6, 'Pong Starter', 'Pong is one of the earliest arcade video games. It is a table tennis sports game', 'uploads/5db05450202898.77836798.png', 'uploads/5db054501ff419.54377708.stencyl', 55, 'arditxh3', 'stencyl', 11, 'none', 1);
 
 -- --------------------------------------------------------
 
@@ -226,9 +182,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `type`) VALUES
-(8, 'Arditxh2', 'ardit.xhafer@hotmail', '$2y$10$nI6Xlst3FuTjUjz9MgPRFONqF0jIuL3I0no.d1m7W7MU7GCZVOdxi', 'admin'),
-(54, 'arditxh1', 'ardit.xhaferi@hotmai', '$2y$10$jEXsbte7lbo4E0hX.ORgneyDZavoqRWUqo6gjMOmFATYErk1neGPu', 'user'),
-(55, 'arditxh3', 'ardit.xhaferi1@hotma', '$2y$10$.jjTE06V6KKTIATXyK4QH..xB.ARaE8ozUcG.dt4Tt/FwZeOAgDO6', 'user');
+(8, 'Arditxh2', 'ardit.xhafer@hotmail', '$2y$10$nI6Xlst3FuTjUjz9MgPRFONqF0jIuL3I0no.d1m7W7MU7GCZVOdxi', 'admin');
 
 -- --------------------------------------------------------
 
@@ -249,15 +203,9 @@ CREATE TABLE `web_projekte` (
   `type` varchar(50) NOT NULL DEFAULT 'web',
   `Review` int(12) NOT NULL DEFAULT 11,
   `badges` varchar(50) NOT NULL DEFAULT 'none',
-  `approved` int(10) NOT NULL DEFAULT 0
+  `approved` int(10) NOT NULL DEFAULT 0,
+  `ncf` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `web_projekte`
---
-
-INSERT INTO `web_projekte` (`id`, `Emri`, `Short`, `Full`, `File`, `Link`, `user_id`, `username`, `screenshot`, `type`, `Review`, `badges`, `approved`) VALUES
-(4, 'Percentage of teamwork', 'This website is about calculating the % of teamwork. Every group member has 100%', 'This website is about calculating the % of teamwork. Every group member has 100% and will divide that to all the other members and in the end, we will find % how much does the group think each individual member worked.', 'uploads/5db05862135872.58172979.zip', '', 55, 'arditxh3', 'uploads/5db05862138b55.97680069.png', 'web', 11, 'none', 1);
 
 -- --------------------------------------------------------
 
@@ -288,7 +236,7 @@ CREATE TABLE `yearly_data` (
 
 INSERT INTO `yearly_data` (`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`, `Projekt_Type`, `id`) VALUES
 (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'App', 1),
-(1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'Code', 2),
+(1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 'Code', 2),
 (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Kodu', 3),
 (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Scratch', 4),
 (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Stencyl', 5),
@@ -367,7 +315,7 @@ ALTER TABLE `yearly_data`
 -- AUTO_INCREMENT for table `code_projekte`
 --
 ALTER TABLE `code_projekte`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -379,13 +327,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `kodu_projekte`
 --
 ALTER TABLE `kodu_projekte`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `projekete_app`
 --
 ALTER TABLE `projekete_app`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -397,13 +345,13 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `scratch_projekte`
 --
 ALTER TABLE `scratch_projekte`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `stencyl_projekte`
 --
 ALTER TABLE `stencyl_projekte`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -415,7 +363,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `web_projekte`
 --
 ALTER TABLE `web_projekte`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `yearly_data`
