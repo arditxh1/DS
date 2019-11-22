@@ -5,9 +5,6 @@
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
     <title>Register</title>
@@ -22,18 +19,23 @@
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
     <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
 
+    <link href="css/theme.css" rel="stylesheet" media="all">
+<style>
+    
+.error_message{
+    color:red;
+}
+
+</style>
 </head>
-<?php include 'php/dbh.php'; ?>
+<?php include 'php/dbh.php';?>
 
 <body class="animsition">
     <div class="page-wrapper">
@@ -46,19 +48,29 @@
                                 <img src="images/icon/logo.png" alt="CoolAdmin">
                             </a>
                         </div>
-                        <form action="php/registerBack.php" method="POST">
+                        <?php include "php/registerBack.php"; ?>
+                        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                         <div class="login-form">
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input class="au-input au-input--full" type="text" name="username" placeholder="Username" id="username" required>
+                                    <input class="au-input au-input--full" type="text" name="username" placeholder="Username" id="username" value="<?php echo $username; ?>" >
+                                    <span class="error_message"><?php echo $username_error; ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email" id="email" required>
+                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email" id="email" value="<?php echo $email; ?>">
+                                    <span class="error_message"><?php echo $email_error; ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password" id="password" required>
+                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password" id="password" >
+                                    <span class="error_message"><?php echo $password_error1; ?></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password Verify</label>
+                                    <input class="au-input au-input--full" type="password" name="passwordV" placeholder="Password verify" id="passwordV" >
+                                    <span class="error_message"><?php echo $password_error2; ?></span>
+
                                 </div>
                             <div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
                               <p id="contentA"><strong><?php echo $_SESSION['RegisterError']; $_SESSION['RegisterError'] = '';?> </strong></p>
@@ -66,7 +78,7 @@
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" id="register">register</button>
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" id="register" name="submit">register</button>
                             <div class="register-link">
                                 <p>
                                     Already have account?

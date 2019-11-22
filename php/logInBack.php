@@ -34,13 +34,11 @@
 						$_SESSION["user_type"] = $data['type'];
 						if ($data['type'] == "user") {
 							header('location: ../intro.php');
-							var_dump($data["type"]);
 						}else if ($data['type'] == "admin") {
 							header('location: ../dashboardAdmin.php');
 						}
 					} else{
 						$_SESSION['error'] = "Wrong Password !";
-						var_dump("nice");
 						$_SESSION['error1'] = " The username and password dont match.";
 						header('location: ../index.php');
 					}
